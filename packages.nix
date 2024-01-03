@@ -6,5 +6,7 @@
     pkgs.libsForQt5.konsole
     pkgs.fish
     pkgs.fishPlugins.bobthefish
+    pkgs.keepassxc
+    pkgs.byobu
   ];
 }

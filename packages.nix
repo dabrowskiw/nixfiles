@@ -7,6 +7,7 @@
     pkgs.fish
     pkgs.fishPlugins.bobthefish
     pkgs.keepassxc
+    pkgs.tmux
     pkgs.byobu
   ];
 }

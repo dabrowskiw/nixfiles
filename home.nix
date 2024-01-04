@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,7 +20,9 @@
   imports = [
     ./byobu.nix
     ./git.nix
+    ./goimapnotify.nix
     ./gpg.nix
+    ./mbsync.nix
     ./packages.nix
     ./pass.nix
   ];

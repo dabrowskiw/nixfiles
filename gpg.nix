@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, ...}:
 
 {
   programs.gpg = {
@@ -8,6 +8,8 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
+    defaultCacheTtl = 3456000;
+    maxCacheTtl = 3456000;
   };
 
   home.activation = {

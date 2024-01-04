@@ -1,0 +1,50 @@
+# Global configuration section
+#   Values here are used as defaults for any following Channel section that
+#   doesn't specify them.
+Expunge None
+Create Both
+
+MaildirStore local
+Path ~/data/mail/
+Subfolders Verbatim
+Trash Trash
+
+
+IMAPStore HTW
+Host imap.htw-berlin.de
+User dabrows
+PassCmd "pass Email/piotr.dabrowski@htw-berlin.de" 
+
+Channel HTW
+Far :HTW:
+Near :local:HTW/
+Patterns *
+Expunge Near
+Sync All
+
+IMAPStore Posteo
+Host posteo.de
+User Piotr.Dabrowski@posteo.net
+PassCmd "pass Email/piotr.dabrowski@posteo.de"
+
+
+Channel Posteo
+Far :Posteo:
+Near :local:Posteo/
+Patterns *
+Expunge Near
+Sync All
+
+Channel HTW-inbox
+Far :HTW:
+Near :local:HTW/
+Patterns INBOX
+Expunge Near
+Sync All
+
+Channel Posteo-inbox
+Far :Posteo:
+Near :local:Posteo/
+Patterns INBOX
+Expunge Near
+Sync All

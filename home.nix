@@ -26,6 +26,7 @@
     ./lunarvim.nix
     ./mbsync.nix
     ./packages.nix
+    ./packages-unfree.nix
     ./pass.nix
   ];
   #home.packages = [

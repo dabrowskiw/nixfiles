@@ -1,5 +1,5 @@
 { pkgs, ... }:
-
+ 
 {
   home.packages = [
     pkgs.dante
@@ -11,6 +11,7 @@
     pkgs.notmuch
     pkgs.nvimpager
     pkgs.powerline-fonts
+    pkgs.pcloud
     pkgs.tmux
     pkgs.ueberzugpp
   ];

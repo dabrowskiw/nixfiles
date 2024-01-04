@@ -18,10 +18,12 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   imports = [
+    ./aerc.nix
     ./byobu.nix
     ./git.nix
     ./goimapnotify.nix
     ./gpg.nix
+    ./lunarvim.nix
     ./mbsync.nix
     ./packages.nix
     ./pass.nix

@@ -9,7 +9,9 @@
     pkgs.keepassxc
     pkgs.libsForQt5.konsole
     pkgs.notmuch
+    pkgs.nvimpager
     pkgs.powerline-fonts
     pkgs.tmux
+    pkgs.ueberzugpp
   ];
 }

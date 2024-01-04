@@ -2,13 +2,13 @@
 
 {
   home.packages = [
-    pkgs.powerline-fonts
-    pkgs.libsForQt5.konsole
+    pkgs.dante
     pkgs.fish
     pkgs.fishPlugins.bobthefish
+    pkgs.gnupg
     pkgs.keepassxc
+    pkgs.libsForQt5.konsole
+    pkgs.powerline-fonts
     pkgs.tmux
-    pkgs.byobu
-    pkgs.dante
   ];
 }

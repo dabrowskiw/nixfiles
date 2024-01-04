@@ -19,7 +19,9 @@
   # environment.
   imports = [
     ./byobu.nix
+    ./git.nix
     ./packages.nix
+    ./pass.nix
   ];
   #home.packages = [
   #  pkgs.powerline-fonts

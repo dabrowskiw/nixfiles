@@ -20,6 +20,7 @@
   imports = [
     ./byobu.nix
     ./git.nix
+    ./gpg.nix
     ./packages.nix
     ./pass.nix
   ];

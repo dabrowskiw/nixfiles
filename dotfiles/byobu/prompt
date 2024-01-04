@@ -1,0 +1,1 @@
+[ -r /nix/store/s9bvnghv3yxr847gzmfka8iqvc2mc3ji-byobu-5.133/share/byobu/profiles/bashrc ] && . /nix/store/s9bvnghv3yxr847gzmfka8iqvc2mc3ji-byobu-5.133/share/byobu/profiles/bashrc  #byobu-prompt#

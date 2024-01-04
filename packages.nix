@@ -9,5 +9,6 @@
     pkgs.keepassxc
     pkgs.tmux
     pkgs.byobu
+    pkgs.dante
   ];
 }

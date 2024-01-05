@@ -23,12 +23,14 @@
     ./git.nix
     ./goimapnotify.nix
     ./gpg.nix
+    ./i3.nix
     ./lunarvim.nix
     ./mbsync.nix
     ./packages.nix
     ./packages-unfree.nix
     ./pass.nix
-  ];
+];
+
   #home.packages = [
   #  pkgs.powerline-fonts
   #  pkgs.libsForQt5.konsole

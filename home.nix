@@ -29,6 +29,7 @@
     ./packages.nix
     ./packages-unfree.nix
     ./pass.nix
+    ./qutebrowser.nix
 ];
 
   #home.packages = [

@@ -30,7 +30,8 @@
     ./packages-unfree.nix
     ./pass.nix
     ./qutebrowser.nix
-];
+    ./python.nix
+  ];
 
   #home.packages = [
   #  pkgs.powerline-fonts

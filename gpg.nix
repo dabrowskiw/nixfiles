@@ -10,6 +10,7 @@
     enableSshSupport = true;
     defaultCacheTtl = 3456000;
     maxCacheTtl = 3456000;
+    pinentryFlavor = "qt";
   };
 
   home.activation = {

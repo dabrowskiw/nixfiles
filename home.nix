@@ -20,6 +20,7 @@
   imports = [
     ./aerc.nix
     ./byobu.nix
+    ./fish.nix
     ./git.nix
     ./goimapnotify.nix
     ./gpg.nix

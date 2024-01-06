@@ -5,7 +5,6 @@
     pkgs.bash
     pkgs.black
     pkgs.dante
-    pkgs.fish
     pkgs.fishPlugins.bobthefish
     pkgs.gnupg
     pkgs.keepassxc

@@ -2,9 +2,4 @@ https://github.com/nvimdev/template.nvim nvimdev/template.nvim: Quickly insert t
 https://moodle.htw-berlin.de/login/index.php Log in to the site | moodle htw berlin
 https://github.com/clzander/htw-berlin-nmcli-eduroam clzander/htw-berlin-nmcli-eduroam: nmcli connection config for university HTW Berlin eduroam
 https://gvolpe.com/blog/nix-flakes/ Flakes: NixOS and Home Manager migration • gvolpe's blog
-https://opensource.com/article/22/8/migrate-networkmanager-keyfiles-configuration How I migrated to NetworkManager keyfiles for configuration | Opensource.com
-https://askubuntu.com/questions/1284811/how-to-enter-sim-pin-with-new-network-manager-ubuntu-20-04-1 nmcli - How to enter SIM PIN with new network manager (Ubuntu 20.04.1) - Ask Ubuntu
-https://search.nixos.org/packages NixOS Search - Packages
-https://github.com/nix-community/awesome-nix nix-community/awesome-nix: 😎 A curated list of the best resources in the Nix community [maintainer=@cyntheticfox]
-https://mipmip.github.io/home-manager-option-search/ Home Manager - Option Search
 http://elatov.github.io/2022/01/building-a-nix-package/ Building a Nix Package | Karim's Blog

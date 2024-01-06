@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.bash
+    pkgs.black
     pkgs.dante
     pkgs.fish
     pkgs.fishPlugins.bobthefish
@@ -19,5 +20,6 @@
     pkgs.wget
     (import ./pcloud.nix)
     (import ./bumblebee-status.nix)
+    (import ./pcloud.nix)
   ];
 }

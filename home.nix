@@ -28,7 +28,9 @@
     ./packages.nix
     ./packages-unfree.nix
     ./pass.nix
+    ./python.nix
   ];
+
   #home.packages = [
   #  pkgs.powerline-fonts
   #  pkgs.libsForQt5.konsole

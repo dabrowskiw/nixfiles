@@ -11,10 +11,12 @@
 
   home.activation = {
     pass = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      $DRY_RUN_CMD rm -rf ${config.programs.password-store.settings.PASSWORD_STORE_DIR}
-      export GIT_ASKPASS=${builtins.toPath ./secrets/git_askpass.sh}
-      chmod ugo+x $GIT_ASKPASS
-      $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/dabrowskiw/password-store.git ${config.programs.password-store.settings.PASSWORD_STORE_DIR}
+#      $DRY_RUN_CMD rm -rf ${config.programs.password-store.settings.PASSWORD_STORE_DIR}
+      if [ ! -e ${config.programs.password-store.settings.PASSWORD_STORE_DIR} ]; then
+        export GIT_ASKPASS=${builtins.toPath ./secrets/git_askpass.sh}
+        chmod ugo+x $GIT_ASKPASS
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/dabrowskiw/password-store.git ${config.programs.password-store.settings.PASSWORD_STORE_DIR}
+      fi
     '';
   };
 }

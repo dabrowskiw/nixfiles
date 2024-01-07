@@ -8,11 +8,11 @@
     pkgs.dante
     pkgs.fishPlugins.bobthefish
     pkgs.gnupg
-    pkgs.jre_minimal
     pkgs.keepassxc
     pkgs.ncdu
     pkgs.notmuch
     pkgs.nvimpager
+    pkgs.openjdk
     pkgs.powerline-fonts
     pkgs.pinentry-gtk2
     pkgs.tmux

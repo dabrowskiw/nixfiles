@@ -8,7 +8,6 @@
     pkgs.fishPlugins.bobthefish
     pkgs.gnupg
     pkgs.keepassxc
-    pkgs.libsForQt5.konsole
     pkgs.ncdu
     pkgs.notmuch
     pkgs.nvimpager

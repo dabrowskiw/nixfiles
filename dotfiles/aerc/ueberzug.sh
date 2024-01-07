@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Requires ueberzugpp: https://github.com/jstkdng/ueberzugpp/issues/56
 
 h=`tmux display -p -t $SESSION:$TMUX_PANE '#{pane_height}'`

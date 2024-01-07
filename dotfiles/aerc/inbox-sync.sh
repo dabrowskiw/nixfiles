@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 MBSYNC=$(pgrep mbsync)
 NOTMUCH=$(pgrep notmuch)

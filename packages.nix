@@ -18,6 +18,7 @@
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.wget
+    pkgs.xournalpp
     (import ./pcloud.nix)
     (import ./bumblebee-status.nix)
     (import ./pcloud.nix)

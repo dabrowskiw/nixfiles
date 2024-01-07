@@ -3,10 +3,12 @@
 {
   home.packages = [
     pkgs.bash
+    pkgs.bc
     pkgs.black
     pkgs.dante
     pkgs.fishPlugins.bobthefish
     pkgs.gnupg
+    pkgs.jre_minimal
     pkgs.keepassxc
     pkgs.ncdu
     pkgs.notmuch

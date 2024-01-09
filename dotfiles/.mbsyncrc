@@ -19,7 +19,7 @@ Channel HTW
 Far :HTW:
 Near :local:HTW/
 Patterns *
-Expunge Near
+Expunge Both
 Sync All
 
 IMAPStore Posteo
@@ -32,19 +32,19 @@ Channel Posteo
 Far :Posteo:
 Near :local:Posteo/
 Patterns *
-Expunge Near
+Expunge Both
 Sync All
 
 Channel HTW-inbox
 Far :HTW:
 Near :local:HTW/
 Patterns INBOX
-Expunge Near
+Expunge Both
 Sync All
 
 Channel Posteo-inbox
 Far :Posteo:
 Near :local:Posteo/
 Patterns INBOX
-Expunge Near
+Expunge Both
 Sync All

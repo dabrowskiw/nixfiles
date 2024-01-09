@@ -26,6 +26,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  environment.etc = {
+    "ModemManager/fcc-unlock.d/1eac:1001".source = /home/wojtek/home-manager/dotfiles/1eac_1001;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -47,6 +51,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  security.rtkit.enable = true;
 
   # Configure console keymap
   console.keyMap = "de";
@@ -55,7 +60,7 @@
   users.users.wojtek = {
     isNormalUser = true;
     description = "wojtek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
   };
 
@@ -98,6 +103,8 @@ services = {
     lemurs
     i3lock
     pulseaudioFull
+    libmbim
+    libqmi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

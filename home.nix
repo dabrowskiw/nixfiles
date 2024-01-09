@@ -29,11 +29,11 @@
     ./khal_config.nix
     ./lunarvim.nix
     ./mbsync.nix
-    ./packages.nix
     ./packages-unfree.nix
+    ./packages.nix
     ./pass.nix
-    ./qutebrowser.nix
     ./python.nix
+    ./qutebrowser.nix
     ./vdirsyncer.nix
 #    ./vcard.nix
   ];

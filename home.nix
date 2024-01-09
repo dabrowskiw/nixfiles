@@ -26,6 +26,7 @@
     ./goimapnotify.nix
     ./gpg.nix
     ./i3.nix
+    ./khal_config.nix
     ./lunarvim.nix
     ./mbsync.nix
     ./packages.nix
@@ -33,6 +34,7 @@
     ./pass.nix
     ./qutebrowser.nix
     ./python.nix
+    ./vdirsyncer.nix
 #    ./vcard.nix
   ];
 

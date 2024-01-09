@@ -35,6 +35,7 @@ python3.pkgs.buildPythonApplication rec {
     tzlocal
     urwid
     vdirsyncer
+    (import ./urwid-additional-widgets.nix)
   ];
 
   nativeBuildInputs = [

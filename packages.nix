@@ -34,7 +34,6 @@
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.vcard
-    pkgs.vdirsyncer
     pkgs.wget
     pkgs.wirelesstools
     pkgs.xournalpp

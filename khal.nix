@@ -7,9 +7,8 @@ python3.pkgs.buildPythonApplication rec {
   version = "0.11.2";
 
   src = fetchgit {
-#    url = "https://github.com/dabrowskiw/khal.git";
-  url = /home/wojtek/temp/khal;
-  rev = "13822189dc89208d443ec610502aa8827dae73c8";
+    url = "https://github.com/dabrowskiw/khal.git";
+    rev = "13822189dc89208d443ec610502aa8827dae73c8";
     sha256 = "sha256-AVK7X+WVy4psYucks6DSZ8E92HVHOgOeJEbDOrFm23o=";
   };
 

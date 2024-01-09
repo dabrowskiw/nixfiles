@@ -17,6 +17,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+
   imports = [
     ./aerc.nix
     ./byobu.nix
@@ -32,6 +33,7 @@
     ./pass.nix
     ./qutebrowser.nix
     ./python.nix
+#    ./vcard.nix
   ];
 
   #home.packages = [

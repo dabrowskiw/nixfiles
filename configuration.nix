@@ -99,12 +99,15 @@ services = {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
+    bash
     dmenu
-    lemurs
+    fish
     i3lock
-    pulseaudioFull
+    lemurs
     libmbim
     libqmi
+    networkmanager
+    pulseaudioFull
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,10 +1,19 @@
 #/etc/khal/khal.conf.sample
 [calendars]
-[[home]]
-path = ~/data/calendars/Posteo/
+[[Personal]]
+path = ~/data/calendars/Posteo/default/
 
-[[work]]
-path = ~/data/calendars/HTW-calendar/
+[[Müllabfuhr]]
+path = ~/data/calendars/Posteo/aarvay/
+
+[[Geburtstage]]
+path = ~/data/calendars/Posteo/oqzfeh/
+
+[[Vorlesungen]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDk1Mg/
+
+[[HTW]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDgwMg/
 
 [sqlite]
 path = ~/.khal/khal.db
@@ -25,7 +34,7 @@ firstweekday = 0
 monthdisplay = firstday
 
 [default]
-default_calendar = work
+default_calendar = HTW
 timedelta = 2d # the default timedelta that list uses
 highlight_event_days = True  # the default is False
 enable_mouse = False  # mouse is enabled by default in interactive mode

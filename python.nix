@@ -3,11 +3,11 @@
 {
  home.packages = [
   (pkgs.python3.withPackages (ps: with ps; [
-    flake8
+    click
     debugpy
+    flake8
     psutil
     pytest
-    click
   ]))
  ];
 }

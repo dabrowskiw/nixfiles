@@ -27,6 +27,7 @@
     ./gpg.nix
     ./i3.nix
     ./khal_config.nix
+    ./khard.nix
     ./lunarvim.nix
     ./mbsync.nix
     ./packages-unfree.nix
@@ -35,7 +36,7 @@
     ./python.nix
     ./qutebrowser.nix
     ./vdirsyncer.nix
-#    ./vcard.nix
+    ./eduroam.nix
   ];
 
   #home.packages = [

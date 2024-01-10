@@ -1,19 +1,9 @@
 { pkgs, config, ... }:
  
 {
-# Allow unstable packages.
-#nixpkgs.config = {
-#   allowUnfree = true;
-#   packageOverrides = pkgs: {
-#     unstable = import <nixpkgs-unstable> {
-#       config = config.nixpkgs.config;
-#     };
-#   };
-# };
 
   home.packages = [
     pkgs.bash
-#    pkgs.unstable.bumblebee-status
     pkgs.bc
     pkgs.black
     pkgs.dante
@@ -22,16 +12,16 @@
     pkgs.gnupg
     pkgs.iw
     pkgs.keepassxc
-    pkgs.khard
     pkgs.ncdu
     pkgs.modemmanager
     pkgs.notmuch
     pkgs.nvimpager
     pkgs.openjdk
-    pkgs.powerline-fonts
-    pkgs.pulseaudio-ctl
+    pkgs.openssl
     pkgs.pavucontrol
     pkgs.pinentry-gtk2
+    pkgs.powerline-fonts
+    pkgs.pulseaudio-ctl
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.wget

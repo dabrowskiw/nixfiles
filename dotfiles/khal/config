@@ -32,9 +32,13 @@ longdatetimeformat = %d.%m.%Y %H:%M
 
 firstweekday = 0
 monthdisplay = firstday
+weeknumbers = "left"
 
 [default]
 default_calendar = HTW
 timedelta = 2d # the default timedelta that list uses
 highlight_event_days = True  # the default is False
 enable_mouse = False  # mouse is enabled by default in interactive mode
+
+[keybindings]
+external_edit = x

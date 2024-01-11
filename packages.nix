@@ -8,6 +8,7 @@
     pkgs.black
     pkgs.dante
     pkgs.fishPlugins.bobthefish
+    pkgs.gimp
     pkgs.gnome.gnome-system-monitor
     pkgs.gnupg
     pkgs.iw
@@ -22,12 +23,12 @@
     pkgs.pinentry-gtk2
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
+    pkgs.ranger
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.wget
     pkgs.wirelesstools
     pkgs.xournalpp
-#    (import ./bumblebee-status.nix)
     (import ./khal.nix)
     (import ./pcloud.nix)
     (import ./vcard.nix)

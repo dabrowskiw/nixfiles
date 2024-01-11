@@ -1,0 +1,7 @@
+#/usr/bin/env fish
+
+set -l infile /tmp/(uuidgen).vcf
+cp $argv[1] $infile
+set -l name (grep "SUMMARY" $infile | head -n 1 | cut -d ":" -f 2 | sed 's/\r//g')
+set -l mails (sed ':a; N; $!ba; s/ *\r\n *//g' $infile | sed 's/ATTENDEE/\n/g' | grep "EMAIL" | sed 's/^.*EMAIL=//g' | cut -d ";" -f 1 | cut -d ":" -f 1 | sort | uniq | paste -sd ",")
+aerc "mailto:$mails?account=Posteo&subject=Termineinladung: $name" && aerc :attach $infile

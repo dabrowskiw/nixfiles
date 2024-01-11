@@ -1,0 +1,3 @@
+#!/usr/bin/env fish
+
+EDITOR="fish /home/wojtek/home-manager/dotfiles/exportics " ikhal -a HTW -a Vorlesungen -a Personal -a Müllabfuhr -a Geburtstage && aerc :next-tab 

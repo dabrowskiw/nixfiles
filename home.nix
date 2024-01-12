@@ -21,6 +21,7 @@
   imports = [
     ./aerc.nix
     ./byobu.nix
+    ./espanso.nix
     ./fish.nix
     ./git.nix
     ./goimapnotify.nix

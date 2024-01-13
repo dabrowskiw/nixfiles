@@ -93,6 +93,29 @@ services = {
     };
     pulse.enable = true;
   };
+  printing.enable = true;
+  avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+};
+
+systemd.services = {
+  modem-manager = {
+    enable = true;
+    wantedBy = [ "default.target" ];
+  };
+  modem-manager-ensurestart = {
+    description = "Ensure that ModemManager is started";
+    script = ''
+      ${pkgs.dbus}/bin/dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    wantedBy = [ "multi-user.target" "graphical.target" ]; 
+  };
 };
 
   # List packages installed in system profile. To search, run:

@@ -31,6 +31,7 @@
     ./khard.nix
     ./lunarvim.nix
     ./mbsync.nix
+    ./notmuch.nix
     ./packages-unfree.nix
     ./packages.nix
     ./pass.nix

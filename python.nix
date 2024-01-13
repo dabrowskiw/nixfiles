@@ -8,7 +8,6 @@
     flake8
     psutil
     pytest
-    (import ./bumblebee-status.nix)
   ]))
  ];
 }

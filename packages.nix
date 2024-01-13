@@ -10,12 +10,12 @@
     pkgs.fishPlugins.bobthefish
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor
+    pkgs.gnumeric
     pkgs.gnupg
     pkgs.iw
     pkgs.keepassxc
-    pkgs.ncdu
     pkgs.modemmanager
-    pkgs.notmuch
+    pkgs.ncdu
     pkgs.nvimpager
     pkgs.openjdk
     pkgs.openssl
@@ -29,6 +29,7 @@
     pkgs.wget
     pkgs.wirelesstools
     pkgs.xournalpp
+    (import ./bumblebee-status.nix)
     (import ./khal.nix)
     (import ./pcloud.nix)
     (import ./vcard.nix)

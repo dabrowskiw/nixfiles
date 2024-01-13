@@ -21,9 +21,9 @@ python3.pkgs.buildPythonApplication rec {
 
   postInstall = ''
   cp -r ./themes $out/${python3.sitePackages}
-  cp -r ./bumblebee_status/core $out/${python3.sitePackages}
-  cp -r ./bumblebee_status/modules $out/${python3.sitePackages}
-  cp -r ./bumblebee_status/util $out/${python3.sitePackages}
+  echo "#!/usr/bin/env bash" > $out/bin/bumblebee-status-new
+  echo "python3 $out/bin/.bumblebee-status-wrapped \"\$@\"" >> $out/bin/bumblebee-status-new
+  chmod ugo+x $out/bin/bumblebee-status-new
   '';
 
   doCheck = false;

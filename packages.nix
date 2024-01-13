@@ -29,8 +29,8 @@
     pkgs.wget
     pkgs.wirelesstools
     pkgs.xournalpp
-    (import ./bumblebee-status.nix)
     (import ./khal.nix)
+    (import ./bumblebee-status.nix)
     (import ./pcloud.nix)
     (import ./vcard.nix)
   ];

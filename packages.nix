@@ -7,6 +7,7 @@
     pkgs.bc
     pkgs.black
     pkgs.dante
+    pkgs.firefox
     pkgs.fishPlugins.bobthefish
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor

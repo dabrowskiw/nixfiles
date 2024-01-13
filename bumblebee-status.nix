@@ -19,6 +19,13 @@ python3.pkgs.buildPythonApplication rec {
     python311Packages.speedtest-cli
   ];
 
+  postInstall = ''
+  cp -r ./themes $out/${python3.sitePackages}
+  cp -r ./bumblebee_status/core $out/${python3.sitePackages}
+  cp -r ./bumblebee_status/modules $out/${python3.sitePackages}
+  cp -r ./bumblebee_status/util $out/${python3.sitePackages}
+  '';
+
   doCheck = false;
 }
 

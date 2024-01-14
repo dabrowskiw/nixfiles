@@ -22,7 +22,6 @@ stdenv.mkDerivation rec {
     udev
   ];
 
-
   configurePhase = ''
   cd pCloudCC/lib/pclsync/
   make clean
@@ -44,6 +43,5 @@ stdenv.mkDerivation rec {
   installPhase = ''
   mkdir -p $out/bin
   make install
-#  ldconfig
   '';
 }

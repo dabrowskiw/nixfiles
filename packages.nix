@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
  
 {
-
   home.packages = [
     pkgs.bash
     pkgs.bc

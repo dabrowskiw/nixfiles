@@ -70,6 +70,10 @@
     ];
   };
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Cousine" ]; })
+  ];
+
   # Allow unfree packages
   nixpkgs.config = {
   allowUnfree = true;

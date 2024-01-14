@@ -20,7 +20,9 @@
 
   imports = [
     ./aerc.nix
+    ./alacritty.nix
     ./byobu.nix
+    ./eduroam.nix
     ./espanso.nix
     ./fish.nix
     ./git.nix
@@ -38,7 +40,6 @@
     ./python.nix
     ./qutebrowser.nix
     ./vdirsyncer.nix
-    ./eduroam.nix
   ];
 
   #home.packages = [

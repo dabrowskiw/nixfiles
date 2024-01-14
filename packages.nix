@@ -30,6 +30,7 @@
     pkgs.wget
     pkgs.wirelesstools
     pkgs.xournalpp
+    pkgs.xss-lock
     (import ./khal.nix)
     (import ./bumblebee-status.nix)
     (import ./pcloud.nix)

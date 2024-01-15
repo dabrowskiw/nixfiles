@@ -24,6 +24,8 @@
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
     pkgs.ranger
+    pkgs.signal-desktop
+    pkgs.threema-desktop
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.wget

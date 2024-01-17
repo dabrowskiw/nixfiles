@@ -52,12 +52,14 @@
   # Configure console keymap
   console.keyMap = "de";
 
+  programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.wojtek = {
     isNormalUser = true;
     description = "wojtek";
     extraGroups = [ "networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
+    shell = pkgs.fish;
   };
 
   home-manager.users.wojtek = { pgks, ... }: {

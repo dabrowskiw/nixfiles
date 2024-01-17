@@ -31,7 +31,6 @@ datetimeformat =  %d.%m. %H:%M
 longdatetimeformat = %d.%m.%Y %H:%M
 
 firstweekday = 0
-monthdisplay = firstday
 weeknumbers = "left"
 
 [default]

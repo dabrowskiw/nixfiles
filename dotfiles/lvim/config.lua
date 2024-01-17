@@ -9,8 +9,11 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
 lvim.plugins = {
   "mfussenegger/nvim-dap",
   "mfussenegger/nvim-dap-python",
+  "aca/marp-nvim",
   "nvim-neotest/neotest",
   "nvim-neotest/neotest-python",
+  "ChristianChiarulli/swenv.nvim",
+  "stevearc/dressing.nvim",
   'glepnir/template.nvim', cmd = {'Template','TemProject'}, config = function()
     require('template').setup({
         temp_dir = "/home/wojtek/Documents/Private/Obsidian/Notes/Templates/",
@@ -28,15 +31,28 @@ lvim.format_on_save.pattern = { "*.py" }
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup { { command = "flake8", filetypes = { "python" } } }
 
-lvim.plugins = {
-  "ChristianChiarulli/swenv.nvim",
-  "stevearc/dressing.nvim",
-}
-
 lvim.builtin.which_key.mappings["C"] = {
   name = "Python",
   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
+
+lvim.builtin.which_key.mappings["M"] = {
+  name = "Marp",
+  T = {"<cmd>lua require('marp').toggle()<cr>", "Toggle Marp server"},
+  S = {"<cmd>lua require('marp').status()<cr>", "Show Marp server status"},
+  A = {"<cmd>lua require('marp').start()<cr>", "Start Marp server"},
+  X = {"<cmd>lua require('marp').stop()<cr>", "Stop Marp server"},
+}
+
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+  "Test Method" }
+lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+  "Test Method DAP" }
+lvim.builtin.which_key.mappings["df"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+lvim.builtin.which_key.mappings["dF"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
 lvim.builtin.dap.active = true
 pcall(function()
@@ -55,13 +71,3 @@ require("neotest").setup({
     })
   }
 })
-
-lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
-  "Test Method" }
-lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-  "Test Method DAP" }
-lvim.builtin.which_key.mappings["df"] = {
-  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
-lvim.builtin.which_key.mappings["dF"] = {
-  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
-lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }

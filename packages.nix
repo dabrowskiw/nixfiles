@@ -14,9 +14,11 @@
     pkgs.gnupg
     pkgs.iw
     pkgs.keepassxc
+    pkgs.marp-cli
     pkgs.modemmanager
     pkgs.ncdu
     pkgs.nvimpager
+    pkgs.onedrive
     pkgs.openjdk
     pkgs.openssl
     pkgs.pavucontrol

@@ -5,8 +5,5 @@
     pkgs.lunarvim
   ];
 
-  home.file.".config/lvim" = {
-    source = ./dotfiles/lvim;
-    recursive = true;
-  };
+  home.file.".config/lvim/config.lua".source = ./dotfiles/lvim/config.lua;
 }

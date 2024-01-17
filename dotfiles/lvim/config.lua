@@ -38,10 +38,10 @@ lvim.builtin.which_key.mappings["C"] = {
 
 lvim.builtin.which_key.mappings["M"] = {
   name = "Marp",
-  T = {"<cmd>lua require('marp').toggle()<cr>", "Toggle Marp server"},
-  S = {"<cmd>lua require('marp').status()<cr>", "Show Marp server status"},
-  A = {"<cmd>lua require('marp').start()<cr>", "Start Marp server"},
-  X = {"<cmd>lua require('marp').stop()<cr>", "Stop Marp server"},
+  T = {"defer_fn(lua require('marp').toggle(), 100)", "Toggle Marp server"},
+  S = {"defer_fn(lua require('marp').status(), 100)", "Show Marp server status"},
+  A = {"defer_fn(lua require('marp').start(), 100)", "Start Marp server"},
+  X = {"defer_fn(lua require('marp').stop(), 100)", "Stop Marp server"},
 }
 
 lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",

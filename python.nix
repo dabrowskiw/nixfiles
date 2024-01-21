@@ -8,6 +8,7 @@
     flake8
     psutil
     pytest
+    (import ./piecash.nix)
   ]))
  ];
 }

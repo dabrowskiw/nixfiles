@@ -10,6 +10,7 @@
     pkgs.fishPlugins.bobthefish
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor
+    pkgs.gnucash
     pkgs.gnumeric
     pkgs.gnupg
     pkgs.iw
@@ -21,22 +22,27 @@
     pkgs.onedrive
     pkgs.openjdk
     pkgs.openssl
+    pkgs.openvpn
+    pkgs.openconnect
+    pkgs.pandoc
     pkgs.pavucontrol
     pkgs.pinentry-gtk2
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
     pkgs.ranger
     pkgs.signal-desktop
+    pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.tmux
     pkgs.ueberzugpp
+    pkgs.ungoogled-chromium
     pkgs.wget
+    pkgs.wine-staging
     pkgs.wirelesstools
-    pkgs.xournalpp
     pkgs.xsel
     pkgs.xss-lock
-    (import ./khal.nix)
     (import ./bumblebee-status.nix)
+    (import ./khal.nix)
     (import ./pcloud.nix)
     (import ./vcard.nix)
   ];

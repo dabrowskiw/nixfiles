@@ -40,6 +40,7 @@
     ./python.nix
     ./qutebrowser.nix
     ./vdirsyncer.nix
+    ./xournalpp.nix
   ];
 
   #home.packages = [

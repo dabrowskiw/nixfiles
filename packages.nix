@@ -2,9 +2,11 @@
  
 {
   home.packages = [
+    pkgs.abiword
     pkgs.bash
     pkgs.bc
     pkgs.black
+    pkgs.catdoc
     pkgs.dante
     pkgs.firefox
     pkgs.fishPlugins.bobthefish
@@ -36,6 +38,7 @@
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.ungoogled-chromium
+    pkgs.unzip
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools

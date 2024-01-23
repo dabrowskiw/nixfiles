@@ -41,6 +41,7 @@
     ./qutebrowser.nix
     ./vdirsyncer.nix
     ./xournalpp.nix
+    ./yad-askpass.nix
   ];
 
   #home.packages = [

@@ -11,6 +11,7 @@
     pkgs.evince
     pkgs.firefox
     pkgs.fishPlugins.bobthefish
+    pkgs.ghostscript
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor
     pkgs.gnucash
@@ -18,6 +19,7 @@
     pkgs.gnupg
     pkgs.iw
     pkgs.keepassxc
+    pkgs.lilypond-with-fonts
     pkgs.marp-cli
     pkgs.modemmanager
     pkgs.ncdu

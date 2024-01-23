@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -24,6 +24,10 @@
 
   environment.etc = {
     "ModemManager/fcc-unlock.d/1eac:1001".source = /home/wojtek/home-manager/dotfiles/1eac_1001;
+  };
+
+  environment.variables = {
+    SSH_ASKPASS=lib.mkForce "";
   };
 
   # Set your time zone.

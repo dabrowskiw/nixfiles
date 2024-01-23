@@ -9,7 +9,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
 lvim.plugins = {
   "mfussenegger/nvim-dap",
   "mfussenegger/nvim-dap-python",
-  "aca/marp-nvim",
+  "mpas/marp-nvim",
   "nvim-neotest/neotest",
   "nvim-neotest/neotest-python",
   "ChristianChiarulli/swenv.nvim",

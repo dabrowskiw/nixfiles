@@ -14,6 +14,12 @@ lvim.plugins = {
   "nvim-neotest/neotest-python",
   "ChristianChiarulli/swenv.nvim",
   "stevearc/dressing.nvim",
+  "kaarmu/typst.vim", config = function()
+    require('typst').setup({
+      ft = 'typst',
+      lazy = false
+    })
+  end,
   'glepnir/template.nvim', cmd = {'Template','TemProject'}, config = function()
     require('template').setup({
         temp_dir = "/home/wojtek/Documents/Private/Obsidian/Notes/Templates/",

@@ -8,6 +8,7 @@
     pkgs.black
     pkgs.catdoc
     pkgs.dante
+    pkgs.evince
     pkgs.firefox
     pkgs.fishPlugins.bobthefish
     pkgs.gimp
@@ -36,6 +37,7 @@
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.tmux
+    pkgs.typst
     pkgs.ueberzugpp
     pkgs.ungoogled-chromium
     pkgs.unzip

@@ -6,28 +6,6 @@ vim.opt.rtp:append (vim.fn.stdpath ('data') .. '/site')
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
 
-lvim.plugins = {
-  "mfussenegger/nvim-dap",
-  "mfussenegger/nvim-dap-python",
-  "mpas/marp-nvim",
-  "nvim-neotest/neotest",
-  "nvim-neotest/neotest-python",
-  "ChristianChiarulli/swenv.nvim",
-  "stevearc/dressing.nvim",
-  "kaarmu/typst.vim", config = function()
-    require('typst').setup({
-      ft = 'typst',
-      lazy = false
-    })
-  end,
-  'glepnir/template.nvim', cmd = {'Template','TemProject'}, config = function()
-    require('template').setup({
-        temp_dir = "/home/wojtek/Documents/Private/Obsidian/Notes/Templates/",
-        author = "Wojtek Dabrowski",
-        email = "piotr.dabrowski@htw-berlin.de"
-    })
-  end
-}
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup { { name = "black" }, }
@@ -60,20 +38,50 @@ lvim.builtin.which_key.mappings["dF"] = {
   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
+lvim.builtin.which_key.mappings["m"] = {
+  name = "LilyPond",
+  c = {"<cmd>LilyCmp<cr>", "Compile to PDF"},
+}
+
 lvim.builtin.dap.active = true
 pcall(function()
   require("dap-python").setup("python3")
 end)
 
-require("neotest").setup({
-  adapters = {
-    require("neotest-python")({
-      dap = {
-        justMyCode = false,
-        console = "integratedTerminal",
-      },
-      args = { "--log-level", "DEBUG", "--quiet" },
-      runner = "pytest",
-    })
+lvim.plugins = {
+  "mfussenegger/nvim-dap",
+  "mfussenegger/nvim-dap-python",
+  "mpas/marp-nvim",
+  "ChristianChiarulli/swenv.nvim",
+  "stevearc/dressing.nvim",
+  {
+    "kaarmu/typst.vim",
+    ft = 'typst',
+    lazy = false
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = "nvim-neotest/neotest-python",
+    config = function() 
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python")({
+            dap = {
+              justMyCode = false,
+              console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG", "--quiet" },
+            runner = "pytest",
+          })
+        }
+      })
+    end
+  },
+  {
+    "martineausimon/nvim-lilypond-suite",
+    ft = { "lilypond", "tex", "texinfo" },
+    config = function()
+      require('nvls').setup()
+    end
   }
-})
+}

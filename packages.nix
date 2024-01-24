@@ -38,6 +38,7 @@
     pkgs.signal-desktop
     pkgs.texliveFull
     pkgs.threema-desktop
+    pkgs.timidity
     pkgs.tmux
     pkgs.typst
     pkgs.ueberzugpp

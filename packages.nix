@@ -24,7 +24,6 @@
     pkgs.modemmanager
     pkgs.ncdu
     pkgs.nvimpager
-    pkgs.onedrive
     pkgs.openjdk
     pkgs.openssl
     pkgs.openvpn

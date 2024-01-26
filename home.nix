@@ -34,6 +34,7 @@
     ./lunarvim.nix
     ./mbsync.nix
     ./notmuch.nix
+    ./onedrive.nix
     ./packages-unfree.nix
     ./packages.nix
     ./pass.nix

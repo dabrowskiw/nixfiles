@@ -235,8 +235,21 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
+# lutris games
+set $mode_lutris (p)layground sessions
+
+mode "$mode_lutris" {
+    bindsym p exec --no-startup-id /home/wojtek/.config/i3/runlutrisgame playground-sessions, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# shutdown / restart / suspend...
+
 bindsym $mod+BackSpace mode "$mode_system"
-bindsym $mod+Shift+n mode "$mode_network"
+bindsym $mod+Ctrl+n mode "$mode_network"
+bindsym $mod+Ctrl+l mode "$mode_lutris"
 
 workspace 1 output eDP-1 DP-3-2
 workspace 3 output eDP-1 DP-3-2

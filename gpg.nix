@@ -3,6 +3,9 @@
 {
   programs.gpg = {
     enable = true;
+    settings = {
+      default-key = "46107DC46CA695F7";
+    };
   };
 
   services.gpg-agent = {
@@ -15,10 +18,10 @@
 
   home.activation = {
     gpg = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      $DRY_RUN_CMD rm -rf ${config.home.homeDirectory}/.gnupg
-      $DRY_RUN_CMD cp -r ${builtins.toPath ./secrets/.gnupg} ${config.home.homeDirectory}/
-      $DRY_RUN_CMD chmod -R 700 ${config.home.homeDirectory}/.gnupg
-      $DRY_RUN_CMD chmod 600 ${config.home.homeDirectory}/.gnupg/*
+      $DRY_RUN_CMD mkdir -p ${config.home.homeDirectory}/.gnupg || true
+      $DRY_RUN_CMD cp -rn ${builtins.toPath ./secrets/.gnupg} ${config.home.homeDirectory}/ || true 
+      $DRY_RUN_CMD chmod -R 700 ${config.home.homeDirectory}/.gnupg || true
+      $DRY_RUN_CMD chmod 600 ${config.home.homeDirectory}/.gnupg/* || true
     '';
   };
 }

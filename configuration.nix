@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/bootconfig.nix
-      <home-manager/nixos>
+      /etc/nixos/home-manager.nix
     ];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -66,11 +66,6 @@
     shell = pkgs.fish;
   };
 
-  home-manager.users.wojtek = { pgks, ... }: {
-    imports = [
-      /home/wojtek/home-manager/home.nix
-    ];
-  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Cousine" ]; })

@@ -8,6 +8,7 @@
     pkgs.black
     pkgs.catdoc
     pkgs.dante
+    pkgs.dig 
     pkgs.evince
     pkgs.firefox
     pkgs.fishPlugins.bobthefish
@@ -46,6 +47,7 @@
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools
+    pkgs.wireshark
     pkgs.xsel
     pkgs.xss-lock
     (import ./bumblebee-status.nix)

@@ -72,6 +72,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # set keyboard layout
 bindsym $mod+t exec --no-startup-id setxkbmap -model pc105 -layout de && $refresh_i3status
 bindsym $mod+Shift+t exec --no-startup-id setxkbmap -model pc105 -layout pl && $refresh_i3status
+bindsym $mod+space exec --no-startup-id espanso cmd search
 
 # toggle touchpad
 bindsym $mod+m exec --no-startup-id /home/wojtek/.config/i3/toggleTouchpad.fish
@@ -120,9 +121,6 @@ bindsym $mod+Shift+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent

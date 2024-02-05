@@ -23,3 +23,5 @@ matches:
     replace: "Sehr geehrte Kolleginnen/Kollegen,\n\n"
   - trigger: "::kolloq"
     replace: "Sehr geehrte Kolleginnen/Kollegen,\n\nkönnten Sie bitte den Termin für das Kolloquium von XXX (Matrikel-Nr. ) auf den X.Y.20XX um hh:mm festsetzen? Das Kolloquium findet im Raum XXX statt.\n\nVielen Dank im Voraus,\nViele Grüße\n-Wojtek Dabrowski"
+  - trigger: "::note"
+    replace: "Guten Tag $vorname $name,\n\nIhre Note wurde in der Prüfung $prfgsName verbucht.\n\nSollten Sie Beanstandungen haben oder eine Rücksprache bezüglich der Note wünschen, melden Sie sich bitte innerhalb der nächsten 7 Tage, danach werde ich die Notenliste abschließen.\n\nViele Grüße\n-Wojtek Dabrowski"

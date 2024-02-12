@@ -123,7 +123,7 @@ systemd.services = {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
-    autofs
+    autofs5
     bash
     dmenu
     fish

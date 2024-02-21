@@ -10,7 +10,6 @@
     pkgs.dante
     pkgs.dig 
     pkgs.evince
-    pkgs.firefox
     pkgs.fishPlugins.bobthefish
     pkgs.ghostscript
     pkgs.gimp

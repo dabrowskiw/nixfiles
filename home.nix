@@ -24,6 +24,7 @@
     ./byobu.nix
     ./eduroam.nix
     ./espanso.nix
+    ./firefox.nix
     ./fish.nix
     ./git.nix
     ./goimapnotify.nix
@@ -39,7 +40,6 @@
     ./packages.nix
     ./pass.nix
     ./python.nix
-    ./qutebrowser.nix
     ./vdirsyncer.nix
     ./xournalpp.nix
     ./yad-askpass.nix

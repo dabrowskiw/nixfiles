@@ -181,13 +181,23 @@ in
 {
   programs.firefox = {
     enable = true;
-
     profiles = {
       default = {
         id = 0;
         inherit extensions settings userChrome;
       };
-
+    };
+  };
+  
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "default-web-browser" = "firefox.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
     };
   };
 }

@@ -9,7 +9,6 @@
     pkgs.catdoc
     pkgs.dante
     pkgs.dig 
-    pkgs.evince
     pkgs.fishPlugins.bobthefish
     pkgs.ghostscript
     pkgs.gimp
@@ -49,6 +48,7 @@
     pkgs.wireshark
     pkgs.xsel
     pkgs.xss-lock
+    pkgs.zathura
     (import ./bumblebee-status.nix)
     (import ./khal.nix)
     (import ./pcloud.nix)

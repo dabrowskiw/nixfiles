@@ -6,6 +6,7 @@
     pkgs.bash
     pkgs.bc
     pkgs.black
+    pkgs.btop
     pkgs.catdoc
     pkgs.dante
     pkgs.dig 
@@ -17,6 +18,7 @@
     pkgs.gnumeric
     pkgs.gnupg
     pkgs.iw
+    pkgs.imagemagick
     pkgs.keepassxc
     pkgs.lilypond-with-fonts
     pkgs.marp-cli
@@ -42,6 +44,7 @@
     pkgs.ueberzugpp
     pkgs.ungoogled-chromium
     pkgs.unzip
+    pkgs.vlc
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools

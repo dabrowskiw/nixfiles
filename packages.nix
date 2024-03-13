@@ -10,6 +10,7 @@
     pkgs.catdoc
     pkgs.dante
     pkgs.dig 
+    pkgs.file
     pkgs.fishPlugins.bobthefish
     pkgs.ghostscript
     pkgs.gimp
@@ -31,9 +32,11 @@
     pkgs.openconnect
     pkgs.pandoc
     pkgs.pavucontrol
+    pkgs.pdfpc
     pkgs.pinentry-gtk2
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
+    pkgs.qimgv
     pkgs.ranger
     pkgs.signal-desktop
     pkgs.texliveFull

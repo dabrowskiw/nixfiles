@@ -4,12 +4,20 @@
 
 { config, pkgs, lib, ... }:
 
+let 
+  userdefaults = {
+    isNormalUser = true;
+    shell = pkgs.fish;
+  };
+
+in 
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/bootconfig.nix
       /etc/nixos/home-manager.nix
+      /etc/nixos/secrets.nix
     ];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -58,13 +66,12 @@
 
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
+
   users.users.wojtek = {
-    isNormalUser = true;
     description = "wojtek";
     extraGroups = [ "networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
-    shell = pkgs.fish;
-  };
+  } // userdefaults;
 
 
   fonts.packages = with pkgs; [
@@ -78,6 +85,7 @@
 };
 
 services = {
+  rpcbind.enable = true;
   xserver = {
     layout = "de";
     xkbModel = "pc105";
@@ -95,27 +103,56 @@ services = {
     pulse.enable = true;
   };
   printing.enable = true;
-  avahi = {
-    enable = true;
-    nssmdns = true;
-    openFirewall = true;
-  };
+  printing.stateless = true;
+  printing.drivers = [
+    pkgs.foomatic-db-ppds
+  ];
+  avahi.openFirewall = true;
+  avahi.publish.enable = true;
+  avahi.publish.addresses = true;
+  avahi.nssmdns = false;
 };
 
-systemd.services = {
-  modem-manager = {
-    enable = true;
-    wantedBy = [ "default.target" ];
-  };
-  modem-manager-ensurestart = {
-    description = "Ensure that ModemManager is started";
-    script = ''
-      ${pkgs.dbus}/bin/dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
-    '';
-    serviceConfig = {
-      Type = "oneshot";
+hardware.printers = {
+  ensurePrinters = [
+    {
+      name = "MC3326adwe";
+      location = "Home";
+      deviceUri = "socket://192.168.178.90:9100";
+      # Grab toe model name from "lpinfo -m""
+      model = "foomatic-db-ppds/Lexmark-MC3426adw-Postscript-Lexmark.ppd.gz";
+      ppdOptions = {
+        PageSize = "A4";
+      };
+    }
+  ];
+  ensureDefaultPrinter = "MC3326adwe";
+};
+
+system = {
+  nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns) pkgs.nssmdns;
+  nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns) (mkMerge [
+    (mkOrder 900 [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
+    (mkOrder 1501 [ "mdns4" ]) # 1501 to ensure it's after dns
+  ]);
+};
+
+systemd = {
+  services = {
+    modem-manager = {
+      enable = true;
+      wantedBy = [ "default.target" ];
     };
-    wantedBy = [ "multi-user.target" "graphical.target" ]; 
+    modem-manager-ensurestart = {
+      description = "Ensure that ModemManager is started";
+      script = ''
+        ${pkgs.dbus}/bin/dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+      };
+      wantedBy = [ "multi-user.target" "graphical.target" ]; 
+    };
   };
 };
 
@@ -123,8 +160,8 @@ systemd.services = {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
-    autofs5
     bash
+    cifs-utils
     dmenu
     fish
     i3lock
@@ -132,6 +169,7 @@ systemd.services = {
     libmbim
     libqmi
     networkmanager
+    nfs-utils
     pulseaudioFull
   ];
 

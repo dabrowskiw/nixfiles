@@ -21,7 +21,6 @@
   imports = [
     ./aerc.nix
     ./alacritty.nix
-    ./byobu.nix
     ./eduroam.nix
     ./espanso.nix
     ./firefox.nix

@@ -8,6 +8,8 @@
     flake8
     psutil
     pytest
+    pypdf2
+    reportlab
     (import ./piecash.nix)
   ]))
  ];

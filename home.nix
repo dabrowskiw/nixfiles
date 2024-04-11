@@ -39,6 +39,7 @@
     ./packages.nix
     ./pass.nix
     ./python.nix
+    ./unstablepkgs.nix
     ./vdirsyncer.nix
     ./xournalpp.nix
     ./yad-askpass.nix

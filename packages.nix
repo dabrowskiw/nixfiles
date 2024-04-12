@@ -44,7 +44,6 @@
     pkgs.threema-desktop
     pkgs.timidity
     pkgs.tmux
-    pkgs.typst
     pkgs.ueberzugpp
     pkgs.ungoogled-chromium
     pkgs.unzip

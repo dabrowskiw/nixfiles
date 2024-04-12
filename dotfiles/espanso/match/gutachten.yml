@@ -33,3 +33,7 @@ matches:
     replace: "Daher Abzug von  Punkten im Bereich \"\"."
   - trigger: "::ga1"
     replace: "Daher Abzug von 1 Punkt im Bereich \"\"."
+  - trigger: "::dokb"
+    replace: "/home/wojtek/Documents/HTW/Abschlussarbeiten/Bachelor/"
+  - trigger: "::dokm"
+    replace: "/home/wojtek/Documents/HTW/Abschlussarbeiten/Master/"

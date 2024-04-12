@@ -7,12 +7,6 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    nvidia-x11
-    nvidia-settings
-    nvidia-persistenced
-  ];
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -25,7 +19,6 @@
     modesetting.enable = true;
     powerManagement.enable = false;
 
-    powerManagement.finegraned = true;
 
     open = false;
     nvidiaSettings = true;

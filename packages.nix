@@ -18,6 +18,7 @@
     pkgs.gnucash
     pkgs.gnumeric
     pkgs.gnupg
+    pkgs.thc-hydra
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc

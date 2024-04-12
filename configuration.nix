@@ -20,6 +20,10 @@ in
       /etc/nixos/secrets.nix
     ];
 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.vmware.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "wojtek" ];
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -85,6 +89,11 @@ in
 };
 
 services = {
+  openvpn.servers = {
+    cyberghostCZ = {
+      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
+    };
+  };
   rpcbind.enable = true;
   xserver = {
     layout = "de";

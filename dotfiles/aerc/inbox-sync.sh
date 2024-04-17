@@ -11,6 +11,6 @@ fi
 echo "Deleting messages tagged as *deleted*"
 notmuch search --format=text0 --output=files tag:deleted | xargs -0 --no-run-if-empty rm -v
 
-mbsync -V HTW-inbox
-mbsync -V Posteo-inbox
+mbsync -V htw-inbox
+mbsync -V posteo-inbox
 notmuch new

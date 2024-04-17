@@ -89,11 +89,11 @@ in
 };
 
 services = {
-  openvpn.servers = {
-    cyberghostCZ = {
-      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
-    };
-  };
+#  openvpn.servers = {
+#    cyberghostCZ = {
+#      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
+#    };
+#  };
   rpcbind.enable = true;
   xserver = {
     layout = "de";

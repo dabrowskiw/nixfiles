@@ -32,8 +32,10 @@
     ./khal_config.nix
     ./khard.nix
     ./lunarvim.nix
-    ./mbsync.nix
-    ./notmuch.nix
+   # ./mbsync.nix
+    ./msmtp.nix
+#    ./neomutt.nix
+#   ./notmuch.nix
     ./onedrive.nix
     ./packages-unfree.nix
     ./packages.nix

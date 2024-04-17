@@ -12,6 +12,7 @@
     pkgs.dig 
     pkgs.file
     pkgs.fishPlugins.bobthefish
+    pkgs.fzf
     pkgs.ghostscript
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor
@@ -19,6 +20,7 @@
     pkgs.gnumeric
     pkgs.gnupg
     pkgs.thc-hydra
+    pkgs.tree
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc
@@ -48,6 +50,7 @@
     pkgs.ungoogled-chromium
     pkgs.unzip
     pkgs.vlc
+    pkgs.vimiv-qt
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools

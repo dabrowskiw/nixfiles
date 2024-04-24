@@ -5,7 +5,7 @@ Expunge Both
 Create Both
 
 MaildirStore local
-Path ~/data/mail/
+Path ~/Maildir/
 Subfolders Verbatim
 Trash Trash
 

@@ -1,6 +1,8 @@
 matches:
   - trigger: "::zoom"
     replace: "https://htw-berlin.zoom.us/my/dabrowskiw"
+  - trigger: "::dokp"
+    replace: "/home/wojtek/Documents/HTW/Studiengang/IKG/Praktikum/Antraege/"
   - trigger: "::lg"
     replace: "Liebe Grüße\n-Wojtek"
   - trigger: "::vg"

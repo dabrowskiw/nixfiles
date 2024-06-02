@@ -6,7 +6,7 @@ status_path = "~/.local/share/vdirsyncer/status/"
 a = "HTW_calendar_local"
 b = "HTW_calendar_remote"
 conflict_resolution = "b wins"
-collections = ["Y2FsOi8vMC8yMDk1Mg", "Y2FsOi8vMC8yMDgwMg"]
+collections = ["Y2FsOi8vMC8yMDk1Mg", "Y2FsOi8vMC8yMDgwMg", "Y2FsOi8vMC8zMTg3MA"]
 
 metadata = ["displayname", "color"]
 

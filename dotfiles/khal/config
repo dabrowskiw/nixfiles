@@ -1,6 +1,6 @@
 #/etc/khal/khal.conf.sample
 [calendars]
-[[Personal]]
+[[Posteo]]
 path = ~/data/calendars/Posteo/default/
 
 [[Müllabfuhr]]
@@ -14,6 +14,9 @@ path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDk1Mg/
 
 [[HTW]]
 path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDgwMg/
+
+[[Personal]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8zMTg3MA/
 
 [sqlite]
 path = ~/.khal/khal.db

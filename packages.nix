@@ -3,15 +3,19 @@
 {
   home.packages = [
     pkgs.abiword
+    pkgs.arandr
     pkgs.bash
     pkgs.bc
     pkgs.black
     pkgs.btop
+    pkgs.brillo # backlight control
+    pkgs.bless # Hex editor
     pkgs.catdoc
     pkgs.dante
     pkgs.dig 
     pkgs.file
     pkgs.fishPlugins.bobthefish
+    pkgs.fluidsynth
     pkgs.fzf
     pkgs.ghostscript
     pkgs.gimp
@@ -19,11 +23,13 @@
     pkgs.gnucash
     pkgs.gnumeric
     pkgs.gnupg
+    pkgs.gradle
     pkgs.thc-hydra
     pkgs.tree
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc
+    pkgs.libreoffice
     pkgs.lilypond-with-fonts
     pkgs.marp-cli
     pkgs.modemmanager
@@ -36,6 +42,7 @@
     pkgs.pandoc
     pkgs.pavucontrol
     pkgs.pdfpc
+    pkgs.pigz
     pkgs.pinentry-gtk2
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
@@ -48,6 +55,7 @@
     pkgs.tmux
     pkgs.ueberzugpp
     pkgs.ungoogled-chromium
+    pkgs.unixtools.xxd
     pkgs.unzip
     pkgs.vlc
     pkgs.vimiv-qt

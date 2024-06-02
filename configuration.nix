@@ -17,7 +17,7 @@ in
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/bootconfig.nix
       /etc/nixos/home-manager.nix
-      /etc/nixos/secrets.nix
+      /home/wojtek/home-manager/secrets/secrets.nix
     ];
 
   virtualisation.virtualbox.host.enable = true;

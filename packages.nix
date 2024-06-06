@@ -59,6 +59,7 @@
     pkgs.unzip
     pkgs.vlc
     pkgs.vimiv-qt
+    pkgs.virtualbox
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools

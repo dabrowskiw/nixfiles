@@ -20,9 +20,13 @@ in
       /home/wojtek/home-manager/secrets/secrets.nix
     ];
 
+
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableHardening = false;
+  virtualisation.docker.enable = true;
   virtualisation.vmware.host.enable = true;
   users.extraGroups.vboxusers.members = [ "wojtek" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -84,86 +88,86 @@ in
 
   # Allow unfree packages
   nixpkgs.config = {
-  allowUnfree = true;
-  pulseaudio = true;
-};
-
-services = {
-#  openvpn.servers = {
-#    cyberghostCZ = {
-#      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
-#    };
-#  };
-  rpcbind.enable = true;
-  xserver = {
-    layout = "de";
-    xkbModel = "pc105";
-    enable = true;
-    windowManager.i3 = {
-      enable = true;
-    };
+    allowUnfree = true;
+    pulseaudio = true;
   };
-  pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-  };
-  printing.enable = true;
-  printing.stateless = true;
-  printing.drivers = [
-    pkgs.foomatic-db-ppds
-  ];
-  avahi.openFirewall = true;
-  avahi.publish.enable = true;
-  avahi.publish.addresses = true;
-  avahi.nssmdns = false;
-};
 
-hardware.printers = {
-  ensurePrinters = [
-    {
-      name = "MC3326adwe";
-      location = "Home";
-      deviceUri = "socket://192.168.178.90:9100";
-      # Grab toe model name from "lpinfo -m""
-      model = "foomatic-db-ppds/Lexmark-MC3426adw-Postscript-Lexmark.ppd.gz";
-      ppdOptions = {
-        PageSize = "A4";
-      };
-    }
-  ];
-  ensureDefaultPrinter = "MC3326adwe";
-};
-
-system = {
-  nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns) pkgs.nssmdns;
-  nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns) (mkMerge [
-    (mkOrder 900 [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
-    (mkOrder 1501 [ "mdns4" ]) # 1501 to ensure it's after dns
-  ]);
-};
-
-systemd = {
   services = {
-    modem-manager = {
+  #  openvpn.servers = {
+  #    cyberghostCZ = {
+  #      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
+  #    };
+  #  };
+    rpcbind.enable = true;
+    xserver = {
+      layout = "de";
+      xkbModel = "pc105";
       enable = true;
-      wantedBy = [ "default.target" ];
-    };
-    modem-manager-ensurestart = {
-      description = "Ensure that ModemManager is started";
-      script = ''
-        ${pkgs.dbus}/bin/dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
-      '';
-      serviceConfig = {
-        Type = "oneshot";
+      windowManager.i3 = {
+        enable = true;
       };
-      wantedBy = [ "multi-user.target" "graphical.target" ]; 
+    };
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
+    printing.enable = true;
+    printing.stateless = true;
+    printing.drivers = [
+      pkgs.foomatic-db-ppds
+    ];
+    avahi.openFirewall = true;
+    avahi.publish.enable = true;
+    avahi.publish.addresses = true;
+    avahi.nssmdns = false;
+  };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "MC3326adwe";
+        location = "Home";
+        deviceUri = "socket://192.168.178.90:9100";
+        # Grab toe model name from "lpinfo -m""
+        model = "foomatic-db-ppds/Lexmark-MC3426adw-Postscript-Lexmark.ppd.gz";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "MC3326adwe";
+  };
+
+  system = {
+    nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns) pkgs.nssmdns;
+    nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns) (mkMerge [
+      (mkOrder 900 [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
+      (mkOrder 1501 [ "mdns4" ]) # 1501 to ensure it's after dns
+    ]);
+  };
+
+  systemd = {
+    services = {
+      modem-manager = {
+        enable = true;
+        wantedBy = [ "default.target" ];
+      };
+      modem-manager-ensurestart = {
+        description = "Ensure that ModemManager is started";
+        script = ''
+          ${pkgs.dbus}/bin/dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect
+        '';
+        serviceConfig = {
+          Type = "oneshot";
+        };
+        wantedBy = [ "multi-user.target" "graphical.target" ]; 
+      };
     };
   };
-};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -34,6 +34,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id xsetroot -solid "#001122"
 
 exec_always --no-startup-id espanso service start --unmanaged
+exec_always --no-startup-id fish /home/wojtek/.config/i3/disableTouchpad.fish 
 
 exec_always --no-startup-id /home/wojtek/.config/i3/startPcloud.fish
 

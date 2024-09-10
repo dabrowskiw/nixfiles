@@ -53,6 +53,7 @@
     pkgs.qimgv
     pkgs.ranger
     pkgs.signal-desktop
+    pkgs.singularity
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity

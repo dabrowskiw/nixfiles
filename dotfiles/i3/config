@@ -270,3 +270,5 @@ bar {
   status_command bumblebee-status-new -m xrandr cpu disk memory battery pasink pasource brightness layout datetime -t gruvbox -p xrandr.autotoggle=true datetime.format="%a, %d.%m.%Y %H:%M:%S"
 #        status_command /home/wojtek/Documents/Private/IT/i3scipts/i3status.sh
 }
+
+assign [title="zoom"] 9

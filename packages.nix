@@ -23,16 +23,20 @@
     pkgs.gnucash
     pkgs.gnumeric
     pkgs.gnupg
+    pkgs.godot_4
     pkgs.gradle
     pkgs.thc-hydra
     pkgs.tree
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc
+    pkgs.krita
     pkgs.libreoffice
+    pkgs.libwacom
     pkgs.lilypond-with-fonts
     pkgs.marp-cli
     pkgs.modemmanager
+    pkgs.nextflow
     pkgs.ncdu
     pkgs.nvimpager
     pkgs.openjdk

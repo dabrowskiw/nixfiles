@@ -103,6 +103,7 @@ in
       layout = "de";
       xkbModel = "pc105";
       enable = true;
+      wacom.enable = true;
       windowManager.i3 = {
         enable = true;
       };
@@ -124,6 +125,7 @@ in
     avahi.publish.enable = true;
     avahi.publish.addresses = true;
     avahi.nssmdns = false;
+    udev.packages = [ pkgs.libwacom ];
   };
 
   hardware.printers = {

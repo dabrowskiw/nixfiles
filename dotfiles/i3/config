@@ -38,6 +38,9 @@ exec_always --no-startup-id fish /home/wojtek/.config/i3/disableTouchpad.fish
 
 exec_always --no-startup-id /home/wojtek/.config/i3/startPcloud.fish
 
+exec_always --no-startup-id xsetwacom --set "23" MapToOutput DP-3-3
+exec_always --no-startup-id xsetwacom --set "11" MapToOutput DP-3-3
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3-status
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pactl play-sample bleep 0 && $refresh_i3status

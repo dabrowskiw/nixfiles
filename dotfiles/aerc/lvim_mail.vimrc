@@ -14,6 +14,7 @@ set expandtab
 
 set hlsearch
 set autoindent
+set clipboard^=unnamed
 
 hi link mailQuoted1     Comment
 hi link mailQuoted2     Special

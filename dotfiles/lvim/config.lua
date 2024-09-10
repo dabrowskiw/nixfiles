@@ -7,6 +7,8 @@ vim.opt.rtp:append (vim.fn.stdpath ('data') .. '/site')
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.wo.wrap = true
+vim.wo.linebreak = true
 vim.opt.clipboard = 'unnamedplus'
 
 local formatters = require "lvim.lsp.null-ls.formatters"

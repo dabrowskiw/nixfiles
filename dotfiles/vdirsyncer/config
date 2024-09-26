@@ -23,7 +23,7 @@ auth = "basic"
 url = "https://ox.htw-berlin.de/caldav/" 
 username = "dabrows"
 password.fetch = ["command", "pass", "Email/piotr.dabrowski@htw-berlin.de"]
-useragent = "kontact"
+useragent = "Thunderbird"
 item_types = ["VEVENT", "VTODO"]
 
 [pair Posteo_calendar]

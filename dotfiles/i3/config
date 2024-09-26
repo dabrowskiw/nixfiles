@@ -209,13 +209,14 @@ bindsym $mod+r mode "resize"
 set $i3lockwall i3lock -c 000000 
 
 # network management
-set $mode_network (c) onnect WWAN, (d) isconnect WWAN, connect (V)PN, disconnect (v)pn
+set $mode_actions (c) onnect WWAN, (d) isconnect WWAN, connect (V)PN, disconnect (v)pn, (h)ome screen config
 
-mode "$mode_network" {
+mode "$mode_actions" {
     bindsym c exec --no-startup-id nmcli connection up a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
     bindsym d exec --no-startup-id nmcli connection down a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
     bindsym Shift+v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/HTW-SSH-Split.sh, mode "default"
     bindsym v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/stop_openconnect.sh, mode "default"
+    bindsym h exec --no-startup-id /home/wojtek/.config/i3/screen-mouse-home.sh, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -250,7 +251,7 @@ mode "$mode_lutris" {
 # shutdown / restart / suspend...
 
 bindsym $mod+BackSpace mode "$mode_system"
-bindsym $mod+Ctrl+n mode "$mode_network"
+bindsym $mod+Ctrl+a mode "$mode_actions"
 bindsym $mod+Ctrl+l mode "$mode_lutris"
 
 workspace 1 output eDP-1 eDP-1-1 DP-3-2

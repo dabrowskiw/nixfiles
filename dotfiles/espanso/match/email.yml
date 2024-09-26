@@ -9,6 +9,8 @@ matches:
     replace: "Viele Grüße\n-Wojtek Dabrowski"
   - trigger: "::vd"
     replace: "Vielen Dank im Voraus\n"
+  - trigger: "::bw"
+    replace: "Best wishes\nWojtek Dabrowski"
   - trigger: "::termin"
     replace: "Hallo\n\nvielen Dank! Ich habe gerade eine entsprechende Termineinladung mit zoom-Link verschickt."
   - trigger: "::sgdh"

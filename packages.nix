@@ -13,6 +13,7 @@
     pkgs.catdoc
     pkgs.dante
     pkgs.dig 
+    pkgs.expect
     pkgs.file
     pkgs.fishPlugins.bobthefish
     pkgs.fluidsynth

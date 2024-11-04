@@ -19,6 +19,7 @@
     pkgs.fluidsynth
     pkgs.fzf
     pkgs.ghostscript
+    pkgs.gh
     pkgs.gimp
     pkgs.gnome.gnome-system-monitor
     pkgs.gnucash

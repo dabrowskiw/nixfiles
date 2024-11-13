@@ -1,4 +1,4 @@
-{ config, lib, ...}:
+{ pkgs, config, lib, ...}:
 
 {
   programs.gpg = {
@@ -13,7 +13,7 @@
     enableSshSupport = true;
     defaultCacheTtl = 3456000;
     maxCacheTtl = 3456000;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
 #  home.activation = {

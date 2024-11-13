@@ -12,15 +12,21 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-7GNq6PoWZgwhhpxhWOkUEpqckeSfzocex1ZGN9CTJyo=";
   };
 
-  format = "setuptools";
+  format = "pyproject";
 
   propagatedBuildInputs = [
     python-dateutil
   ];
   
+  nativeBuildInputs = [
+    pip
+  ];
+
   buildInputs = [
     setuptools
   ];
+
+  dontCheckRuntimeDeps = true;
 
   postInstall = ''
   $DRY_RUN_CMD cp *.bash $out/bin/

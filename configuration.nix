@@ -73,6 +73,7 @@ in
   console.keyMap = "de";
 
   programs.fish.enable = true;
+  programs.dconf.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   users.users.wojtek = {
@@ -98,10 +99,11 @@ in
   #      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
   #    };
   #  };
+    dbus.packages = [ pkgs.gcr ];
     rpcbind.enable = true;
     xserver = {
-      layout = "de";
-      xkbModel = "pc105";
+      xkb.layout = "de";
+      xkb.model = "pc105";
       enable = true;
       wacom.enable = true;
       windowManager.i3 = {
@@ -124,7 +126,7 @@ in
     avahi.openFirewall = true;
     avahi.publish.enable = true;
     avahi.publish.addresses = true;
-    avahi.nssmdns = false;
+    avahi.nssmdns4 = false;
     udev.packages = [ pkgs.libwacom ];
   };
 
@@ -145,8 +147,8 @@ in
   };
 
   system = {
-    nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns) pkgs.nssmdns;
-    nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns) (mkMerge [
+    nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns4) pkgs.nssmdns;
+    nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns4) (mkMerge [
       (mkOrder 900 [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
       (mkOrder 1501 [ "mdns4" ]) # 1501 to ensure it's after dns
     ]);

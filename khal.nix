@@ -4,12 +4,12 @@ with python311Packages;
 
 python3.pkgs.buildPythonApplication rec {
   pname = "khal-autocomplete";
-  version = "0.11.2";
+  version = "0.11.3";
 
   src = fetchgit {
     url = "https://github.com/dabrowskiw/khal.git";
-    rev = "13822189dc89208d443ec610502aa8827dae73c8";
-    sha256 = "sha256-AVK7X+WVy4psYucks6DSZ8E92HVHOgOeJEbDOrFm23o=";
+    rev = "8d6e79271295f7a60625b18fd75be5c934d11298";
+    sha256 = "sha256-N9JwpkjkbmS7b4PrkRYIsqv5IPEopuxExllZkXdqo+4";
   };
 
   SETUPTOOLS_SCM_PRETEND_VERSION = version;
@@ -62,6 +62,7 @@ python3.pkgs.buildPythonApplication rec {
     vdirsyncer
     # (python311Packages.packages.withPackages (ps: with ps; [
       setuptools
+   setuptools_scm
       wheel
     # ]))
   ];

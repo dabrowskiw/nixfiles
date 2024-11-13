@@ -49,7 +49,7 @@
     pkgs.pavucontrol
     pkgs.pdfpc
     pkgs.pigz
-    pkgs.pinentry-gtk2
+    pkgs.pinentry-gnome3
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
     pkgs.qimgv

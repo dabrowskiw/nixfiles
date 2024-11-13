@@ -1,7 +1,12 @@
 { pkgs, lib, specialArgs, ... }:
 
 let
-  nurpkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { inherit pkgs; };
+  nurpkgs = import (
+    builtins.fetchTarball{ 
+      url="https://github.com/nix-community/NUR/archive/master.tar.gz";
+      sha256="0y5nb63kfihvcqfvvvrk0ddghnvzm8cnqbz3ijhrjk20xpwxfp40";
+      }
+  ) { inherit pkgs; };
   extensions = with nurpkgs.repos.rycee.firefox-addons; [
     darkreader
     i-dont-care-about-cookies

@@ -16,7 +16,7 @@
         ./hardware-configuration.nix
         ./bootconfig.nix
         ./home-manager.nix
-        ./secrets/secrets.nix
+        /home/wojtek/home-manager/secrets/secrets.nix
         ./configuration.nix
       ];
     };

@@ -20,7 +20,7 @@ in
       /home/wojtek/home-manager/secrets/secrets.nix
     ];
 
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableHardening = false;
   virtualisation.docker.enable = true;

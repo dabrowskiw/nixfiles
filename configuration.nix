@@ -14,10 +14,10 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-      /etc/nixos/bootconfig.nix
-      /etc/nixos/home-manager.nix
-      /home/wojtek/home-manager/secrets/secrets.nix
+#      /etc/nixos/hardware-configuration.nix
+#      /etc/nixos/bootconfig.nix
+#      /etc/nixos/home-manager.nix
+#      /home/wojtek/home-manager/secrets/secrets.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

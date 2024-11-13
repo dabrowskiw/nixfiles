@@ -1,3 +1,5 @@
 secrets/
 secrets.tar.gz
-bootconfig.nix
+flake.lock
+result
+

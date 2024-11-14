@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 let 
   userdefaults = {
@@ -12,13 +12,6 @@ let
 
 in 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-#      /etc/nixos/hardware-configuration.nix
-#      /etc/nixos/bootconfig.nix
-#      /etc/nixos/home-manager.nix
-#      /home/wojtek/home-manager/secrets/secrets.nix
-    ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   virtualisation.virtualbox.host.enable = true;
@@ -189,6 +182,7 @@ in
     nfs-utils
     pulseaudioFull
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

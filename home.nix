@@ -1,10 +1,19 @@
-{ ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "wojtek";
   home.homeDirectory = "/home/wojtek";
+    
+  gtk = {
+    enable = true;
+    font.name = "Victor Mono SemiBold 12";
+    theme = {
+      name = "SolArc-Dark";
+      package = pkgs.solarc-gtk-theme;
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

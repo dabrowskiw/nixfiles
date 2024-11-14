@@ -10,11 +10,11 @@ in
   sops = {
     age = {
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-      keyFile = "/var/lib/sops-nix/keys.txt"
+      keyFile = "/var/lib/sops-nix/keys.txt";
       generateKey = true;
     };
     secrets.diskstationCreds = {
-      sopsFile = "${secretspath}/secrets/diskstation.creds"
+      sopsFile = "${secretspath}/secrets/diskstation.creds";
       format = "binary";
     };
   };

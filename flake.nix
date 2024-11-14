@@ -9,6 +9,14 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mysecrets = {
+      url = "git+ssh://git@github.com/dabrowskiw/nixsecrets.git?shallow=1";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ 
@@ -16,6 +24,7 @@
     nixpkgs, 
     nixpkgs-unstable,
     home-manager,
+    sops-nix,
     ... 
     }: {
     # Please replace my-nixos with your hostname
@@ -39,6 +48,7 @@
           ./bootconfig.nix
           /home/wojtek/home-manager/secrets/secrets.nix
           ./configuration.nix
+          ./sops.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
           }
@@ -48,6 +58,7 @@
 
             home-manager.users.wojtek = import ./home.nix;
           }
+          sops-nix.nixosModules.sops
         ];
 
       };

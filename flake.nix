@@ -13,7 +13,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mysecrets = {
+    mysecrets-git = {
       url = "git+ssh://git@github.com/dabrowskiw/nixsecrets.git?shallow=1";
       flake = false;
     };
@@ -25,6 +25,7 @@
     nixpkgs-unstable,
     home-manager,
     sops-nix,
+    mysecrets-git,
     ... 
     }: {
     # Please replace my-nixos with your hostname
@@ -33,20 +34,21 @@
         system = "x86_64-linux";
         specialArgs = {
           pkgs-unstable = import nixpkgs-unstable {
-              # Refer to the `system` parameter from
-              # the outer scope recursively
-              inherit system;
-              # To use Chrome, we need to allow the
-              # installation of non-free software.
-              config.allowUnfree = true;
-            };
+            # Refer to the `system` parameter from
+            # the outer scope recursively
+            inherit system;
+            # To use Chrome, we need to allow the
+            # installation of non-free software.
+            config.allowUnfree = true;
+          };
+          mysecrets = mysecrets-git;
         };
         modules = [
           # Import the previous configuration.nix we used,
           # so the old configuration file still takes effect
           ./hardware-configuration.nix
           ./bootconfig.nix
-          /home/wojtek/home-manager/secrets/secrets.nix
+          ./diskstation.nix
           ./configuration.nix
           ./secrets.nix
           inputs.home-manager.nixosModules.default {

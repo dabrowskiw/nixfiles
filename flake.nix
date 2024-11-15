@@ -48,7 +48,7 @@
           ./bootconfig.nix
           /home/wojtek/home-manager/secrets/secrets.nix
           ./configuration.nix
-          ./sops.nix
+          ./secrets.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
           }

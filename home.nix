@@ -29,7 +29,6 @@
 
   imports = [
     ./aerc.nix
-    ./alacritty.nix
     ./eduroam.nix
     ./espanso.nix
     ./firefox.nix
@@ -41,10 +40,7 @@
     ./khal_config.nix
     ./khard.nix
     ./lunarvim.nix
-   # ./mbsync.nix
     ./msmtp.nix
-#    ./neomutt.nix
-#   ./notmuch.nix
     ./onedrive.nix
     ./packages-unfree.nix
     ./packages.nix
@@ -54,6 +50,7 @@
     ./vdirsyncer.nix
     ./xournalpp.nix
     ./yad-askpass.nix
+    ./zellij.nix
   ];
 
   #home.packages = [

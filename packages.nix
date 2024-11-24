@@ -11,6 +11,7 @@
     pkgs.brillo # backlight control
     pkgs.bless # Hex editor
     pkgs.catdoc
+    pkgs.contour
     pkgs.dante
     pkgs.dig 
     pkgs.expect
@@ -27,13 +28,13 @@
     pkgs.gnupg
     pkgs.godot_4
     pkgs.gradle
-    pkgs.thc-hydra
     pkgs.tree
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc
     pkgs.krita
     pkgs.libreoffice
+    pkgs.libsixel
     pkgs.libwacom
     pkgs.lilypond-with-fonts
     pkgs.marp-cli
@@ -59,21 +60,21 @@
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity
-    pkgs.tmux
-    pkgs.ueberzugpp
     pkgs.ungoogled-chromium
     pkgs.unixtools.xxd
     pkgs.unzip
     pkgs.vlc
-    pkgs.vimiv-qt
     pkgs.virtualbox
+    pkgs.w3m
     pkgs.wget
     pkgs.wine-staging
     pkgs.wirelesstools
     pkgs.wireshark
+    pkgs.xorg.xkill
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
+    pkgs.zellij
     (import ./bumblebee-status.nix)
     (import ./khal.nix)
     (import ./pcloud.nix)

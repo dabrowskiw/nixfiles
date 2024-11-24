@@ -5,7 +5,7 @@
     mounts = [{
       type = "cifs";
       mountConfig = {
-        Options = "noatime,credentials=/run/secrets/diskstationCreds";
+        Options = "noatime,uid=wojtek,gid=users,credentials=/run/secrets/diskstationCreds";
       }; 
       what = "//192.168.178.92/Pictures";
       where = "/mnt/diskstation/Pictures";

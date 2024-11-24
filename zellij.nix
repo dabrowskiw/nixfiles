@@ -7,7 +7,7 @@
     enableBashIntegration = false;
     enableZshIntegration = false;
     settings = {
-      scrollback_editor "lvim";
+      scrollback_editor = "lvim";
     };
   };
 }

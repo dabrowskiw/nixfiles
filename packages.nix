@@ -60,6 +60,7 @@
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity
+    pkgs.tmux
     pkgs.ungoogled-chromium
     pkgs.unixtools.xxd
     pkgs.unzip
@@ -74,7 +75,6 @@
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-    pkgs.zellij
     (import ./bumblebee-status.nix)
     (import ./khal.nix)
     (import ./pcloud.nix)

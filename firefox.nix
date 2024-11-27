@@ -4,7 +4,7 @@ let
   nurpkgs = import (
     builtins.fetchTarball{ 
       url="https://github.com/nix-community/NUR/archive/master.tar.gz";
-      sha256="0y5nb63kfihvcqfvvvrk0ddghnvzm8cnqbz3ijhrjk20xpwxfp40";
+      sha256="114rhdxkn374fbv0jcksfhb07i1sc85i1f8263dz2smsq9pqr1aj";
       }
   ) { inherit pkgs; };
   extensions = with nurpkgs.repos.rycee.firefox-addons; [

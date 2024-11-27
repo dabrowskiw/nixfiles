@@ -50,7 +50,6 @@
     ./vdirsyncer.nix
     ./xournalpp.nix
     ./yad-askpass.nix
-    ./zellij.nix
   ];
 
   #home.packages = [

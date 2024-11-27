@@ -64,6 +64,37 @@
         ];
 
       };
+      gpu-laptop = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            # Refer to the `system` parameter from
+            # the outer scope recursively
+            inherit system;
+            # To use Chrome, we need to allow the
+            # installation of non-free software.
+            config.allowUnfree = true;
+          };
+        };
+        modules = [
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./systems/gpulaptop/hardware-configuration.nix
+          ./systems/gpulaptop/bootconfig.nix
+          ./systems/gpulaptop/gputools.nix
+          ./configuration.nix
+          inputs.home-manager.nixosModules.default {
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.wojtek = import ./home.nix;
+          }
+        ];
+
+      };
     };
   };
 }

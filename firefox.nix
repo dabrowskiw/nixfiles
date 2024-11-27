@@ -2,10 +2,10 @@
 
 let
   nurpkgs = import (
-    builtins.fetchTarball{ 
-      url="https://github.com/nix-community/NUR/archive/master.tar.gz";
-      sha256="114rhdxkn374fbv0jcksfhb07i1sc85i1f8263dz2smsq9pqr1aj";
-      }
+    builtins.fetchGit{ 
+      url="https://github.com/nix-community/NUR.git";
+      rev = "d86e9111e430021c7c6cabae6694f5f01ad3cdd6";
+    }
   ) { inherit pkgs; };
   extensions = with nurpkgs.repos.rycee.firefox-addons; [
     darkreader

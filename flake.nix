@@ -42,6 +42,7 @@
             config.allowUnfree = true;
           };
           mysecrets = mysecrets-git;
+          hostname = "nixos-worklaptop";
         };
         modules = [
           # Import the previous configuration.nix we used,
@@ -51,6 +52,7 @@
           ./diskstation.nix
           ./configuration.nix
           ./secrets.nix
+          ./barriers.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
           }
@@ -74,6 +76,7 @@
             # To use Chrome, we need to allow the
             # installation of non-free software.
             config.allowUnfree = true;
+            hostname = "nixos-gpulaptop";
           };
         };
         modules = [

@@ -29,6 +29,7 @@
 
   imports = [
     ./aerc.nix
+    ./barrier.nix
     ./eduroam.nix
     ./espanso.nix
     ./firefox.nix

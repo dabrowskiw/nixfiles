@@ -1,20 +1,22 @@
-with import <nixpkgs> {}; # bring all of Nixpkgs into scope
+{ nixpkgs, stdenv, ...}:
+
+#with import <nixpkgs> {}; # bring all of Nixpkgs into scope
 
 stdenv.mkDerivation rec {
   pname = "pcloudcc";
   version = "2.0.1";
 
-  src = fetchgit {
+  src = nixpkgs.fetchgit {
     url = "https://github.com/pcloudcom/console-client.git";
     rev = "4b42e3c8a90696ca9ba0a7e162fcbcd62ad2e306";
     sha256 = "sha256-9ccpIuWq8nV34GQac+b8CtGHTtSOAxpI/2h1i4AI97M=";
   };
 
-  nativeBuildInputs = [
+  nativeBuildInputs = with nixpkgs; [
     pkg-config
   ];
 
-  buildInputs = [
+  buildInputs = with nixpkgs; [
     boost183
     cmake
     zlib

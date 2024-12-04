@@ -57,6 +57,7 @@
     pkgs.ranger
     pkgs.signal-desktop
     pkgs.singularity
+    pkgs.steam
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity
@@ -75,9 +76,9 @@
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-    (import ./bumblebee-status.nix)
-    (import ./khal.nix)
-    (import ./pcloud.nix)
-    (import ./vcard.nix)
+    (pkgs.callPackage ./bumblebee-status.nix {})
+    (pkgs.callPackage ./khal.nix {})
+    (pkgs.callPackage ./pcloud.nix {})
+    (pkgs.callPackage ./vcard.nix {})
   ];
 }

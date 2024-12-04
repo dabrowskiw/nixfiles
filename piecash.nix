@@ -1,11 +1,10 @@
-with import <nixpkgs> {}; # bring all of Nixpkgs into scope
-with python311Packages;
+{ pkgs, python3Packages, ...}:
 
-python3.pkgs.buildPythonPackage rec {
+python3Packages.buildPythonPackage rec {
   pname = "piecash";
   version = "1.2.0";
 
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "sdementen";
     repo = "piecash";
     rev = "refs/tags/${version}";
@@ -14,9 +13,9 @@ python3.pkgs.buildPythonPackage rec {
 
   format = "setuptools";
 
-  propagatedBuildInputs = [
-    (import ./sqlalchemy-1.4.nix)
-    (import ./sqlalchemy-utils-0.37.9.nix)
+  propagatedBuildInputs = with pkgs.python311Packages; [
+    (pkgs.callPackage ./sqlalchemy-1.4.nix {})
+    (pkgs.callPackage ./sqlalchemy-utils-0.37.9.nix {})
     pytz
     tzlocal
     click
@@ -24,7 +23,7 @@ python3.pkgs.buildPythonPackage rec {
     python-dateutil
   ];
   
-  buildInputs = [
+  buildInputs = with pkgs.python311Packages; [
     setuptools
   ];
 

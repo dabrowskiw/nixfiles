@@ -1,11 +1,10 @@
-with import <nixpkgs> {}; # bring all of Nixpkgs into scope
-with python311Packages;
+{ pkgs, python3Packages, ...}:
 
-python3.pkgs.buildPythonApplication rec {
+python3Packages.buildPythonApplication rec {
   pname = "vcard";
   version = "0.15.4";
 
-  src = fetchFromGitLab {
+  src = pkgs.fetchFromGitLab {
     owner = "engmark";
     repo = "vcard";
     rev = "refs/tags/v${version}";
@@ -14,15 +13,15 @@ python3.pkgs.buildPythonApplication rec {
 
   format = "pyproject";
 
-  propagatedBuildInputs = [
+  propagatedBuildInputs = with pkgs.python311Packages; [
     python-dateutil
   ];
   
-  nativeBuildInputs = [
+  nativeBuildInputs = with pkgs.python311Packages; [
     pip
   ];
 
-  buildInputs = [
+  buildInputs = with pkgs.python311Packages; [
     setuptools
   ];
 

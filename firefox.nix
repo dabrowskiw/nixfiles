@@ -1,13 +1,8 @@
-{ pkgs, lib, specialArgs, ... }:
+{ pkgs-unstable, lib, specialArgs, firefox-add, ... }:
 
 let
-  nurpkgs = import (
-    builtins.fetchGit{ 
-      url="https://github.com/nix-community/NUR.git";
-      rev = "d86e9111e430021c7c6cabae6694f5f01ad3cdd6";
-    }
-  ) { inherit pkgs; };
-  extensions = with nurpkgs.repos.rycee.firefox-addons; [
+
+  extensions = with firefox-add; [
     darkreader
     i-dont-care-about-cookies
     link-cleaner
@@ -192,6 +187,7 @@ in
         inherit extensions settings userChrome;
       };
     };
+    package = pkgs-unstable.firefox;
   };
   
   xdg.mimeApps = {

@@ -13,6 +13,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mysecrets-git = {
       url = "git+ssh://git@github.com/dabrowskiw/nixsecrets.git?shallow=1";
       flake = false;
@@ -23,30 +27,27 @@
     self, 
     nixpkgs, 
     nixpkgs-unstable,
+    firefox-addons,
     home-manager,
     sops-nix,
     mysecrets-git,
     ... 
     }: {
-    # Please replace my-nixos with your hostname
       nixosConfigurations = {
         work-laptop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = {
+        specialArgs = rec {
           pkgs-unstable = import nixpkgs-unstable {
-            # Refer to the `system` parameter from
-            # the outer scope recursively
             inherit system;
-            # To use Chrome, we need to allow the
-            # installation of non-free software.
             config.allowUnfree = true;
+          };
+          firefox-add = import firefox-addons {
+            inherit (pkgs-unstable) fetchurl lib stdenv;
           };
           mysecrets = mysecrets-git;
           hostname = "nixos-worklaptop";
         };
         modules = [
-          # Import the previous configuration.nix we used,
-          # so the old configuration file still takes effect
           ./hardware-configuration.nix
           ./bootconfig.nix
           ./diskstation.nix
@@ -70,18 +71,12 @@
         system = "x86_64-linux";
         specialArgs = {
           pkgs-unstable = import nixpkgs-unstable {
-            # Refer to the `system` parameter from
-            # the outer scope recursively
             inherit system;
-            # To use Chrome, we need to allow the
-            # installation of non-free software.
             config.allowUnfree = true;
             hostname = "nixos-gpulaptop";
           };
         };
         modules = [
-          # Import the previous configuration.nix we used,
-          # so the old configuration file still takes effect
           ./systems/gpulaptop/hardware-configuration.nix
           ./systems/gpulaptop/bootconfig.nix
           ./systems/gpulaptop/gputools.nix

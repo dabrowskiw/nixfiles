@@ -1,18 +1,16 @@
-with import <nixpkgs> {}; # bring all of Nixpkgs into scope
+{ pkgs, python3Packages, ... }:
 
-with python311Packages;
-
-python3.pkgs.buildPythonPackage rec {
+python3Packages.buildPythonPackage rec {
   pname = "khal-autocomplete";
   version = "0.11.2";
 
-  src = fetchgit {
+  src = pkgs.fetchgit {
     url = "https://github.com/AFoeee/additional-urwid-widgets";
     rev = "681f6d59e18d22291826d7642a5912e7b7f26089";
     sha256 = "sha256-sdW43ce9/LoxyS1Nfb8GamAqfODJGHealkg45HaC87k=";
   };
 
-  nativeBuildInputs = [
+  nativeBuildInputs = with pkgs.python311Packages; [
     setuptools
     urwid
   ];

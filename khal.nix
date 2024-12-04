@@ -1,12 +1,11 @@
-with import <nixpkgs> {}; # bring all of Nixpkgs into scope
+{ pkgs, python3Packages, lib, ...}:
 
-with python311Packages;
 
-python3.pkgs.buildPythonApplication rec {
+python3Packages.buildPythonApplication rec {
   pname = "khal-autocomplete";
   version = "0.11.3";
 
-  src = fetchgit {
+  src = pkgs.fetchgit {
     url = "https://github.com/dabrowskiw/khal.git";
     rev = "8d6e79271295f7a60625b18fd75be5c934d11298";
     sha256 = "sha256-N9JwpkjkbmS7b4PrkRYIsqv5IPEopuxExllZkXdqo+4";
@@ -16,8 +15,8 @@ python3.pkgs.buildPythonApplication rec {
 
   format = "pyproject";
 
-  propagatedBuildInputs = [
-    glibcLocales
+  propagatedBuildInputs = with pkgs.python311Packages; [
+    pkgs.glibcLocales
     atomicwrites
     click
     click-log
@@ -34,12 +33,12 @@ python3.pkgs.buildPythonApplication rec {
     tzlocal
     urwid
     vdirsyncer
-    (import ./urwid-additional-widgets.nix)
+    (pkgs.callPackage ./urwid-additional-widgets.nix {} )
   ];
 
-  nativeBuildInputs = [
-    glibcLocales
-    installShellFiles
+  nativeBuildInputs = with pkgs.python311Packages; [
+    pkgs.glibcLocales
+    pkgs.installShellFiles
     atomicwrites
     click
     click-log
@@ -68,7 +67,7 @@ python3.pkgs.buildPythonApplication rec {
   ];
 
 
-  nativeCheckInputs = with python3.pkgs;[
+  nativeCheckInputs = with pkgs; [
     freezegun
     hypothesis
     packaging

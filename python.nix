@@ -10,7 +10,7 @@
     pytest
     pypdf2
     reportlab
-    (import ./piecash.nix)
+    (callPackage ./piecash.nix {})
   ]))
  ];
 }

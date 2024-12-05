@@ -16,7 +16,7 @@
     pkgs.dig 
     pkgs.expect
     pkgs.file
-    pkgs.fishPlugins.bobthefish
+#    pkgs.fishPlugins.bobthefish
     pkgs.fluidsynth
     pkgs.fzf
     pkgs.ghostscript

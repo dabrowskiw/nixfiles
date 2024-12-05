@@ -1,4 +1,0 @@
-filter_class: "Evolution.bin"
-
-extra_includes:
-  - "../match/_email.yml"

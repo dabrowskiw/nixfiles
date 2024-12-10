@@ -53,7 +53,7 @@
           ./diskstation.nix
           ./configuration.nix
           ./secrets.nix
-          ./barriers.nix
+#          ./barriers.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
           }

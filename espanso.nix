@@ -7,8 +7,8 @@
       default = {
         toggle_key = "OFF"; 
         backend = "Clipboard";
-        key_delay = "5"; 
-        auto_restart = "true";
+        key_delay = 5; 
+        auto_restart = true;
         search_shortcut = "ALT+SPACE";
       };
       contour = {

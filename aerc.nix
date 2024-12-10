@@ -18,6 +18,7 @@ let
       set colorcolumn=80
       highlight colorcolumn ctermbg=236
       set expandtab
+      set ft=mail
 
       set hlsearch
       set autoindent
@@ -119,7 +120,9 @@ in
 
       };
       viewer = {
-        pager = "nvimpager -p - -c \"set ft=mail\""; 
+        pager = "nvimpager - -S ${mail_vimrc}/share/mail.vimrc -c \"set nospell\""; 
+        alternatives = "text/plain,text/html";
+        parse-http-links = true;
       }; 
       compose = {
         address-book-cmd = "khard email --parsable --search-in-source-files --remove-first-line %s";
@@ -127,6 +130,11 @@ in
         editor = "lvim -S ${mail_vimrc}/share/mail.vimrc";
       };
       filters = {
+        "text/plain" = "cat";
+        "text/calendar" = "calendar";
+        "message/delivery-status" = "colorize";
+        "message/rfc822" = "colorize";
+        "text/html" = "html";
         "application/msword" = "catdoc";
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "catdoc";
       };
@@ -168,6 +176,8 @@ in
         "<C-k>" = ":prev-part<Enter>";
         "<C-j>" = ":next-part<Enter>";
         "m" = ":mv <space>";
+        "<C-p>" = ":prev-tab<Enter>";
+        "<C-n>" = ":next-tab<Enter>";
       };
       messages = {
         "<C-p>" = ":prev-tab<Enter>";

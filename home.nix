@@ -38,7 +38,6 @@
     ./goimapnotify.nix
     ./gpg.nix
     ./i3.nix
-    ./khal_config.nix
     ./khard.nix
     ./lunarvim.nix
     ./msmtp.nix

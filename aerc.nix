@@ -1,6 +1,58 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let 
+  khal_config = pkgs.writeTextFile {
+    name = "khal_config";
+    destination = "/share/khal.config";
+    text = ''
+#/etc/khal/khal.conf.sample
+[calendars]
+[[Posteo]]
+path = ~/data/calendars/Posteo/default/
+
+[[Müllabfuhr]]
+path = ~/data/calendars/Posteo/aarvay/
+
+[[Geburtstage]]
+path = ~/data/calendars/Posteo/oqzfeh/
+
+[[Vorlesungen]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDk1Mg/
+
+[[HTW]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDgwMg/
+
+[[Personal]]
+path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8zMTg3MA/
+
+[sqlite]
+path = ~/.khal/khal.db
+
+[locale]
+local_timezone = Europe/Berlin
+default_timezone = America/New_York
+
+# If you use certain characters (e.g. commas) in these formats you may need to
+# enclose them in "" to ensure that they are loaded as strings.
+timeformat = %H:%M
+dateformat = %d.%m.
+longdateformat = %d.%m.%Y
+datetimeformat =  %d.%m. %H:%M
+longdatetimeformat = %d.%m.%Y %H:%M
+
+firstweekday = 0
+weeknumbers = "left"
+
+[default]
+default_calendar = HTW
+timedelta = 2d # the default timedelta that list uses
+highlight_event_days = True  # the default is False
+enable_mouse = False  # mouse is enabled by default in interactive mode
+
+[keybindings]
+external_edit = x
+    '';
+  };
   mail_vimrc = pkgs.writeTextFile {
     name = "mail_vimrc";
     destination = "/share/mail.vimrc";
@@ -67,7 +119,7 @@ aerc "mailto:$mails?account=Posteo&subject=Termineinladung: $name" && aerc :atta
     name = "runikhal";
     text = ''
       export EDITOR="fish ${exportics}/bin/exportics"
-      ikhal -a HTW -a Vorlesungen -a Personal -a Müllabfuhr -a Geburtstage -a Posteo
+      ikhal -c ${khal_config}/share/khal.config -a HTW -a Vorlesungen -a Personal -a Müllabfuhr -a Geburtstage -a Posteo
       aerc :next-tab 
     '';
   };

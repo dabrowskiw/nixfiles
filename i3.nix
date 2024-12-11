@@ -104,7 +104,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id xsetroot -solid "#001122"
 
-exec_always --no-startup-id espanso service start --unmanaged
+#exec_always --no-startup-id espanso service start --unmanaged
 exec_always --no-startup-id fish ${disableTouchpad}/bin/disableTouchpad 
 
 exec_always --no-startup-id ${startPcloud}/bin/startPcloud

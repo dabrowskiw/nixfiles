@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, mypythonPackages, ... }:
 
 {
  home.packages = [
@@ -10,7 +10,7 @@
     pytest
     pypdf2
     reportlab
-    (callPackage ./piecash.nix {})
+    (callPackage ./piecash.nix { inherit mypythonPackages; })
   ]))
  ];
 }

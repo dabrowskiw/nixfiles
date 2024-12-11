@@ -8,7 +8,7 @@
         toggle_key = "OFF"; 
         backend = "Clipboard";
         key_delay = 5; 
-        auto_restart = true;
+        auto_restart = false;
         search_shortcut = "ALT+SPACE";
       };
       contour = {

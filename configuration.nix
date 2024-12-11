@@ -13,6 +13,8 @@ let
 in 
 {
 
+  documentation.man.generateCaches = false;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableHardening = false;

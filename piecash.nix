@@ -1,6 +1,6 @@
-{ pkgs, python3Packages, ...}:
+{ pkgs, mypythonPackages, ...}:
 
-python3Packages.buildPythonPackage rec {
+mypythonPackages.buildPythonPackage rec {
   pname = "piecash";
   version = "1.2.0";
 
@@ -13,9 +13,9 @@ python3Packages.buildPythonPackage rec {
 
   format = "setuptools";
 
-  propagatedBuildInputs = with pkgs.python311Packages; [
-    (pkgs.callPackage ./sqlalchemy-1.4.nix {})
-    (pkgs.callPackage ./sqlalchemy-utils-0.37.9.nix {})
+  propagatedBuildInputs = with mypythonPackages; [
+    (pkgs.callPackage ./sqlalchemy-1.4.nix { inherit mypythonPackages; })
+    (pkgs.callPackage ./sqlalchemy-utils-0.37.9.nix { inherit mypythonPackages; })
     pytz
     tzlocal
     click
@@ -23,7 +23,7 @@ python3Packages.buildPythonPackage rec {
     python-dateutil
   ];
   
-  buildInputs = with pkgs.python311Packages; [
+  buildInputs = with mypythonPackages; [
     setuptools
   ];
 

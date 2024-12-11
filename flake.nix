@@ -4,9 +4,9 @@
   inputs = {
     # NixOS official package source, using the nixos-24.05 branch here
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -44,6 +44,7 @@
           firefox-add = import firefox-addons {
             inherit (pkgs-unstable) fetchurl lib stdenv;
           };
+          mypythonPackages = pkgs-unstable.python312Packages;
           mysecrets = mysecrets-git;
           hostname = "nixos-worklaptop";
         };
@@ -75,6 +76,7 @@
             config.allowUnfree = true;
             hostname = "nixos-gpulaptop";
           };
+          pythonPackages = nixpkgs.python312Packages;
         };
         modules = [
           ./systems/gpulaptop/hardware-configuration.nix

@@ -1,6 +1,6 @@
-{ pkgs, python3Packages, ...}:
+{ pkgs, mypythonPackages, ...}:
 
-python3Packages.buildPythonApplication rec {
+mypythonPackages.buildPythonApplication rec {
   pname = "vcard";
   version = "0.15.4";
 
@@ -13,15 +13,15 @@ python3Packages.buildPythonApplication rec {
 
   format = "pyproject";
 
-  propagatedBuildInputs = with pkgs.python311Packages; [
+  propagatedBuildInputs = with mypythonPackages; [
     python-dateutil
   ];
   
-  nativeBuildInputs = with pkgs.python311Packages; [
+  nativeBuildInputs = with mypythonPackages; [
     pip
   ];
 
-  buildInputs = with pkgs.python311Packages; [
+  buildInputs = with mypythonPackages; [
     setuptools
   ];
 

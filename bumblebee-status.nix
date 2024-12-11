@@ -1,6 +1,6 @@
-{ pkgs, python3Packages, ... }:
+{ pkgs, mypythonPackages, ... }:
 
-python3Packages.buildPythonApplication rec {
+mypythonPackages.buildPythonApplication rec {
   pname = "bumblebee-status";
   version = "2.2.0";
 
@@ -11,13 +11,12 @@ python3Packages.buildPythonApplication rec {
     sha256 = "sha256-+RCg2XZv0AJnexi7vnQhEXB1qSoKBN1yKWm3etdys1s=";
   };
 
-  nativeBuildInputs = with pkgs; [
-    iw
-    python3
-    python311Packages.netifaces
-    python311Packages.psutil
-    python311Packages.pytest
-    python311Packages.speedtest-cli
+  nativeBuildInputs = with mypythonPackages; [
+    pkgs.iw
+    netifaces
+    psutil
+    pytest
+    speedtest-cli
   ];
 
   postInstall = ''

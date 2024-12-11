@@ -1,6 +1,6 @@
-{ pkgs, python3Packages, ... }:
+{ pkgs, mypythonPackages, ... }:
 
-python3Packages.buildPythonPackage rec {
+mypythonPackages.buildPythonPackage rec {
   pname = "khal-autocomplete";
   version = "0.11.2";
 
@@ -10,7 +10,7 @@ python3Packages.buildPythonPackage rec {
     sha256 = "sha256-sdW43ce9/LoxyS1Nfb8GamAqfODJGHealkg45HaC87k=";
   };
 
-  nativeBuildInputs = with pkgs.python311Packages; [
+  nativeBuildInputs = with mypythonPackages; [
     setuptools
     urwid
   ];

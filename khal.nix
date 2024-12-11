@@ -1,7 +1,7 @@
-{ pkgs, python3Packages, lib, ...}:
+{ pkgs, lib, mypythonPackages, ...}:
 
 
-python3Packages.buildPythonApplication rec {
+mypythonPackages.buildPythonApplication rec {
   pname = "khal-autocomplete";
   version = "0.11.3";
 
@@ -15,7 +15,7 @@ python3Packages.buildPythonApplication rec {
 
   format = "pyproject";
 
-  propagatedBuildInputs = with pkgs.python311Packages; [
+  propagatedBuildInputs = with mypythonPackages; [
     pkgs.glibcLocales
     atomicwrites
     click
@@ -33,10 +33,10 @@ python3Packages.buildPythonApplication rec {
     tzlocal
     urwid
     vdirsyncer
-    (pkgs.callPackage ./urwid-additional-widgets.nix {} )
+    (pkgs.callPackage ./urwid-additional-widgets.nix { inherit mypythonPackages; } )
   ];
 
-  nativeBuildInputs = with pkgs.python311Packages; [
+  nativeBuildInputs = with mypythonPackages; [
     pkgs.glibcLocales
     pkgs.installShellFiles
     atomicwrites
@@ -59,11 +59,9 @@ python3Packages.buildPythonApplication rec {
     tzlocal
     urwid
     vdirsyncer
-    # (python311Packages.packages.withPackages (ps: with ps; [
-      setuptools
-   setuptools_scm
-      wheel
-    # ]))
+    setuptools
+     setuptools_scm
+    wheel
   ];
 
 

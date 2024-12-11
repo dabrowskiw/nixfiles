@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 
 {
   home.packages = [
-    pkgs.lunarvim
+    pkgs-unstable.lunarvim
   ];
 
   home.file.".config/lvim/config.lua".source = ./dotfiles/lvim/config.lua;

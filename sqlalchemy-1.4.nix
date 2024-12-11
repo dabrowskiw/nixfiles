@@ -1,6 +1,6 @@
-{ pkgs, python3Packages, ... }:
+{ pkgs, mypythonPackages, ... }:
 
-python3Packages.buildPythonPackage rec {
+mypythonPackages.buildPythonPackage rec {
   pname = "sqlalchemy";
   version = "1.4.51";
 
@@ -9,12 +9,12 @@ python3Packages.buildPythonPackage rec {
     hash = "sha256-67t3fL+TEjWbiXv4G6ANrg9ctp+6KhgmXcwYpvXvdRk=";
   };
 
-  propagatedBuildInputs = with pkgs.python311Packages; [
+  propagatedBuildInputs = with mypythonPackages; [
     pymysql
     python-dateutil
   ];
   
-  buildInputs = with pkgs.python311Packages; [
+  buildInputs = with mypythonPackages; [
     setuptools
   ];
 

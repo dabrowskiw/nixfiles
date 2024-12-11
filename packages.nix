@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, mypythonPackages, ... }:
  
 {
   home.packages = [
@@ -9,25 +9,25 @@
     pkgs.black
     pkgs.btop
     pkgs.brillo # backlight control
-    pkgs.bless # Hex editor
+    pkgs.bumblebee-status
     pkgs.catdoc
     pkgs.contour
     pkgs.dante
     pkgs.dig 
     pkgs.expect
     pkgs.file
-#    pkgs.fishPlugins.bobthefish
     pkgs.fluidsynth
     pkgs.fzf
     pkgs.ghostscript
     pkgs.gh
     pkgs.gimp
-    pkgs.gnome.gnome-system-monitor
+    pkgs.gnome-system-monitor
     pkgs.gnucash
     pkgs.gnumeric
     pkgs.gnupg
     pkgs.godot_4
     pkgs.gradle
+    pkgs.hextazy # Hex editor
     pkgs.tree
     pkgs.iw
     pkgs.imagemagick
@@ -76,9 +76,9 @@
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-    (pkgs.callPackage ./bumblebee-status.nix {})
-    (pkgs.callPackage ./khal.nix {})
+#    (pkgs.callPackage ./bumblebee-status.nix { inherit mypythonPackages; })
+    (pkgs.callPackage ./khal.nix { inherit mypythonPackages; })
     (pkgs.callPackage ./pcloud.nix {})
-    (pkgs.callPackage ./vcard.nix {})
+    (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })
   ];
 }

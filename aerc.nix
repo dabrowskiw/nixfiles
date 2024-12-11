@@ -194,8 +194,8 @@ in
         "text/html" = "firefox";
         "image/*" = "qimgv";
         "application/pdf" = "xournalpp";
-        "application/ics" = "contour -e khal -c ${khal_config}/share/khal.config -import ";
-        "text/calendar" = "contour -e khal -c ${khal_config}/share/khal.config -import ";
+        "application/ics" = "contour -e khal -c ${khal_config}/share/khal.config import ";
+        "text/calendar" = "contour -e khal -c ${khal_config}/share/khal.config import ";
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "abiword";
       };
       hooks = {

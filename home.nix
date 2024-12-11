@@ -35,7 +35,6 @@
     ./firefox.nix
     ./fish.nix
     ./git.nix
-    ./goimapnotify.nix
     ./gpg.nix
     ./i3.nix
     ./khard.nix

@@ -1,7 +1,29 @@
 { pkgs, config, mypythonPackages, ... }:
- 
+
+let
+  connectO2 = pkgs.writeShellScriptBin "connectO2" 
+  ''
+if [ ! -e /dev/wwan0mbim0 ]; then 
+  echo -n "Waiting for device to come up..."
+  while [ ! -e /dev/wwan0mbim0 ]; do
+    sleep 1
+    echo -n "."
+  done
+  echo " Device is up."
+fi
+
+echo -n "Unlocking device..."
+mbimcli -p -d /dev/wwan0mbim0 -v --quectel-query-radio-state 2>&1 >/dev/null
+mbimcli -p -d /dev/wwan0mbim0 -v --quectel-set-radio-state=on 2>&1 >/dev/null
+echo " Done."
+echo "Connecting..."
+sleep 1
+nmcli conn up O2
+  '';
+in
 {
   home.packages = [
+    connectO2
     pkgs.abiword
     pkgs.arandr
     pkgs.bash
@@ -76,7 +98,6 @@
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-#    (pkgs.callPackage ./bumblebee-status.nix { inherit mypythonPackages; })
     (pkgs.callPackage ./khal.nix { inherit mypythonPackages; })
     (pkgs.callPackage ./pcloud.nix {})
     (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })

@@ -9,7 +9,47 @@ let
     isNormalUser = true;
     shell = pkgs.fish;
   };
+  unlockscript = pkgs.writeTextFile {
+    name = "unlockscript";
+    destination = "/share/unlockscript";
+    executable = true;
+    text = ''
+#!/usr/bin/env sh
 
+# SPDX-License-Identifier: CC0-1.0
+# 2021 Aleksander Morgado <aleksander@aleksander.es>
+#
+# Quectel EM120 FCC unlock operation
+#
+
+# require program name and at least 2 arguments
+[ $# -lt 2 ] && exit 1
+
+# first argument is DBus path, not needed here
+shift
+
+# second and next arguments are control port names
+for PORT in "$@"; do
+  # match port type in Linux 5.14 and newer
+  grep -q MBIM "/sys/class/wwan/$PORT/type" 2>/dev/null && {
+    MBIM_PORT=$PORT
+    break
+  }
+  # match port name in Linux 5.13
+  echo "$PORT" | grep -q MBIM && {
+    MBIM_PORT=$PORT
+    break
+  }
+done
+
+# fail if no MBIM port exposed
+[ -n "$MBIM_PORT" ] || exit 2
+
+# run mbimcli operation
+mbimcli --device-open-proxy --device="/dev/$MBIM_PORT" --quectel-set-radio-state=on
+exit $?
+    '';
+  };
 in 
 {
 
@@ -34,7 +74,7 @@ in
   networking.networkmanager.enable = true;
 
   environment.etc = {
-    "ModemManager/fcc-unlock.d/1eac:1001".source = /home/wojtek/home-manager/dotfiles/1eac_1001;
+    "ModemManager/fcc-unlock.d/1eac:1001".source = "${unlockscript}/share/unlockscript";
   };
 
   environment.variables = {

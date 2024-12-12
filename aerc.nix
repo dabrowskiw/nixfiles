@@ -5,7 +5,6 @@ let
     name = "khal_config";
     destination = "/share/khal.config";
     text = ''
-#/etc/khal/khal.conf.sample
 [calendars]
 [[Posteo]]
 path = ~/data/calendars/Posteo/default/

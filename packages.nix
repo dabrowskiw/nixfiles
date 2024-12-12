@@ -54,6 +54,7 @@ in
     pkgs.iw
     pkgs.imagemagick
     pkgs.keepassxc
+    pkgs.khal
     pkgs.krita
     pkgs.libreoffice
     pkgs.libsixel
@@ -98,7 +99,7 @@ in
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-    (pkgs.callPackage ./khal.nix { inherit mypythonPackages; })
+#    (pkgs.callPackage ./khal.nix { inherit mypythonPackages; })
     (pkgs.callPackage ./pcloud.nix {})
     (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })
   ];

@@ -1,12 +1,29 @@
 { pkgs, lib, config, ...}:
 
+let
+  khardconfig = pkgs.writeTextFile {
+    name = "khardconfig";
+    destination = "/share/khand.conf";
+    text = ''
+[addressbooks]
+[[HTW]]
+path = ~/data/addresses/HTW-global/
+[[HTW-collected]]
+path = ~/data/addresses/HTW-collected/
+[[Posteo]]
+path = ~/data/addresses/Posteo/default/
+
+[contact tables]
+group_by_addressbook = yes
+    '';
+  };
+in
 {
   home.packages = [
     pkgs.khard
   ];
 
-  home.file.".config/khard/khard.conf".source = ./dotfiles/khard/khard.conf;
-  home.file."data/addresses/add-uid.fish".source = ./dotfiles/khard/add-uid.fish;
+  home.file.".config/khard/khard.conf".source = "${khardconfig}/share/khard.conf";
   
   home.activation = {
     khardConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''

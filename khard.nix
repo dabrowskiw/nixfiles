@@ -21,6 +21,7 @@ in
 {
   home.packages = [
     pkgs.khard
+    khardconfig
   ];
 
   home.file.".config/khard/khard.conf".source = "${khardconfig}/share/khard.conf";

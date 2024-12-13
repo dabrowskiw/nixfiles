@@ -52,6 +52,7 @@ in
     pkgs.hextazy # Hex editor
     pkgs.tree
     pkgs.iw
+    pkgs.jq
     pkgs.imagemagick
     pkgs.keepassxc
     pkgs.khal

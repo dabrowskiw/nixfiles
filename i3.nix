@@ -35,11 +35,15 @@ end
     destination = "/bin/screenMouseHome";
     executable = true;
     text = ''
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-xinput --set-prop 11 "Coordinate Transformation Matrix" 0.75 0 0 0 0.5 0 0 0 1
-xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
-    '';
+if [ $argv[1] = "mouse" ]
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
+end
+if [ $argv[1] = "screen" ]
+  xinput --set-prop 11 "Coordinate Transformation Matrix" 0.75 0 0 0 0.5 0 0 0 1
+end
+  '';
   };
   disableTouchpad = pkgs.writeTextFile {
     name = "disableTouchpad";
@@ -63,6 +67,48 @@ xinput set-prop $tid "Device Enabled" 0
 gameid=`lutris --list-games | grep  "$1" | head -n 1 | cut -d "|" -f 1 | sed -e 's/ //g'`
 lutriscmd="env LUTRIS_SKIP_INIT=1 lutris lutris:rungameid/$gameid"
 $lutriscmd
+    '';
+  };
+  selectscreens = pkgs.writeTextFile {
+    name = "selectscreens";
+    destination = "/bin/selectscreens";
+    executable = true;
+    text = ''
+#!/usr/bin/env fish
+
+set cw $(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2)
+echo $cw
+
+if [ $argv[1] = "2external" ]
+  for w in 1 3 5 7 9
+    i3-msg workspace $w
+    i3-msg move workspace to output DP-3-3
+  end
+  for w in 2 4 6 8 
+    i3-msg workspace $w
+    i3-msg move workspace to output DP-3-2
+  end
+end
+
+if [ $argv[1] = "1external" ]
+  for w in 1 3 5 7 9
+    i3-msg workspace $w
+    i3-msg move workspace to output eDP-1
+  end
+  for w in 2 4 6 8 
+    i3-msg workspace $w
+    i3-msg move workspace to output DP-3-2
+  end
+end
+
+if [ $argv[1] = "mobile" ]
+  for w in 1 2 3 4 5 6 7 8 9
+    i3-msg workspace $w
+    i3-msg move workspace to output eDP-1
+  end
+end
+
+i3-msg workspace $cw
     '';
   };
   i3config = pkgs.writeTextFile {
@@ -280,22 +326,23 @@ bindsym $mod+r mode "resize"
 set $i3lockwall i3lock -c 000000 
 
 # network management
-set $mode_actions (c) onnect WWAN, (d) isconnect WWAN, connect (V)PN, disconnect (v)pn, (h)ome screen config
+set $mode_actions (c)onnect WWAN, (d)isconnect WWAN, connect (V)PN, disconnect (v)pn, (h)ome mouse config, (H)ome screen config
 
 mode "$mode_actions" {
     bindsym c exec --no-startup-id nmcli connection up a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
     bindsym d exec --no-startup-id nmcli connection down a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
     bindsym Shift+v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/HTW-SSH-Split.sh, mode "default"
     bindsym v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/stop_openconnect.sh, mode "default"
-    bindsym h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome, mode "default"
+    bindsym H exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome screen, mode "default"
+    bindsym h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome mouse, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-# shutdown / restart / suspend...
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
 
+# shutdown / restart / suspend...
+set $mode_system System (l)lock, (o)logout, (s)suspend, (h)hibernate, (r)reboot, (CTRL+s)shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $i3lockwall, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -311,7 +358,6 @@ mode "$mode_system" {
 
 # lutris games
 set $mode_lutris (p)layground sessions
-
 mode "$mode_lutris" {
     bindsym p exec --no-startup-id ${runlutrisgame}/bin/runlutrisgame playground-sessions, mode "default"
 
@@ -319,17 +365,25 @@ mode "$mode_lutris" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-# shutdown / restart / suspend...
+
+set $mode_screenselect home - (1) external, home - (2) external, (m)obile 
+mode "$mode_screenselect" {
+  bindsym 1 exec --no-startup-id ${selectscreens}/bin/selectscreens 1external, mode "default" 
+  bindsym 2 exec --no-startup-id ${selectscreens}/bin/selectscreens 2external, mode "default" 
+  bindsym m exec --no-startup-id ${selectscreens}/bin/selectscreens mobile, mode "default" 
+}
 
 bindsym $mod+BackSpace mode "$mode_system"
 bindsym $mod+Ctrl+a mode "$mode_actions"
 bindsym $mod+Ctrl+l mode "$mode_lutris"
+bindsym $mod+Ctrl+s mode "$mode_screenselect"
 
-workspace 1 output eDP-1 eDP-1-1 DP-3-2
-workspace 3 output eDP-1 eDP-1-1 DP-3-2
-workspace 5 output eDP-1 eDP-1-1 DP-3-2
-workspace 7 output eDP-1 eDP-1-1 DP-3-2
-workspace 9 output eDP-1 eDP-1-1 DP-3-2
+
+workspace 1 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
+workspace 3 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
+workspace 5 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
+workspace 7 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
+workspace 9 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
 workspace 2 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
 workspace 4 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
 workspace 6 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1

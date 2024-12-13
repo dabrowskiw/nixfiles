@@ -5,6 +5,7 @@
   # manage.
   home.username = "wojtek";
   home.homeDirectory = "/home/wojtek";
+  programs.man.generateCaches = false;
     
   gtk = {
     enable = true;

@@ -5,6 +5,7 @@
     pkgs.fishPlugins.tide
   ];
 
+
   programs.fish = {
     enable = true;
     plugins = [

@@ -38,10 +38,10 @@ end
 #!/usr/bin/env fish
 
 if [ $argv[1] = "mouse" ]
-  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
+  xinput --set-prop 11 "Coordinate Transformation Matrix" 0.75 0 0 0 0.5 0 0 0 1
 end
 if [ $argv[1] = "screen" ]
-  xinput --set-prop 11 "Coordinate Transformation Matrix" 0.75 0 0 0 0.5 0 0 0 1
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
 end
   '';
   };
@@ -80,6 +80,7 @@ set cw $(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut
 echo $cw
 
 if [ $argv[1] = "2external" ]
+  xrandr --output eDP-1 --off --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1680x0 --rotate normal --output DP-3-3 --mode 1680x1050 --pos 0x0 --rotate normal
   for w in 1 3 5 7 9
     i3-msg workspace $w
     i3-msg move workspace to output DP-3-3
@@ -91,6 +92,7 @@ if [ $argv[1] = "2external" ]
 end
 
 if [ $argv[1] = "1external" ]
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
   for w in 1 3 5 7 9
     i3-msg workspace $w
     i3-msg move workspace to output eDP-1
@@ -102,6 +104,7 @@ if [ $argv[1] = "1external" ]
 end
 
 if [ $argv[1] = "mobile" ]
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
   for w in 1 2 3 4 5 6 7 8 9
     i3-msg workspace $w
     i3-msg move workspace to output eDP-1

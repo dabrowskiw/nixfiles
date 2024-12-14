@@ -21,12 +21,17 @@
       url = "git+ssh://git@github.com/dabrowskiw/nixsecrets.git?shallow=1";
       flake = false;
     };
+    nix-yazi-plugins = {
+      url = "git+file:///home/wojtek/tools/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ 
     self, 
     nixpkgs, 
     nixpkgs-unstable,
+    nix-yazi-plugins,
     firefox-addons,
     home-manager,
     sops-nix,
@@ -49,6 +54,11 @@
           hostname = "nixos-worklaptop";
         };
         modules = [
+          {
+            nixpkgs.overlays = [
+              nix-yazi-plugins.overlays.default
+            ];
+          }
           ./hardware-configuration.nix
           ./bootconfig.nix
           ./diskstation.nix

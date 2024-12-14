@@ -19,10 +19,6 @@
         };
       }
     ];
-    shellAliases = {
-      "vi" = "lvim";
-      "vim" = "lvim";
-    };
 
   };
   programs.fzf.enableFishIntegration = true;

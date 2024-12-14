@@ -39,8 +39,8 @@
     ./gpg.nix
     ./i3.nix
     ./khard.nix
-    ./lunarvim.nix
     ./msmtp.nix
+    ./nvim.nix
     ./onedrive.nix
     ./packages-unfree.nix
     ./packages.nix

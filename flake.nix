@@ -59,11 +59,11 @@
               nix-yazi-plugins.overlays.default
             ];
           }
-          ./hardware-configuration.nix
-          ./bootconfig.nix
-          ./diskstation.nix
-          ./configuration.nix
-          ./secrets.nix
+          ./nixfiles/systems/worklaptop/hardware-configuration.nix
+          ./nixfiles/systems/worklaptop/bootconfig.nix
+          ./nixfiles/general/configuration.nix
+          ./nixfiles/general/diskstation.nix
+          ./nixfiles/general/secrets.nix
 #          ./barriers.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
@@ -72,7 +72,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.wojtek = import ./home.nix;
+            home-manager.users.wojtek = import ./nixfiles/general/home.nix;
           }
           sops-nix.nixosModules.sops
         ];
@@ -89,10 +89,10 @@
           pythonPackages = nixpkgs.python312Packages;
         };
         modules = [
-          ./systems/gpulaptop/hardware-configuration.nix
-          ./systems/gpulaptop/bootconfig.nix
-          ./systems/gpulaptop/gputools.nix
-          ./configuration.nix
+          ./nixfiles/systems/gpulaptop/hardware-configuration.nix
+          ./nixfiles/systems/gpulaptop/bootconfig.nix
+          ./nixfiles/systems/gpulaptop/gputools.nix
+          ./nixfiles/general/configuration.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs;
           }
@@ -100,7 +100,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.wojtek = import ./home.nix;
+            home-manager.users.wojtek = import ./nixfiles/general/home.nix;
           }
         ];
 

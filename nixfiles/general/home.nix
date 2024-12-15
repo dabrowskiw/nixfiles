@@ -29,27 +29,27 @@
   # environment.
 
   imports = [
-    ./aerc.nix
-    ./barrier.nix
-    ./eduroam.nix
-    ./espanso.nix
-    ./firefox.nix
-    ./fish.nix
-    ./git.nix
-    ./gpg.nix
-    ./i3.nix
-    ./khard.nix
-    ./msmtp.nix
-    ./nvim.nix
-    ./onedrive.nix
-    ./packages-unfree.nix
-    ./packages.nix
-    ./pass.nix
-    ./python.nix
-    ./unstablepkgs.nix
-    ./vdirsyncer.nix
-    ./xournalpp.nix
-    ./yad-askpass.nix
+    ../tools/aerc.nix
+    ../tools/barrier.nix
+    ../tools/eduroam.nix
+    ../tools/espanso.nix
+    ../tools/firefox.nix
+    ../tools/fish.nix
+    ../tools/git.nix
+    ../tools/gpg.nix
+    ../tools/i3.nix
+    ../tools/khard.nix
+    ../tools/msmtp.nix
+    ../tools/nvim.nix
+    ../tools/onedrive.nix
+    ../tools/packages-unfree.nix
+    ../tools/packages.nix
+    ../tools/pass.nix
+    ../tools/python.nix
+    ../tools/unstablepkgs.nix
+    ../tools/vdirsyncer.nix
+    ../tools/xournalpp.nix
+    ../tools/yad-askpass.nix
   ];
 
   #home.packages = [

@@ -1,13 +1,6 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let 
-  urlview_config = pkgs.writeTextFile {
-    name = "urlview_config";
-    destination = "/share/urlview_config";
-    text = ''
-      COMMAND firefox
-    '';
-  };
   khal_config = pkgs.writeTextFile {
     name = "khal_config";
     destination = "/share/khal.config";
@@ -159,11 +152,7 @@ in
     aercfiles
     htwsignature
     mail_vimrc
-    urlview_config
-    pkgs.urlview
   ];
-
-  home.file.".urlview".source = ${urlview_config}/share/urlview_config;
 
   programs.aerc = {
     enable = true;

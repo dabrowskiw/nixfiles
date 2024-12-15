@@ -5,6 +5,8 @@
   home.packages = [
     pkgs.bat
     pkgs.ripgrep
+    pkgs.tinymist
+    pkgs.websocat
   ];
 
   programs.yazi = {
@@ -125,13 +127,32 @@
       vim.opt.tabstop = 2
       vim.opt.shiftwidth = 2
       vim.opt.expandtab = true
+      vim.opt.relativenumber = true
+      vim.opt.number = true
       vim.bo.softtabstop = 2
       vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<cr>', { desc = 'Switch to last used buffer' })
     '';
     coc = {
       enable = true;
+      settings = ''
+        "languageserver": {
+      }
+      '';
     };
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = nvim-lspconfig;
+        config = ''
+          local lspconfig = require("lspconfig")
+          lspconfig.tinymist.setup{
+            single_file_support = true,
+            settings = {
+              exportPdf = "onSave",
+            },
+          }
+        '';
+        type = "lua";
+      }
       zephyr-nvim
       plenary-nvim
       {
@@ -141,7 +162,7 @@
           vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
           vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
           vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-          vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+          vim.keymap.set('n', '<leader>fh', builtin.command_history, { desc = 'Telescope command history' })
         '';
         type = "lua";
       }
@@ -170,10 +191,48 @@
         '';
         type = "lua";
       }
+      {
+        plugin = typst-preview-nvim;
+        type = "lua";
+        config = ''
+          require('typst-preview').setup {
+          -- Custom format string to open the output link provided with %s
+          -- Example: open_cmd = 'firefox %s -P typst-preview --class typst-preview'
+          open_cmd = nil,
+
+          invert_colors = 'never',
+
+          follow_cursor = true,
+
+          -- Provide the path to binaries for dependencies.
+          -- Setting this will skip the download of the binary by the plugin.
+          -- Warning: Be aware that your version might be older than the one
+          -- required.
+          dependencies_bin = {
+            ['tinymist'] = '${pkgs.tinymist}/bin/tinymist',
+            ['websocat'] = '${pkgs.websocat}/bin/websocat' 
+          },
+
+          extra_args = nil,
+
+          get_root = function(path_of_main_file)
+            local root = os.getenv 'TYPST_ROOT'
+            if root then
+              return root
+            end
+            return vim.fn.fnamemodify(path_of_main_file, ':p:h')
+          end,
+
+          get_main_file = function(path_of_buffer)
+            return path_of_buffer
+          end,
+        }
+        '';
+      }
       plenary-nvim
-      telescope-nvim
       telescope-fzf-native-nvim
       nvim-treesitter
+      nvim-treesitter-parsers.typst
     ];
   };
 }

@@ -158,11 +158,11 @@
         "rev": "4df15896c812b84f729b9e884ef78b8c17627722",
         "revCount": 23,
         "type": "git",
-        "url": "file:///home/wojtek/tools/nix-yazi-plugins"
+        "url": "ssh://git@github.com/dabrowskiw/nix-yazi-plugins"
       },
       "original": {
         "type": "git",
-        "url": "file:///home/wojtek/tools/nix-yazi-plugins"
+        "url": "ssh://git@github.com/dabrowskiw/nix-yazi-plugins"
       }
     },
     "nixpkgs": {

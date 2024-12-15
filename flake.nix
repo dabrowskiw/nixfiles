@@ -22,7 +22,7 @@
       flake = false;
     };
     nix-yazi-plugins = {
-      url = "git+file:///home/wojtek/tools/nix-yazi-plugins";
+      url = "git+ssh://git@github.com/dabrowskiw/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -1,55 +1,62 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let 
+  urlview_config = pkgs.writeTextFile {
+    name = "urlview_config";
+    destination = "/share/urlview_config";
+    text = ''
+      COMMAND firefox
+    '';
+  };
   khal_config = pkgs.writeTextFile {
     name = "khal_config";
     destination = "/share/khal.config";
     text = ''
-[calendars]
-[[Posteo]]
-path = ~/data/calendars/Posteo/default/
+      [calendars]
+      [[Posteo]]
+      path = ~/data/calendars/Posteo/default/
 
-[[Müllabfuhr]]
-path = ~/data/calendars/Posteo/aarvay/
+      [[Müllabfuhr]]
+      path = ~/data/calendars/Posteo/aarvay/
 
-[[Geburtstage]]
-path = ~/data/calendars/Posteo/oqzfeh/
+      [[Geburtstage]]
+      path = ~/data/calendars/Posteo/oqzfeh/
 
-[[Vorlesungen]]
-path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDk1Mg/
+      [[Vorlesungen]]
+      path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDk1Mg/
 
-[[HTW]]
-path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDgwMg/
+      [[HTW]]
+      path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8yMDgwMg/
 
-[[Personal]]
-path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8zMTg3MA/
+      [[Personal]]
+      path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8zMTg3MA/
 
-[sqlite]
-path = ~/.khal/khal.db
+      [sqlite]
+      path = ~/.khal/khal.db
 
-[locale]
-local_timezone = Europe/Berlin
-default_timezone = America/New_York
+      [locale]
+      local_timezone = Europe/Berlin
+      default_timezone = America/New_York
 
-# If you use certain characters (e.g. commas) in these formats you may need to
-# enclose them in "" to ensure that they are loaded as strings.
-timeformat = %H:%M
-dateformat = %d.%m.
-longdateformat = %d.%m.%Y
-datetimeformat =  %d.%m. %H:%M
-longdatetimeformat = %d.%m.%Y %H:%M
+      # If you use certain characters (e.g. commas) in these formats you may need to
+      # enclose them in "" to ensure that they are loaded as strings.
+      timeformat = %H:%M
+      dateformat = %d.%m.
+      longdateformat = %d.%m.%Y
+      datetimeformat =  %d.%m. %H:%M
+      longdatetimeformat = %d.%m.%Y %H:%M
 
-firstweekday = 0
-weeknumbers = "left"
+      firstweekday = 0
+      weeknumbers = "left"
 
-[default]
-default_calendar = HTW
-timedelta = 2d # the default timedelta that list uses
-highlight_event_days = True  # the default is False
-enable_mouse = False  # mouse is enabled by default in interactive mode
+      [default]
+      default_calendar = HTW
+      timedelta = 2d # the default timedelta that list uses
+      highlight_event_days = True  # the default is False
+      enable_mouse = False  # mouse is enabled by default in interactive mode
 
-[keybindings]
-external_edit = x
+      [keybindings]
+      external_edit = x
     '';
   };
   mail_vimrc = pkgs.writeTextFile {
@@ -105,13 +112,13 @@ Piotr.Dabrowski@HTW-Berlin.de | www.htw-berlin.de'';
     executable = true;
     destination = "/bin/exportics";
     text = ''
-#/usr/bin/env fish
+      #!/usr/bin/env fish
 
-set -l infile /tmp/(uuidgen).ics
-cp $argv[1] $infile
-set -l name (grep "SUMMARY" $infile | head -n 1 | cut -d ":" -f 2 | sed 's/\r//g')
-set -l mails (sed ':a; N; $!ba; s/ *\r\n *//g' $infile | sed 's/ATTENDEE/\n/g' | grep "EMAIL" | sed 's/^.*EMAIL=//g' | cut -d ";" -f 1 | cut -d ":" -f 1 | sort | uniq | paste -sd ",")
-aerc "mailto:$mails?account=Posteo&subject=Termineinladung: $name" && aerc :attach $infile
+      set -l infile /tmp/(uuidgen).ics
+      cp $argv[1] $infile
+      set -l name (grep "SUMMARY" $infile | head -n 1 | cut -d ":" -f 2 | sed 's/\r//g')
+      set -l mails (sed ':a; N; $!ba; s/ *\r\n *//g' $infile | sed 's/ATTENDEE/\n/g' | grep "EMAIL" | sed 's/^.*EMAIL=//g' | cut -d ";" -f 1 | cut -d ":" -f 1 | sort | uniq | paste -sd ",")
+      aerc "mailto:$mails?account=Posteo&subject=Termineinladung: $name" && aerc :attach $infile
     '';
   };
   runikhal = pkgs.writeShellApplication {
@@ -152,7 +159,11 @@ in
     aercfiles
     htwsignature
     mail_vimrc
+    urlview_config
+    pkgs.urlview
   ];
+
+  home.file.".urlview".source = ${urlview_config}/share/urlview_config;
 
   programs.aerc = {
     enable = true;

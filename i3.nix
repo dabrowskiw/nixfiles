@@ -336,7 +336,7 @@ mode "$mode_actions" {
     bindsym d exec --no-startup-id nmcli connection down a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
     bindsym Shift+v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/HTW-SSH-Split.sh, mode "default"
     bindsym v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/stop_openconnect.sh, mode "default"
-    bindsym H exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome screen, mode "default"
+    bindsym shift+h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome screen, mode "default"
     bindsym h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome mouse, mode "default"
 
     # back to normal: Enter or Escape

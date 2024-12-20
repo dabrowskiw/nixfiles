@@ -85,7 +85,6 @@ in
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity
-    pkgs.tmux
     pkgs.ungoogled-chromium
     pkgs.unixtools.xxd
     pkgs.unzip
@@ -100,7 +99,6 @@ in
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-#    (pkgs.callPackage ./khal.nix { inherit mypythonPackages; })
     (pkgs.callPackage ./pcloud.nix {})
     (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })
   ];

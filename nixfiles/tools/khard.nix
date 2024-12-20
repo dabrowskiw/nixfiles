@@ -3,7 +3,7 @@
 let
   khardconfig = pkgs.writeTextFile {
     name = "khardconfig";
-    destination = "/share/khand.conf";
+    destination = "/share/khard.conf";
     text = ''
 [addressbooks]
 [[HTW]]

@@ -141,6 +141,22 @@
     };
     plugins = with pkgs.vimPlugins; [
       {
+        plugin = vim-pencil;
+        config = ''
+          set nocompatible
+          filetype plugin on
+          let g:pencil#wrapModeDefault = 'soft' 
+
+          augroup pencil
+            autocmd!
+            autocmd FileType markdown,mkd call pencil#init()
+            autocmd FileType text,txt     call pencil#init()
+            autocmd FileType eml          call pencil#init()
+          augroup END
+        '';
+      }
+
+      {
         plugin = nvim-lspconfig;
         config = ''
           local lspconfig = require("lspconfig")
@@ -153,8 +169,6 @@
         '';
         type = "lua";
       }
-      zephyr-nvim
-      plenary-nvim
       {
         plugin = telescope-nvim;
         config = ''
@@ -233,6 +247,27 @@
       telescope-fzf-native-nvim
       nvim-treesitter
       nvim-treesitter-parsers.typst
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = ''
+          require("lualine").setup {
+            theme = "onedark",
+          }
+        '';
+      }
+      # Colorscheme
+      {
+        plugin = onedark-nvim;
+        type = "lua";
+        config = ''
+          require("onedark").setup {
+            style = "warmer",
+            ending_tildes = true,
+          }
+          require("onedark").load()
+        '';
+      }
     ];
   };
 }

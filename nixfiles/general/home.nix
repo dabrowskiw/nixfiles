@@ -46,6 +46,7 @@
     ../tools/packages.nix
     ../tools/pass.nix
     ../tools/python.nix
+    ../tools/tmux.nix
     ../tools/unstablepkgs.nix
     ../tools/vdirsyncer.nix
     ../tools/xournalpp.nix

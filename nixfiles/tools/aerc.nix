@@ -1,6 +1,12 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let 
+  formatmail = pkgs.writeTextFile {
+    name = "formatmail";
+    destination = "/bin/formatmail";
+    executable = true;
+    text = (builtins.readFile ../../scripts/formatmail);
+  };
   khal_config = pkgs.writeTextFile {
     name = "khal_config";
     destination = "/share/khal.config";
@@ -148,6 +154,7 @@ in
 {
   home.packages = [
     runikhal
+    formatmail
     inbox-sync
     aercfiles
     htwsignature
@@ -181,7 +188,7 @@ in
         editor = "lvim -S ${mail_vimrc}/share/mail.vimrc";
       };
       filters = {
-        "text/plain" = "cat";
+        "text/plain" = "formatmail";
         "text/calendar" = "calendar";
         "message/delivery-status" = "colorize";
         "message/rfc822" = "colorize";

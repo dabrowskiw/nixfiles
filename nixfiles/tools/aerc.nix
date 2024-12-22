@@ -52,7 +52,6 @@ let
       default_calendar = HTW
       timedelta = 2d # the default timedelta that list uses
       highlight_event_days = True  # the default is False
-      enable_mouse = False  # mouse is enabled by default in interactive mode
 
       [keybindings]
       external_edit = x
@@ -64,6 +63,7 @@ let
     text = ''
       set linebreak
       set spell spelllang=en_gb,de_de,pl
+      set spell
 
       set spellfile=~/.vim/custom.utf-8.add
 
@@ -72,8 +72,6 @@ let
       set breakindent
       set formatoptions+=lt
       set lbr
-      set colorcolumn=80
-      highlight colorcolumn ctermbg=236
       set expandtab
       set ft=mail
 

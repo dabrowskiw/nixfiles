@@ -128,6 +128,8 @@
       vim.opt.shiftwidth = 2
       vim.opt.expandtab = true
       vim.opt.relativenumber = true
+      vim.opt.spelllang = "en_us,de_de"
+      vim.opt.spell = true
       vim.opt.number = true
       vim.bo.softtabstop = 2
       vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<cr>', { desc = 'Switch to last used buffer' })

@@ -124,15 +124,22 @@
     withPython3 = true;
     extraLuaConfig = ''
       vim.g.mapleader = ' '
+      vim.opt.clipboard="unnamedplus"
       vim.opt.tabstop = 2
       vim.opt.shiftwidth = 2
       vim.opt.expandtab = true
       vim.opt.relativenumber = true
+      vim.opt.termguicolors = true
       vim.opt.spelllang = "en_us,de_de"
       vim.opt.spell = true
       vim.opt.number = true
+      vim.opt.whichwrap:append({ ['<'] = true, ['>'] = true, ['h'] = true, ['l'] = true, ['['] = true, [']'] = true })
       vim.bo.softtabstop = 2
       vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<cr>', { desc = 'Switch to last used buffer' })
+      vim.keymap.set('i', '<Down>', "v:count ? '<C-o>j' : '<C-o>gj'", { expr = true, noremap = true, silent = true })
+      vim.keymap.set('i', '<Up>', "v:count ? '<C-o>k' : '<C-o>gk'", { expr = true, noremap = true, silent = true })
+      vim.keymap.set('n', '<Down>', "v:count ? 'j' : 'gj'", { expr = true, noremap = true })
+      vim.keymap.set('n', '<Up>', "v:count ? 'k' : 'gk'", { expr = true, noremap = true })
     '';
     coc = {
       enable = true;
@@ -142,6 +149,8 @@
       '';
     };
     plugins = with pkgs.vimPlugins; [
+      vCoolor-vim
+      colorizer
       {
         plugin = vim-pencil;
         config = ''

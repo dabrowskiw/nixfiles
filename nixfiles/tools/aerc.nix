@@ -77,13 +77,13 @@ let
 
       set hlsearch
       set autoindent
-      set clipboard^=unnamed
+      set clipboard=unnamed
 
-      hi link mailQuoted1     Comment
-      hi link mailQuoted2     Special
-      hi link mailQuoted3     Statement
-      hi link mailQuoted4     Type
-      hi link mailQuoted5     PreProc
+      hi mailQuoted1 guifg=#e6bdff
+      hi mailQuoted2 guifg=#8573ff
+      hi mailQuoted3 guifg=#2977ff
+      hi mailQuoted4 guifg=#00bfde
+      hi mailQuoted5 guifg=#009460
     '';
   };
   htwsignature = pkgs.writeTextFile {
@@ -183,7 +183,7 @@ in
       compose = {
         address-book-cmd = "khard email --parsable --search-in-source-files --remove-first-line %s";
         reply-to-self = "false";
-        editor = "lvim -S ${mail_vimrc}/share/mail.vimrc";
+        editor = "vim -S ${mail_vimrc}/share/mail.vimrc -c \"au VimEnter * :%!formatmail\"";
       };
       filters = {
         "text/plain" = "formatmail";
@@ -234,10 +234,14 @@ in
         "m" = ":mv <space>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
       };
       messages = {
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
         "<C-t>" = ":term<Enter>";
         "q" = ":quit<Enter>";
 
@@ -314,6 +318,8 @@ in
         "<backtab>" = ":prev-field<Enter>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
       };
       "compose::editor" = {
         "$noinhert" = "true";
@@ -322,6 +328,8 @@ in
         "<C-j>" = ":next-field<Enter>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
         "<C-a>" = ":attach<space>";
         "<C-q>" = ":abort";
       };
@@ -334,12 +342,18 @@ in
         "e" = ":edit<Enter>";
         "a" = ":attach<space>";
         "d" = ":detach<space>";
+        "<C-p>" = ":prev-tab<Enter>";
+        "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
       };
       "terminal" = {
         "$noinherit" = "true";
         "$ex" = "<C-x>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
+        "<C-PgUp>" = ":prev-tab<Enter>";
+        "<C-PgDn>" = ":next-tab<Enter>";
       };
 
     };

@@ -81,7 +81,8 @@ in
     pkgs.ranger
     pkgs.signal-desktop
     pkgs.singularity
-    pkgs.steam
+    pkgs.steamcmd
+    pkgs.steam-tui
     pkgs.texliveFull
     pkgs.threema-desktop
     pkgs.timidity

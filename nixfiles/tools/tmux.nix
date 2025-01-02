@@ -6,6 +6,7 @@
     enable = true;
     keyMode = "vi";
     secureSocket = true;
+    escapeTime = 0;
     plugins = with pkgs.tmuxPlugins; [
       onedark-theme
       tmux-fzf

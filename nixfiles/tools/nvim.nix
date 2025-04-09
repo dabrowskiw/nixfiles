@@ -7,6 +7,7 @@
     pkgs.ripgrep
     pkgs.tinymist
     pkgs.websocat
+    pkgs.slint-lsp
   ];
 
   programs.yazi = {
@@ -140,6 +141,12 @@
       vim.keymap.set('i', '<Up>', "v:count ? '<C-o>k' : '<C-o>gk'", { expr = true, noremap = true, silent = true })
       vim.keymap.set('n', '<Down>', "v:count ? 'j' : 'gj'", { expr = true, noremap = true })
       vim.keymap.set('n', '<Up>', "v:count ? 'k' : 'gk'", { expr = true, noremap = true })
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern={"*.slint"}, 
+        callback=function()
+          vim.opt.filetype = "slint"
+        end
+      })
     '';
     coc = {
       enable = true;
@@ -149,6 +156,42 @@
       '';
     };
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = fastaction-nvim;
+        config = ''
+          require("fastaction").setup {
+  dismiss_keys = { "j", "k", "<c-c>", "q" },
+  override_function = function(_) end,
+  keys = "qwertyuiopasdfghlzxcvbnm",
+  popup = {
+    border = "rounded",
+    hide_cursor = true,
+    highlight = {
+      divider = "FloatBorder",
+      key = "MoreMsg",
+      title = "Title",
+      window = "NormalFloat",
+    },
+    title = "Select one of:",
+  },
+  priority = {
+    -- dart = {
+    --   { pattern = "organize import", key ="o", order = 1 },
+    --   { pattern = "extract method", key ="x", order = 2 },
+    --   { pattern = "extract widget", key ="e", order = 3 },
+    -- },
+  },
+ register_ui_select = false,
+}
+            vim.keymap.set(
+        { 'n', 'x' },
+        '<leader>a',
+        '<cmd>lua require("fastaction").code_action()<CR>',
+        { buffer = bufnr }
+    )
+        '';
+        type = "lua";
+      }
       vCoolor-vim
       colorizer
       {
@@ -173,10 +216,12 @@
           local lspconfig = require("lspconfig")
           lspconfig.tinymist.setup{
             single_file_support = true,
+            offset_encoding = "utf-8",
             settings = {
               exportPdf = "onSave",
             },
           }
+          lspconfig.slint_lsp.setup{}
         '';
         type = "lua";
       }
@@ -278,6 +323,11 @@
           }
           require("onedark").load()
         '';
+      }
+      # slint
+      {
+        plugin = nvim-treesitter-parsers.slint;
+
       }
     ];
   };

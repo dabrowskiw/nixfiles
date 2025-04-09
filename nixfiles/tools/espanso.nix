@@ -91,6 +91,10 @@
             trigger = "::prak"; 
             replace = "Liebe Kolleginnen/Kollegen\n\nim Anhang übersende ich Ihnen die Anerkennung des Praktikums von\n\n\naus dem Studiengang Informatik in Kultur und Gesundheit. Ich wäre Ihnen für eine entsprechende Eintragung im LSF dankbar.\n\nVielen Dank im Voraus,\nViele Grüße\nWojtek Dabrowski";
           } 
+          {
+            trigger = "::dda"; 
+            replace = "dominika.e.d@gmail.com, dominika.dabrowska@bgbau.de";
+          } 
         ];
       };
       gutachten = {

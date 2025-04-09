@@ -1,4 +1,4 @@
-{ mysecrets, ... }:
+{ mysecrets, config, ... }:
 
 {
   sops = {
@@ -10,6 +10,13 @@
     };
     secrets.diskstationCreds = {
       sopsFile = "${mysecrets}/secrets/diskstation.creds";
+      format = "binary";
+    };
+    secrets.vpnconfig-htw = {
+      sopsFile = "${mysecrets}/secrets/htw-vpn.conf";
+      mode = "0440";
+      owner = config.users.users.wojtek.name;
+      path = "/var/lib/openvpn/htw-vpn.conf";
       format = "binary";
     };
   };

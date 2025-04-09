@@ -136,12 +136,13 @@ in
   };
 
   services = {
-  #  openvpn.servers = {
-  #    cyberghostCZ = {
-  #      config = '' config /home/wojtek/home-manager/secrets/cyberghost/CA_CZ.conf '';
-  #    };
-  #  };
+    openvpn.servers = {
+      HTW = {
+        config = "/var/lib/openvpn/htw-vpn.conf";
+      };
+    };
     dbus.packages = [ pkgs.gcr ];
+    fwupd.enable = true;
     rpcbind.enable = true;
     xserver = {
       xkb.layout = "de";
@@ -169,7 +170,10 @@ in
     avahi.publish.enable = true;
     avahi.publish.addresses = true;
     avahi.nssmdns4 = false;
-    udev.packages = [ pkgs.libwacom ];
+    udev.packages = [ 
+      pkgs.libwacom 
+      pkgs.android-udev-rules
+    ];
   };
 
   hardware.printers = {
@@ -229,6 +233,7 @@ in
     networkmanager
     nfs-utils
     pulseaudioFull
+    jmtpfs
   ];
 
 

@@ -25,6 +25,7 @@ in
   home.packages = [
     connectO2
     pkgs.abiword
+    pkgs.anki
     pkgs.arandr
     pkgs.bash
     pkgs.bc
@@ -54,6 +55,8 @@ in
     pkgs.iw
     pkgs.jq
     pkgs.imagemagick
+    pkgs.inkscape
+    pkgs.jetbrains.pycharm-community
     pkgs.keepassxc
     pkgs.khal
     pkgs.krita
@@ -81,6 +84,7 @@ in
     pkgs.ranger
     pkgs.signal-desktop
     pkgs.singularity
+    pkgs.sops
     pkgs.steamcmd
     pkgs.steam-tui
     pkgs.texliveFull

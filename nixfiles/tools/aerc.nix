@@ -7,6 +7,12 @@ let
     executable = true;
     text = (builtins.readFile ../../scripts/formatmail);
   };
+  mail2gutachten = pkgs.writeTextFile {
+    name = "mail2gutachten";
+    destination = "/bin/mail2gutachten";
+    executable = true;
+    text = (builtins.readFile ../../scripts/mail2gutachten);
+  };
   khal_config = pkgs.writeTextFile {
     name = "khal_config";
     destination = "/share/khal.config";
@@ -153,6 +159,7 @@ in
   home.packages = [
     runikhal
     formatmail
+    mail2gutachten
     inbox-sync
     aercfiles
     htwsignature
@@ -227,6 +234,8 @@ in
         "rq" = ":reply -aq<Enter>";
         "Rr" = ":reply<Enter>";
         "Rq" = ":reply -q<Enter>";
+        "Gm" = ":pipe -m mail2gutachten master";
+        "Gb" = ":pipe -m mail2gutachten bachelor";
 
         "H" = ":toggle-headers<Enter>";
         "<C-k>" = ":prev-part<Enter>";

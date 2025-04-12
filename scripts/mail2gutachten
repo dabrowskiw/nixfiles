@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import re
+import base64
+import shutil
+
+NAMEMARK = "sende ich Ihnen die Abschlussarbeit von "
+degree = sys.argv[1]
+name = "N/A"
+sex = "N/A"
+matrikel = "N/A"
+pdf_b64 = ""
+part = 0
+
+
+for line in sys.stdin.readlines():
+    if part == 0:
+        if NAMEMARK in line:
+            namedat = line.split(NAMEMARK)[1].strip()
+            prefix = namedat.split(" ")[0]
+            if prefix == "Frau":
+                sex = "f"
+            elif prefix == "Herr":
+                sex = "m"
+            name = namedat.split(" ")[1][:-1]
+            part = 1
+            continue
+    elif part == 1:
+        if line.strip() == "Content-Type: application/pdf;":
+            part = 2
+            b64 = [] 
+            state = 0
+            continue
+    elif part == 2:
+        if line.startswith("------------="):
+            if len(b64) == 0 or len(matrikel) == 0:
+                part = 1
+                continue
+            else:
+                break
+        if state == 1:
+            b64 += [line.strip()]
+        else:
+            if line.strip().startswith("filename=\""):
+                m = re.search(r"\D(\d{6})\D", line)
+                if m is not None and m.group(1) is not None:
+                    matrikel = m.group(1)
+            if line.strip() == "Content-Transfer-Encoding: base64":
+                state = 1
+b64 = "".join(b64)
+
+print("Degree: " + degree)
+print("ID number: " + matrikel)
+print("Name: " + name)
+print("Sex: " + sex)
+print("PDF has " + str(len(b64)) + " bytes.")
+
+if (degree != "master" and degree != "bachelor") or \
+   len(matrikel) == 0 or len(name) == 0 or \
+   (sex != "m" and sex != "f"):
+       print("Missing data, exiting.")
+       exit(1)
+else:
+    basedir = "/home/wojtek/Documents/HTW/Abschlussarbeiten/Bachelor/"
+    if degree == "master":
+        basedir = "/home/wojtek/Documents/HTW/Abschlussarbeiten/Master/"
+    targetdir = basedir + name + "_" + matrikel
+    print("Writing data to " + targetdir)
+    try:
+        os.mkdir(targetdir)
+        f = open(basedir + "gutachten.toml", "r")
+        s = f.read()
+        f.close()
+        s.replace('sex = "m"', 'sex = "' + sex + '"')
+        s.replace('name = "Person"', 'name = "' + name + '"')
+        s.replace('matrikelnr = "123456"', 'matrikelnr = "' + matrikel + '"')
+        f = open(targetdir + "gutachten.toml", "w")
+        f.write(s)
+        f.close()
+        f = open(targetdir + name + "_" + matrikel + ".pdf", "wb")
+        f.write(base64.b64decode(b64))
+        f.close()
+    except:
+        print("Target directory " + targetdir + " exists, exiting.")
+
+print("Done.")

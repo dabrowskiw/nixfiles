@@ -240,7 +240,7 @@ in
         "H" = ":toggle-headers<Enter>";
         "<C-k>" = ":prev-part<Enter>";
         "<C-j>" = ":next-part<Enter>";
-        "m" = ":mv <space>";
+        "m" = ":menu -dc fzf :mv <Enter>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";
         "<C-PgUp>" = ":prev-tab<Enter>";
@@ -254,7 +254,7 @@ in
         "<C-t>" = ":term<Enter>";
         "q" = ":quit<Enter>";
 
-        "m" = ":mv <space>";
+        "m" = ":menu -dc fzf :mv <Enter>";
         "M" = ":read<Enter>";
 
         "j" = ":next<Enter>";
@@ -292,7 +292,7 @@ in
         "Rr" = ":reply<Enter>";
         "Rq" = ":reply -q<Enter>";
 
-        "c" = ":cf<space>";
+        "c" = ":menu -dc fzf :cf <Enter>";
         "i" = ":cf Inbox<Enter>";
         "S" = ":term vdirsyncer sync<Enter>";
         "I" = ":term inbox-sync sync<Enter>";
@@ -300,8 +300,10 @@ in
         "!" = ":term<space>";
         "|" = ":pipe<space>";
 
-        "/" = ":search<space>";
-        "\\" = ":filter<space>";
+        "/" = ":filter -b<space>";
+        "\\f" = ":filter -f<space>";
+        "\\b" = ":filter -b<space>";
+        "\\a" = ":filter -a<space>";
         "n" = ":next-result<Enter>";
         "N" = ":prev-result<Enter>";
         "<Esc>" = ":clear<Enter>";
@@ -372,6 +374,9 @@ in
 Forwarded message from {{(index .OriginalFrom 0).Name}} on {{dateFormat .OriginalDate "Mon Jan 2, 2006 at 3:04 PM"}}:
 
 {{.OriginalText | quote}}
+      '';
+      gutachten = ''
+
       '';
     };
     extraAccounts = {

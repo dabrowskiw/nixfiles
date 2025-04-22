@@ -11,7 +11,7 @@ degree = sys.argv[1]
 name = "N/A"
 sex = "N/A"
 matrikel = "N/A"
-pdf_b64 = ""
+b64 = [] 
 part = 0
 
 
@@ -24,11 +24,13 @@ for line in sys.stdin.readlines():
                 sex = "f"
             elif prefix == "Herr":
                 sex = "m"
-            name = namedat.split(" ")[1][:-1]
+            name = "".join(namedat.split(" ")[1:]).replace(".", "")
+            print(namedat)
+            print(name)
             part = 1
             continue
     elif part == 1:
-        if line.strip() == "Content-Type: application/pdf;":
+        if "Content-Type: application/pdf;" in line.strip():
             part = 2
             b64 = [] 
             state = 0
@@ -70,16 +72,16 @@ else:
     print("Writing data to " + targetdir)
     try:
         os.mkdir(targetdir)
-        f = open(basedir + "gutachten.toml", "r")
+        f = open(basedir + "/gutachten.toml", "r")
         s = f.read()
         f.close()
         s.replace('sex = "m"', 'sex = "' + sex + '"')
         s.replace('name = "Person"', 'name = "' + name + '"')
         s.replace('matrikelnr = "123456"', 'matrikelnr = "' + matrikel + '"')
-        f = open(targetdir + "gutachten.toml", "w")
+        f = open(targetdir + "/gutachten.toml", "w")
         f.write(s)
         f.close()
-        f = open(targetdir + name + "_" + matrikel + ".pdf", "wb")
+        f = open(targetdir + "/" + name + "_" + matrikel + ".pdf", "wb")
         f.write(base64.b64decode(b64))
         f.close()
     except:

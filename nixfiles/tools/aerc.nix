@@ -191,6 +191,7 @@ in
         address-book-cmd = "khard email --parsable --search-in-source-files --remove-first-line %s";
         reply-to-self = "false";
         editor = "vim -S ${mail_vimrc}/share/mail.vimrc -c \"au VimEnter * :%!formatmail\"";
+        file-picker-cmd = "fzf --multi --walker=dir,file --walker-root=/home/wojtek/Documents/";
       };
       filters = {
         "text/plain" = "formatmail";
@@ -221,7 +222,8 @@ in
         "/" = ":toggle-key-passthrough<Enter>/";
         "q" = ":close<Enter>";
         "O" = ":open<Enter>";
-        "S" = ":save<space>";
+        "S" = ":menu -c 'fzf --walker=dir --walker-root=/home/wojtek/' :save<Enter>";
+        "s" = ":save<space>";
         "|" = ":pipe<space>";
         "D" = ":delete<Enter>";
         "A" = ":archive flat<Enter>";
@@ -351,7 +353,8 @@ in
         "p" = ":postpone<Enter>";
         "q" = ":choose -o d discard abort -o p postpone postpone<Enter>";
         "e" = ":edit<Enter>";
-        "a" = ":attach<space>";
+        "a" = ":attach -m<Enter>";
+        "A" = ":attach<space>";
         "d" = ":detach<space>";
         "<C-p>" = ":prev-tab<Enter>";
         "<C-n>" = ":next-tab<Enter>";

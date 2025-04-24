@@ -6,7 +6,9 @@ import re
 import base64
 import shutil
 
+v = "0.3"
 NAMEMARK = "sende ich Ihnen die Abschlussarbeit von "
+MATRIKELRE = [r"\D(\d{6})\D", r"s0(\d{6})", r"\D0(\d{6})\D"]
 degree = sys.argv[1]
 name = "N/A"
 sex = "N/A"
@@ -22,7 +24,7 @@ for line in sys.stdin.readlines():
             prefix = namedat.split(" ")[0]
             if prefix == "Frau":
                 sex = "f"
-            elif prefix == "Herr":
+            elif prefix == "Herr" or prefix == "Herrn":
                 sex = "m"
             name = "".join(namedat.split(" ")[1:]).replace(".", "")
             print(namedat)
@@ -45,14 +47,17 @@ for line in sys.stdin.readlines():
         if state == 1:
             b64 += [line.strip()]
         else:
-            if line.strip().startswith("filename=\""):
-                m = re.search(r"\D(\d{6})\D", line)
-                if m is not None and m.group(1) is not None:
-                    matrikel = m.group(1)
+            if "filename=\"" in line.strip():
+                for mre in MATRIKELRE:
+                    m = re.search(mre, line)
+                    if m is not None and m.group(1) is not None:
+                        matrikel = m.group(1)
+                        break
             if line.strip() == "Content-Transfer-Encoding: base64":
                 state = 1
 b64 = "".join(b64)
 
+print("Version: " + v)
 print("Degree: " + degree)
 print("ID number: " + matrikel)
 print("Name: " + name)
@@ -75,9 +80,9 @@ else:
         f = open(basedir + "/gutachten.toml", "r")
         s = f.read()
         f.close()
-        s.replace('sex = "m"', 'sex = "' + sex + '"')
-        s.replace('name = "Person"', 'name = "' + name + '"')
-        s.replace('matrikelnr = "123456"', 'matrikelnr = "' + matrikel + '"')
+        s = s.replace('sex = "m"', 'sex = "' + sex + '"')
+        s = s.replace('name = "Person"', 'name = "' + name + '"')
+        s = s.replace('matrikelnr = "123456"', 'matrikelnr = "' + matrikel + '"')
         f = open(targetdir + "/gutachten.toml", "w")
         f.write(s)
         f.close()

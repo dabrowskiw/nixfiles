@@ -1,19 +1,6 @@
 { pkgs, ... }:
 
 let
-  startPcloud = pkgs.writeTextFile {
-    name = "startPcloud";
-    destination = "/bin/startPcloud";
-    executable = true;
-    text = ''
-#!/usr/bin/env fish
-
-set -l pcn (ps -aux | grep pCloudDr | wc -l)
-if test "$pcn" -lt 2
-  pcloudcc --username piotr.dabrowski@posteo.de -m /home/wojtek/pCloud -d
-end
-    '';
-  };
   toggleTouchpad = pkgs.writeTextFile {
     name = "toggleTouchpad";
     destination = "/bin/toggleTouchpad";
@@ -156,7 +143,7 @@ exec --no-startup-id xsetroot -solid "#001122"
 #exec_always --no-startup-id espanso service start --unmanaged
 exec_always --no-startup-id fish ${disableTouchpad}/bin/disableTouchpad 
 
-exec_always --no-startup-id ${startPcloud}/bin/startPcloud
+exec_always --no-startup-id pcloud 
 
 exec_always --no-startup-id xsetwacom --set "23" MapToOutput DP-3-3
 exec_always --no-startup-id xsetwacom --set "11" MapToOutput DP-3-3
@@ -406,12 +393,10 @@ in
 { 
   home.file.".config/i3/config".source = "${i3config}/share/i3.config";
   home.packages = [
-    startPcloud
     toggleTouchpad
     disableTouchpad
     runlutrisgame
     screenMouseHome
-    startPcloud
     i3config
   ];
 }

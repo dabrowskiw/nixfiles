@@ -1,47 +1,47 @@
-{ pkgs, stdenv, ...}:
+{ pkgs-unstable, lib ? pkgs-unstable.lib, fetchzip ? pkgs-unstable.fetchzip, ... }:
 
-stdenv.mkDerivation rec {
-  pname = "pcloudcc";
-  version = "2.0.1";
+pkgs-unstable.stdenv.mkDerivation rec {
+  pname = "pcloudcc-lneely";
+  version = "20250407T2152Z";
 
-  src = pkgs.fetchgit {
-    url = "https://github.com/pcloudcom/console-client.git";
-    rev = "4b42e3c8a90696ca9ba0a7e162fcbcd62ad2e306";
-    sha256 = "sha256-9ccpIuWq8nV34GQac+b8CtGHTtSOAxpI/2h1i4AI97M=";
+  src = fetchzip {
+    url = "https://github.com/lneely/pcloudcc-lneely/archive/refs/tags/${version}.tar.gz";
+    hash = "sha256-fddDF3jYqHNWC6/OubNMOMvQRZlIKaSLCRyi9ClFbgg";
   };
 
-  nativeBuildInputs = with pkgs; [
-    pkg-config
-  ];
-
-  buildInputs = with pkgs; [
-    boost183
-    cmake
+  buildInputs = with pkgs-unstable; [
     zlib
+    sqlite
+    boost
+    libudev-zero
+    readline
     fuse
-    udev
+    mbedtls
   ];
-
-  configurePhase = ''
-  cd pCloudCC/lib/pclsync/
-  make clean
-  '';
 
   buildPhase = ''
-  make fs
-  cd ../mbedtls
-  cmake .
-  make clean
-  make
-  cd ../..
-  sed -i.bak 's/Boost_USE_STATIC_LIBS ON/Boost_USE_STATIC_LIBS OFF/g' CMakeLists.txt
-  rm CMakeLists.txt.bak
-  cmake -DCMAKE_INSTALL_PREFIX=$out .
-  make
+    runHook preBuild
+    make
+    runHook postBuild
   '';
 
   installPhase = ''
-  mkdir -p $out/bin
-  make install
+    runHook preInstall
+    mkdir -p $out/bin
+    make DESTDIR=$out install
+    runHook postInstall
   '';
+
+  meta = with lib; {
+    homepage = "https://github.com/lneely/pcloudcc-lneely";
+    description = "pcloudcc-lneely is an independent fork of pcloud console client";
+    longDescription = ''
+      pcloudcc-lneely is a simple linux console client for pCloud 
+      cloud storage, forked from github.com/pcloudcom/console-client 
+      and independently maintained.
+    '';
+    license = licenses.mit;
+    mainProgram = "pcloudcc";
+    platforms = platforms.linux;
+  };
 }

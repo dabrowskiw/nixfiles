@@ -104,7 +104,6 @@ in
     pkgs.xsel
     pkgs.xss-lock
     pkgs.zathura
-    (pkgs.callPackage ./pcloud.nix {})
     (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })
   ];
 }

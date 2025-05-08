@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import re
+import sys
+import subprocess
+
+inval = " ".join(sys.argv)
+print(inval)
+mails = re.findall(r"\<([\w\.\-]+@[\w\.\-]+)\>", inval)
+print(mails)
+for m in mails:
+  searchres = subprocess.check_output(('khard', 'list', '-a', 'HTW-collected', m), text=True)
+  print(len(searchres.split("\n")))
+  if len(searchres.split("\n")) >= 4:
+    continue
+  mailf = f"""
+First name : {m.split("@")[0]}
+Mail :
+  work : {m}
+"""
+  ps = subprocess.Popen(('echo', mailf), stdout=subprocess.PIPE)
+  output = subprocess.check_output(('khard', 'new', '-a', 'HTW-collected'), stdin=ps.stdout)
+  ps.wait()  

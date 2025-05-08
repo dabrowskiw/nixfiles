@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 
 {
   home.packages = [
-    pkgs.xournalpp
+    pkgs-unstable.xournalpp
   ]; 
 
   xdg = {

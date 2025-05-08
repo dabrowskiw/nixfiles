@@ -3,21 +3,30 @@
 import re
 import sys
 import subprocess
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='/tmp/ac.log', encoding='utf-8', level=logging.DEBUG)
 
 inval = " ".join(sys.argv)
-print(inval)
+logger.info(inval)
 mails = re.findall(r"\<([\w\.\-]+@[\w\.\-]+)\>", inval)
-print(mails)
+logger.info(str(mails))
 for m in mails:
-  searchres = subprocess.check_output(('khard', 'list', '-a', 'HTW-collected', m), text=True)
-  print(len(searchres.split("\n")))
-  if len(searchres.split("\n")) >= 4:
-    continue
+  try:  
+    searchres = subprocess.check_output(('khard', 'list', '-a', 'HTW-collected', m), text=True)
+    logger.info(str(len(searchres.split("\n"))))
+    if len(searchres.split("\n")) >= 4:
+      continue
+  except:
+    pass
   mailf = f"""
 First name : {m.split("@")[0]}
-Mail :
+Email :
   work : {m}
 """
+  logger.info(mailf.replace("\n", "; "))
   ps = subprocess.Popen(('echo', mailf), stdout=subprocess.PIPE)
-  output = subprocess.check_output(('khard', 'new', '-a', 'HTW-collected'), stdin=ps.stdout)
-  ps.wait()  
+  output = subprocess.check_output(('khard', 'new', '-a', 'HTW-collected'), stdin=ps.stdout, text=True)
+  ps.wait()
+  logger.info(output)

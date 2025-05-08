@@ -13,6 +13,12 @@ let
     executable = true;
     text = (builtins.readFile ../../scripts/mail2gutachten);
   };
+  addContact = pkgs.writeTextFile {
+    name = "addContact";
+    destination = "/bin/addContact";
+    executable = true;
+    text = (builtins.readFile ../../scripts/addContact);
+  };
   khal_config = pkgs.writeTextFile {
     name = "khal_config";
     destination = "/share/khal.config";
@@ -160,6 +166,7 @@ in
     runikhal
     formatmail
     mail2gutachten
+    addContact
     inbox-sync
     aercfiles
     htwsignature
@@ -212,6 +219,7 @@ in
       };
       hooks = {
         aerc-startup = "aerc :terminal runikhal";
+        mail-sent = "addContact $AERC_TO";
       };
       templates = {
         forwards = "forward_quoted";

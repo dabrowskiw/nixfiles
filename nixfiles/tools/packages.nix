@@ -58,6 +58,7 @@ in
     pkgs.inkscape
     pkgs.jetbrains.pycharm-community
     pkgs.keepassxc
+    pkgs.kdenlive
     pkgs.khal
     pkgs.krita
     pkgs.libreoffice

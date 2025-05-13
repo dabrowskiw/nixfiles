@@ -10,6 +10,8 @@
     pytest
     pypdf2
     reportlab
+    setuptools
+    debugpy # for vimspector
     (callPackage ./piecash.nix { inherit mypythonPackages; })
   ]))
  ];

@@ -1,5 +1,16 @@
 { pkgs, ... }: 
 
+let 
+  vimspectorpy = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-vimspectorpy";
+    src = pkgs.fetchFromGitHub {
+      owner = "sagi-z";
+      repo = "vimspectorpy";
+      rev = "a56aaeb6a61ddcd48d0900581115d89aa92d6f74";
+      hash = "sha256-bLe2men48CfVYonl5KN+qpbGW8RJI4vQSQy6CSZ4ZmE=";
+    };
+  };
+in
 {
 
   home.packages = [
@@ -123,6 +134,11 @@
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
+    extraPython3Packages = (ps: with ps; [
+      setuptools
+      debugpy
+      ipython
+    ]);
     extraLuaConfig = ''
       vim.g.mapleader = ' '
       vim.opt.clipboard="unnamedplus"
@@ -235,6 +251,41 @@
           vim.keymap.set('n', '<leader>fh', builtin.command_history, { desc = 'Telescope command history' })
         '';
         type = "lua";
+      }
+      {
+        plugin = vimspector;
+        config = ''
+            vim.g.vimspector_enable_mappings = "HUMAN"
+            vim.g.vimspector_base_dir = "/home/wojtek/.config/vimspector-config"
+            vim.g["vimspector_sign_priority"]= {
+              vimspectorBP=39,
+              vimspectorBPCon=38,
+              vimspectorBPLog=37,
+              vimspectorBPDisabled=36,
+              vimspectorPC=999,
+            }
+            vim.keymap.set('n', '<leader>Dd', "<Plug>VimspectorContinue", { desc = 'start Debugging (F5)' })
+            vim.keymap.set('n', '<leader>Dc', "<Plug>VimspectorRunToCursor", { desc = 'run to Cursor (<leader>F8)' })
+            vim.keymap.set('n', '<leader>Dx', "<cmd>VimspectorReset<cr>", { desc = 'eXit debugger (F3)' })
+            vim.keymap.set('n', '<leader>Dr', "<Plug>VimspectorRestart", { desc = 'Restart debugger (F4)' })
+            vim.keymap.set('n', '<leader>Db', "<Plug>VimspectorToggleBreakpoint", { desc = 'toggle line Breakpoint' })
+            vim.keymap.set('n', '<leader>DB', "<Plug>VimspectorToggleConditionalBreakpoint", { desc = 'toggle conditional Breakpoint' })
+            vim.keymap.set('n', '<leader>Do', "<Plug>VimspectorStepOver", { desc = 'step Over (F9)' })
+            vim.keymap.set('n', '<leader>Dn', "<Plug>VimspectorStepInto", { desc = 'step iNto (F11)' })
+            vim.keymap.set('n', '<leader>Du', "<Plug>VimspectorStepOut", { desc = 'step oUt (F12)' })
+            vim.keymap.set('n', '<leader>Di', "<Plug>VimspectorBalloonEval", { desc = 'Inspect (F7)' })
+            vim.keymap.set('n', '<F7>', "<Plug>VimspectorBalloonEval")
+            vim.keymap.set('n', '<F3>', "<Plug>VimspectorReset")
+            vim.keymap.set('n', '<F9>', "<Plug>VimspectorReset")
+        '';
+        type = "lua";
+      }
+      {
+        plugin = vimspectorpy;
+        config = ''
+          let g:vimspectorpy_home = "/home/wojtek/.config/vimspectorpy"
+          let g:vimspectorpy_venv = "/home/wojtek/.config/vimspectorpy/venv"
+        '';
       }
       {
         plugin = yazi-nvim;

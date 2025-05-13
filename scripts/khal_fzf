@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+khard list -F first_name,last_name,email | sed -e 's/OTHER,//g' | sed -e 's/[a-zA-Z0-9]\+: /" </g' | sed -e 's/ \+/ /g' | sed -e 's/^/"/g' | sed -e 's/ $/>/g' | sed -e 's/ "/"/g' | sed -e 's/"" <\(.*\)>/<\1>/g' | fzf-tmux -p | xsel --clipboard > /dev/null

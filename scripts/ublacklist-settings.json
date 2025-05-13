@@ -1,0 +1,49 @@
+{
+  "blacklist": "",
+  "blockWholeSite": false,
+  "skipBlockDialog": false,
+  "hideBlockLinks": false,
+  "hideControl": false,
+  "enablePathDepth": false,
+  "enableMatchingRules": true,
+  "linkColor": "default",
+  "blockColor": "default",
+  "highlightColors": [
+    "#ddeeff"
+  ],
+  "dialogTheme": "default",
+  "syncBlocklist": true,
+  "syncGeneral": false,
+  "syncAppearance": false,
+  "syncSubscriptions": false,
+  "syncInterval": 15,
+  "subscriptions": [
+    {
+      "name": "AI generated content",
+      "url": "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/list_uBlacklist.txt",
+      "enabled": true
+    },
+    {
+      "name": "Copycat",
+      "url": "https://raw.githubusercontent.com/quenhus/uBlock-Origin-dev-filter/main/dist/other_format/uBlacklist/global.txt",
+      "enabled": true
+    },
+    {
+      "name": "Super-SEO",
+      "url": "https://raw.githubusercontent.com/NotaInutilis/Super-SEO-Spam-Suppressor/main/ublacklist.txt",
+      "enabled": true
+    },
+    {
+      "name": "Spamdexing",
+      "url": "https://raw.githubusercontent.com/elliotwutingfeng/SpamdexingSites/refs/heads/main/blocklist.txt",
+      "enabled": true
+    },
+    {
+      "name": "Webspam",
+      "url": "https://raw.githubusercontent.com/popcar2/BadWebsiteBlocklist/refs/heads/main/uBlacklist.txt",
+      "enabled": true
+    }
+  ],
+  "updateInterval": 120,
+  "version": "8.10.0"
+}

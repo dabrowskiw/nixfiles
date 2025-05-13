@@ -7,6 +7,7 @@ let
     i-dont-care-about-cookies
     link-cleaner
     privacy-badger
+    ublacklist
     ublock-origin
     unpaywall
     keepassxc-browser

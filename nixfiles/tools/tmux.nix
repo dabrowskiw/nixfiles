@@ -9,7 +9,7 @@ let
   };
 in
 {
-  home.packages = [
+  home.packages = with pkgs; [
     formatmail
   ];
 
@@ -19,11 +19,14 @@ in
     secureSocket = true;
     escapeTime = 0;
     extraConfig = ''
-      bind f run-shell "khal_fzf; tmux set-buffer \"$(xsel -o --clipboard)\"; tmux paste-buffer;"
+      bind m run-shell "khal_fzf; tmux set-buffer \"$(xsel -o --clipboard)\"; tmux paste-buffer;"
     '';
     plugins = with pkgs.tmuxPlugins; [
       onedark-theme
       tmux-fzf
+      yank
+      copycat
+
       {
         plugin = tmux-thumbs;
         extraConfig = ''

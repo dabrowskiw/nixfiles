@@ -20,9 +20,15 @@ echo "Connecting..."
 sleep 1
 nmcli conn up O2
   '';
+  connectHTW = pkgs.writeShellScriptBin "connectHTW" 
+  ''
+openvpn --mktun --dev tun0 --dev-type tun
+openvpn --config /var/lib/openvpn/htw-vpn.conf --dev tun0
+  '';
 in
 {
   home.packages = [
+    connectHTW
     connectO2
     pkgs.abiword
     pkgs.anki

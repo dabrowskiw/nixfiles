@@ -13,7 +13,7 @@
     enableSshSupport = true;
     defaultCacheTtl = 3456000;
     maxCacheTtl = 3456000;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
 #  home.activation = {

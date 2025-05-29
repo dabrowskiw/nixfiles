@@ -56,7 +56,7 @@ in
     pkgs.gnupg
     pkgs.godot_4
     pkgs.gradle
-    pkgs.hextazy # Hex editor
+#    pkgs.hextazy # Hex editor
     pkgs.tree
     pkgs.iw
     pkgs.jq
@@ -64,7 +64,7 @@ in
     pkgs.inkscape
     pkgs.jetbrains.pycharm-community
     pkgs.keepassxc
-    pkgs.kdenlive
+    pkgs.kdePackages.kdenlive
     pkgs.khal
     pkgs.krita
     pkgs.libreoffice

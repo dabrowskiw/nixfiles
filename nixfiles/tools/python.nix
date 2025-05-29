@@ -12,7 +12,7 @@
     reportlab
     setuptools
     debugpy # for vimspector
-    (callPackage ./piecash.nix { inherit mypythonPackages; })
+#    (callPackage ./piecash.nix { inherit mypythonPackages; })
   ]))
  ];
 }

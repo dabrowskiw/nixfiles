@@ -66,12 +66,11 @@ in
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableHardening = false;
   virtualisation.docker.enable = true;
-  virtualisation.vmware.host.enable = true;
   users.extraGroups.vboxusers.members = [ "wojtek" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+  xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   xdg.portal.config.common.default = "*";
   networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -129,7 +128,7 @@ in
 
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Cousine" ]; })
+    pkgs.nerd-fonts.cousine
   ];
 
   # Allow unfree packages

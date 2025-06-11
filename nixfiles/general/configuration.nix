@@ -68,6 +68,7 @@ in
   virtualisation.docker.enable = true;
   users.extraGroups.vboxusers.members = [ "wojtek" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
+  boot.kernelParams = ["kvm.enable_virt_at_load=0"];
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
@@ -229,7 +230,6 @@ in
     cifs-utils
     dmenu
     fish
-    i3lock
     lemurs
     libmbim
     libqmi
@@ -239,6 +239,7 @@ in
     jmtpfs
   ];
 
+  programs.i3lock.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

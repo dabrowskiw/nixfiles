@@ -2,17 +2,19 @@
 
 let
 
-  extensions = with firefox-add; [
-    darkreader
-    i-dont-care-about-cookies
-    link-cleaner
-    privacy-badger
-    ublacklist
-    ublock-origin
-    unpaywall
-    keepassxc-browser
-    tridactyl
-  ];
+  extensions = { 
+    packages = with firefox-add; [
+      darkreader
+      i-dont-care-about-cookies
+      link-cleaner
+      privacy-badger
+      ublacklist
+      ublock-origin
+      unpaywall
+      keepassxc-browser
+      tridactyl
+    ];
+  };
 
   # disable the annoying floating icon with camera and mic when on a call
   disableWebRtcIndicator = ''

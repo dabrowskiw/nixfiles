@@ -5,8 +5,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
   hardware.opengl = {
     enable = true;
     driSupport = true;

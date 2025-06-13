@@ -245,12 +245,30 @@ in
         plugin = telescope-nvim;
         config = ''
           local builtin = require('telescope.builtin')
-          vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-          vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-          vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-          vim.keymap.set('n', '<leader>fh', builtin.command_history, { desc = 'Telescope command history' })
+          vim.keymap.set('n', '<C-f>f', builtin.find_files, { desc = 'Telescope find files' })
+          vim.keymap.set('n', '<C-f>g', builtin.live_grep, { desc = 'Telescope live grep' })
+          vim.keymap.set('n', '<C-f>b', builtin.buffers, { desc = 'Telescope buffers' })
+          vim.keymap.set('n', '<C-f>h', builtin.command_history, { desc = 'Telescope command history' })
+          vim.keymap.set('i', '<C-f>f', builtin.find_files, { desc = 'Telescope find files' })
+          vim.keymap.set('i', '<C-f>g', builtin.live_grep, { desc = 'Telescope live grep' })
+          vim.keymap.set('i', '<C-f>b', builtin.buffers, { desc = 'Telescope buffers' })
+          vim.keymap.set('i', '<C-f>h', builtin.command_history, { desc = 'Telescope command history' })
         '';
         type = "lua";
+      }
+      telescope-fzf-native-nvim
+      {
+        plugin = telescope-symbols-nvim;
+        type = "lua";
+        config = ''
+          local builtin = require('telescope.builtin')
+          vim.keymap.set('n', '<C-f>e', function() 
+            builtin.symbols{ sources = {'emoji'} }
+          end, { desc = 'Telescope find emojis' })
+          vim.keymap.set('i', '<C-f>e', function()
+            builtin.symbols{ sources = {'emoji'} }
+          end, { desc = 'Telescope find emojis' })
+        '';
       }
       {
         plugin = vimspector;
@@ -351,7 +369,6 @@ in
         '';
       }
       plenary-nvim
-      telescope-fzf-native-nvim
       nvim-treesitter
       nvim-treesitter-parsers.typst
       {

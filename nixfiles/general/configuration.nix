@@ -52,6 +52,9 @@ exit $?
   };
 in 
 {
+  imports = [
+    ./boot.nix
+  ];
 
   programs.steam = {
     enable = true;
@@ -237,6 +240,8 @@ in
     nfs-utils
     pulseaudioFull
     jmtpfs
+    hack-font
+    nixos-icons
   ];
 
   programs.i3lock.enable = true;

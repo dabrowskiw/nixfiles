@@ -56,7 +56,6 @@ in
     pkgs.gnupg
     pkgs.godot_4
     pkgs.gradle
-#    pkgs.hextazy # Hex editor
     pkgs.tree
     pkgs.iw
     pkgs.jq
@@ -72,6 +71,7 @@ in
     pkgs.libwacom
     pkgs.lilypond-with-fonts
     pkgs.marp-cli
+    pkgs.masterpdfeditor4
     pkgs.modemmanager
     pkgs.nextflow
     pkgs.ncdu

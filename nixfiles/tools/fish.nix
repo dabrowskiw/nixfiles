@@ -212,13 +212,6 @@ set -U tide_vi_mode_icon_visual V
 set -U tide_zig_bg_color F7A41D
 set -U tide_zig_color 000000
 set -U tide_zig_icon \ue6a9
-if not set -q TMUX
-  exec tmux
-end
-  '';
 
-#  home.file.".config/fish" = {
-#    source = ./dotfiles/fish;
-#    recursive = true;
-#  };
+'';
 }

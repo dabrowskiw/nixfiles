@@ -30,7 +30,7 @@
 
   imports = [
     ../tools/aerc.nix
-    ../tools/barrier.nix
+    ../tools/broot.nix
     ../tools/eduroam.nix
     ../tools/espanso.nix
     ../tools/firefox.nix
@@ -46,10 +46,9 @@
     ../tools/packages.nix
     ../tools/pass.nix
     ../tools/python.nix
-    ../tools/tmux.nix
     ../tools/unstablepkgs.nix
     ../tools/vdirsyncer.nix
-    ../tools/xournalpp.nix
+    ../tools/wezterm.nix
     ../tools/yad-askpass.nix
   ];
 

@@ -11,8 +11,9 @@
         auto_restart = false;
         search_shortcut = "ALT+SPACE";
       };
-      contour = {
-        filter_title = "Contour";
+      wezterm = {
+        filter_class = "wezterm";
+        backend = "Clipboard";
         paste_shortcut = "CTRL+SHIFT+V";
       };
     };

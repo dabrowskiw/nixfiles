@@ -212,7 +212,7 @@ in
       openers = {
         "text/html" = "firefox";
         "image/*" = "qimgv";
-        "application/pdf" = "xournalpp";
+        "application/pdf" = "masterpdfeditor4";
         "application/ics" = "contour -e khal -c ${khal_config}/share/khal.config import ";
         "text/calendar" = "contour -e khal -c ${khal_config}/share/khal.config import ";
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "abiword";

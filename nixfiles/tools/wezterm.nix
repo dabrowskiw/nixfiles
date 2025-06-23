@@ -74,6 +74,7 @@
         config.quick_select_patterns = {
           '[^\\s@]+@[^\\s@]+\\.[^\\s@]+',
         }
+
         config.keys = {
           {
             key = 'Tab',
@@ -125,6 +126,21 @@
             },
           },
         }
+
+        config.font_rules = {
+          {
+            intensity = 'Bold',
+            italic = false,
+            font = wezterm.font("JetBrains Mono", {weight="Bold", stretch="Normal", style="Normal"}) 
+          },
+          {
+            intensity = 'Bold',
+            italic = true,
+            font = wezterm.font("JetBrains Mono", {weight="Bold", stretch="Normal", style="Italic"}) 
+          },
+        }
+
+        config.hide_tab_bar_if_only_one_tab = true
 
         return config
     '';

@@ -167,7 +167,7 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec alacritty -e /usr/bin/fish
-bindsym $mod+Return exec contour -e fish
+bindsym $mod+Return exec wezterm -e fish
 
 # kill focused window
 bindsym $mod+Shift+q kill

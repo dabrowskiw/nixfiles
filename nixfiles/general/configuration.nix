@@ -76,15 +76,17 @@ in
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   xdg.portal.config.common.default = "*";
-  networking.hostName = hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
+  networking = {
+    hostName = hostname; # Define your hostname.
+  #  wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    wireless.enable = false;
+    networkmanager.enable = true;
+    enableIPv6 = true;
+  };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   environment.etc = {
     "ModemManager/fcc-unlock.d/1eac:1001".source = "${unlockscript}/share/unlockscript";
@@ -115,6 +117,7 @@ in
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.opentabletdriver.enable = true;
   security.rtkit.enable = true;
 
   # Configure console keymap
@@ -126,7 +129,7 @@ in
 
   users.users.wojtek = {
     description = "wojtek";
-    extraGroups = [ "networkmanager" "wheel" "audio"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers"];
     packages = with pkgs; [];
   } // userdefaults;
 
@@ -200,10 +203,10 @@ in
   };
 
   system = {
-    nssModules = with pkgs.lib; optional (!config.services.avahi.nssmdns4) pkgs.nssmdns;
-    nssDatabases.hosts = with pkgs.lib; optionals (!config.services.avahi.nssmdns4) (mkMerge [
-      (mkOrder 900 [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
-      (mkOrder 1501 [ "mdns4" ]) # 1501 to ensure it's after dns
+    nssModules = pkgs.lib.optional true pkgs.nssmdns;
+    nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
+      (pkgs.lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ]) # must be before resolve
+      (pkgs.lib.mkAfter [ "mdns4" ]) # 1501 to ensure it's after dns
     ]);
   };
 
@@ -229,6 +232,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    android-tools
     bash
     cifs-utils
     dmenu
@@ -244,6 +248,7 @@ in
     nixos-icons
   ];
 
+  programs.adb.enable = true;
   programs.i3lock.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

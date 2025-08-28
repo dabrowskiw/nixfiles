@@ -7,7 +7,7 @@
       mountConfig = {
         Options = "noatime,uid=wojtek,gid=users,credentials=/run/secrets/diskstationCreds";
       }; 
-      what = "//192.168.178.92/Pictures";
+      what = "//diskStation/Pictures";
       where = "/mnt/diskstation/Pictures";
     }];
 

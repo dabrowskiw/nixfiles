@@ -8,6 +8,9 @@
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      cpr = "rsync -a --human-readable --info progress2 --size-only --inplace";
+    };
     plugins = [
       {
         name = "tide";

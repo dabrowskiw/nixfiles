@@ -369,16 +369,16 @@ bindsym $mod+Ctrl+l mode "$mode_lutris"
 bindsym $mod+Ctrl+s mode "$mode_screenselect"
 
 
-workspace 1 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
-workspace 3 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
-workspace 5 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
-workspace 7 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
-workspace 9 output DP-3-3 eDP-1 eDP-1-1 DP-3-2
-workspace 2 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
-workspace 4 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
-workspace 6 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
-workspace 8 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
-workspace 0 output DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
+workspace 1 output eDP-1 eDP-1-1 DP-3-2 DP-3-3
+workspace 3 output eDP-1 eDP-1-1 DP-3-2 DP-3-3
+workspace 5 output eDP-1 eDP-1-1 DP-3-2 DP-3-3
+workspace 7 output eDP-1 eDP-1-1 DP-3-2 DP-3-3
+workspace 9 output eDP-1 eDP-1-1 DP-3-2 DP-3-3
+workspace 2 output DP-3-3 DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
+workspace 4 output DP-3-3 DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
+workspace 6 output DP-3-3 DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
+workspace 8 output DP-3-3 DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
+workspace 0 output DP-3-3 DP-3-2 DP-4 DP-2-2 DP-1-2-2 eDP-1
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

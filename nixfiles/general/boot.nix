@@ -5,6 +5,9 @@
       consoleLogLevel = 3;
       initrd.verbose = false;
       initrd.systemd.enable = true;
+      extraModprobeConfig = ''
+        options snd-hda-intel dmic_detect=0
+      '';
       kernelParams = [
           "quiet"
           "splash"

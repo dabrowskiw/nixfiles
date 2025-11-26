@@ -1,4 +1,4 @@
-{ pkgs, config, mypythonPackages, ... }:
+{ pkgs, config, mypythonPackages, waydroidnur, ... }:
 
 let
   connectO2 = pkgs.writeShellScriptBin "connectO2" 
@@ -28,6 +28,7 @@ openvpn --config /var/lib/openvpn/htw-vpn.conf --dev tun0
 in
 {
   home.packages = [
+    waydroidnur.packages.${pkgs.system}.waydroid-script
     connectHTW
     connectO2
     pkgs.abiword
@@ -41,17 +42,21 @@ in
     pkgs.bumblebee-status
     pkgs.catdoc
     pkgs.contour
+    pkgs.cmake
     pkgs.dante
     pkgs.dig 
     pkgs.expect
     pkgs.file
     pkgs.fluidsynth
+    pkgs.freecad
     pkgs.fzf
+    pkgs.gcc
     pkgs.ghostscript
     pkgs.gh
     pkgs.gimp
     pkgs.gnome-system-monitor
     pkgs.gnucash
+    pkgs.gnumake
     pkgs.gnumeric
     pkgs.gnupg
     pkgs.godot_4
@@ -70,11 +75,13 @@ in
     pkgs.libsixel
     pkgs.libwacom
     pkgs.lilypond-with-fonts
+    pkgs.lzip
     pkgs.marp-cli
     pkgs.masterpdfeditor4
     pkgs.modemmanager
     pkgs.nextflow
     pkgs.ncdu
+    pkgs.ninja
     pkgs.nvimpager
     pkgs.openjdk
     pkgs.openssl
@@ -85,10 +92,14 @@ in
     pkgs.pdfpc
     pkgs.pigz
     pkgs.pinentry-gnome3
+    pkgs.pngquant
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
     pkgs.qimgv
     pkgs.ranger
+    pkgs.sdl2-compat
+    pkgs.SDL2_image
+    pkgs.SDL2_gfx
     pkgs.signal-desktop
     pkgs.singularity
     pkgs.sops
@@ -102,6 +113,7 @@ in
     pkgs.unzip
     pkgs.vlc
     pkgs.virtualbox
+    pkgs.vscodium
     pkgs.w3m
     pkgs.wget
     pkgs.wine-staging

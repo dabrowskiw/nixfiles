@@ -70,7 +70,6 @@ mypythonPackages.buildPythonApplication rec {
     hypothesis
     packaging
     pytestCheckHook
-    vdirsyncer
   ];
 
   postInstall = ''

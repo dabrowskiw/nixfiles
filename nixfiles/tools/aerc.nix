@@ -304,7 +304,7 @@ in
 
         "c" = ":menu -dc fzf :cf <Enter>";
         "i" = ":cf Inbox<Enter>";
-        "S" = ":term vdirsyncer sync<Enter>";
+        "S" = ":term pimsync sync<Enter>";
         "I" = ":term inbox-sync sync<Enter>";
         "$" = ":term<space>";
         "!" = ":term<space>";

@@ -61,44 +61,20 @@ $lutriscmd
     destination = "/bin/selectscreens";
     executable = true;
     text = ''
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 
-set cw $(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2)
-echo $cw
+dat=$(hwinfo --monitor --short)
 
-if [ $argv[1] = "2external" ]
-  xrandr --output eDP-1 --off --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1680x0 --rotate normal --output DP-3-3 --mode 1680x1050 --pos 0x0 --rotate normal
-  for w in 1 3 5 7 9
-    i3-msg workspace $w
-    i3-msg move workspace to output DP-3-3
-  end
-  for w in 2 4 6 8 
-    i3-msg workspace $w
-    i3-msg move workspace to output DP-3-2
-  end
-end
+home=$(echo $dat | grep "Lenovo LEN T34w-20" | wc -l)
+tv=$(echo $dat | grep "PANASONIC-TV" | wc -l)
 
-if [ $argv[1] = "1external" ]
-  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 1920x0 --rotate normal --output DP-3-3 --mode 1920x1080 --pos 1920x1440 --rotate normal
-  for w in 1 3 5 7 9
-    i3-msg workspace $w
-    i3-msg move workspace to output eDP-1
-  end
-  for w in 2 4 6 8 
-    i3-msg workspace $w
-    i3-msg move workspace to output DP-3-2
-  end
-end
-
-if [ $argv[1] = "mobile" ]
-  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-  for w in 1 2 3 4 5 6 7 8 9
-    i3-msg workspace $w
-    i3-msg move workspace to output eDP-1
-  end
-end
-
-i3-msg workspace $cw
+if [ $home -eq 1 ]; then
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 3440x360 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --mode 3440x1440 --pos 0x0 --rotate normal --output DP-3-3 --off
+elif [ $tv -eq 1 ]; then
+  xrandr --output eDP-1 --primary --mode 1280x720 --pos 0x0 --rotate normal --output HDMI-1 --mode 1280x720 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off
+else
+  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-3-1 --off --output DP-3-2 --off --output DP-3-3 --off
+fi
     '';
   };
   i3config = pkgs.writeTextFile {
@@ -316,15 +292,11 @@ bindsym $mod+r mode "resize"
 set $i3lockwall i3lock -c 000000 
 
 # network management
-set $mode_actions (c)onnect WWAN, (d)isconnect WWAN, connect (V)PN, disconnect (v)pn, (h)ome mouse config, (H)ome screen config
+set $mode_actions (h)ome mouse config, (s)creen reconfiguration
 
 mode "$mode_actions" {
-    bindsym c exec --no-startup-id nmcli connection up a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
-    bindsym d exec --no-startup-id nmcli connection down a2bff2f1-22f2-4c20-8f27-90913578abff, mode "default"
-    bindsym Shift+v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/HTW-SSH-Split.sh, mode "default"
-    bindsym v exec --no-startup-id sudo /home/wojtek/Documents/HTW/IT/stop_openconnect.sh, mode "default"
-    bindsym shift+h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome screen, mode "default"
     bindsym h exec --no-startup-id ${screenMouseHome}/bin/screenMouseHome mouse, mode "default"
+    bindsym s exec --no-startup-id ${selectscreens}/bin/selectscreens, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -398,6 +370,7 @@ in
     runlutrisgame
     screenMouseHome
     i3config
+    pkgs.hwinfo
   ];
 }
 

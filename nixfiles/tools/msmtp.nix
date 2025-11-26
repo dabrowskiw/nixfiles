@@ -35,6 +35,8 @@
           nearPattern = "";
           patterns = [
             "*"
+            "!Nebent&AOQ-tigkeit"
+            "!Nebent&AOQ-tigkeit/*"
           ];
         };
       };

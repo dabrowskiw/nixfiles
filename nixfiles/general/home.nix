@@ -47,7 +47,7 @@
     ../tools/pass.nix
     ../tools/python.nix
     ../tools/unstablepkgs.nix
-    ../tools/vdirsyncer.nix
+    ../tools/pimsync.nix
     ../tools/wezterm.nix
     ../tools/yad-askpass.nix
   ];

@@ -25,6 +25,10 @@
       url = "git+ssh://git@github.com/dabrowskiw/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:AtaraxiaSjel/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ 
@@ -36,6 +40,7 @@
     home-manager,
     sops-nix,
     mysecrets-git,
+    nur,
     ... 
     }: {
       nixosConfigurations = {
@@ -52,6 +57,7 @@
           mypythonPackages = pkgs-unstable.python312Packages;
           mysecrets = mysecrets-git;
           hostname = "nixos-worklaptop";
+          waydroidnur = nur;
         };
         modules = [
           {

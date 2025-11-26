@@ -73,6 +73,8 @@ in
   virtualisation.virtualbox.host.enableExtensionPack = true;
   boot.kernelParams = ["kvm.enable_virt_at_load=0"];
 
+  virtualisation.waydroid.enable = true;
+
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
   xdg.portal.config.common.default = "*";
@@ -145,6 +147,7 @@ in
   };
 
   services = {
+    displayManager.sddm.wayland.compositor = "weston";
     openvpn.servers = {
       HTW = {
         config = "/var/lib/openvpn/htw-vpn.conf";
@@ -191,7 +194,7 @@ in
       {
         name = "MC3326adwe";
         location = "Home";
-        deviceUri = "socket://192.168.178.90:9100";
+        deviceUri = "socket://192.168.178.99:9100";
         # Grab toe model name from "lpinfo -m""
         model = "foomatic-db-ppds/Lexmark-MC3426adw-Postscript-Lexmark.ppd.gz";
         ppdOptions = {
@@ -243,9 +246,12 @@ in
     networkmanager
     nfs-utils
     pulseaudioFull
+    python3Packages.pyclip
     jmtpfs
     hack-font
     nixos-icons
+    weston
+    wl-clipboard
   ];
 
   programs.adb.enable = true;

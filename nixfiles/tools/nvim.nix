@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, lib, ... }: 
 
 let 
   vimspectorpy = pkgs.vimUtils.buildVimPlugin {
@@ -7,6 +7,15 @@ let
       owner = "sagi-z";
       repo = "vimspectorpy";
       rev = "a56aaeb6a61ddcd48d0900581115d89aa92d6f74";
+      hash = "sha256-bLe2men48CfVYonl5KN+qpbGW8RJI4vQSQy6CSZ4ZmE=";
+    };
+  };
+  nextflow-vim = pkgs.vimUtils.buildVimPlugin {
+    name = "nextflow-vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "LukeGoodsell";
+      repo = "nextflow-vim";
+      rev = "3b77c4c329dcfb81c9cc5e10daeb3f9752c51d73";
       hash = "sha256-bLe2men48CfVYonl5KN+qpbGW8RJI4vQSQy6CSZ4ZmE=";
     };
   };
@@ -157,11 +166,17 @@ in
       vim.keymap.set('i', '<Up>', "v:count ? '<C-o>k' : '<C-o>gk'", { expr = true, noremap = true, silent = true })
       vim.keymap.set('n', '<Down>', "v:count ? 'j' : 'gj'", { expr = true, noremap = true })
       vim.keymap.set('n', '<Up>', "v:count ? 'k' : 'gk'", { expr = true, noremap = true })
+      vim.keymap.set('n', '<leader>De', '<cmd>lua vim.diagnostic.open_float()<cr>', { desc = "Show LSP diagnostic message"})
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern={"*.slint"}, 
         callback=function()
           vim.opt.filetype = "slint"
         end
+      })
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          vim.fn.setreg("/", "")
+        end,
       })
     '';
     coc = {
@@ -169,42 +184,48 @@ in
       settings = ''
         "languageserver": {
       }
-      '';
+     '';
     };
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = nextflow-vim;
+      }
+      {
+        plugin = nvim-treesitter-parsers.groovy;
+      }
       {
         plugin = fastaction-nvim;
         config = ''
           require("fastaction").setup {
-  dismiss_keys = { "j", "k", "<c-c>", "q" },
-  override_function = function(_) end,
-  keys = "qwertyuiopasdfghlzxcvbnm",
-  popup = {
-    border = "rounded",
-    hide_cursor = true,
-    highlight = {
-      divider = "FloatBorder",
-      key = "MoreMsg",
-      title = "Title",
-      window = "NormalFloat",
-    },
-    title = "Select one of:",
-  },
-  priority = {
-    -- dart = {
-    --   { pattern = "organize import", key ="o", order = 1 },
-    --   { pattern = "extract method", key ="x", order = 2 },
-    --   { pattern = "extract widget", key ="e", order = 3 },
-    -- },
-  },
- register_ui_select = false,
-}
-            vim.keymap.set(
-        { 'n', 'x' },
-        '<leader>a',
-        '<cmd>lua require("fastaction").code_action()<CR>',
-        { buffer = bufnr }
-    )
+            dismiss_keys = { "j", "k", "<c-c>", "q" },
+            override_function = function(_) end,
+            keys = "qwertyuiopasdfghlzxcvbnm",
+            popup = {
+              border = "rounded",
+              hide_cursor = true,
+              highlight = {
+                divider = "FloatBorder",
+                key = "MoreMsg",
+                title = "Title",
+                window = "NormalFloat",
+              },
+              title = "Select one of:",
+            },
+            priority = {
+              -- dart = {
+              --   { pattern = "organize import", key ="o", order = 1 },
+              --   { pattern = "extract method", key ="x", order = 2 },
+              --   { pattern = "extract widget", key ="e", order = 3 },
+              -- },
+            },
+           register_ui_select = false,
+          }
+          vim.keymap.set(
+            { 'n', 'x' },
+            '<leader>a',
+            '<cmd>lua require("fastaction").code_action()<CR>',
+            { buffer = bufnr }
+          )
         '';
         type = "lua";
       }

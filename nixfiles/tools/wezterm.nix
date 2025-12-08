@@ -125,6 +125,40 @@
               group = 'SmileysAndEmotion',
             },
           },
+          {
+            key = 'm',
+            mods = 'LEADER',
+            action = wezterm.action_callback(function(window, pane)
+              local handle = io.popen([[khard list -F first_name,last_name,email | sed -e 's/[a-zA-Z]\+\://g' | sed -e 's/\s\+/;/g' | grep "@" | sed -E 's/^(.*);([^;]*@.*);$/\1 <\2>/g' | sed -E 's/^ <([^;]*@.*)>/\1/g' | sed -e 's/;/ /g']], 'r')
+              local output = handle:read('*a')
+              handle:close()
+              local choices = {}
+              for line in output:gmatch('[^\r\n]+') do
+                table.insert(choices, { label = line, id = line })
+              end
+
+              window:perform_action(
+                wezterm.action.InputSelector {
+                  action = wezterm.action_callback(function(window, pane, id, label)
+                    if not id and not label then
+                      wezterm.log_info 'cancelled'
+                    else
+                      wezterm.log_info('you selected ', id, label)
+                      -- Since we didn't set an id in this example, we're
+                      -- sending the label
+                      pane:send_text(label)
+                    end
+                  end),
+                  fuzzy=true,
+                  title = 'Emails from khard',
+                  choices = choices,
+                  alphabet = '123456789',
+                  description = 'Start typing for fuzzy search.',
+                },
+                pane
+              )
+            end),
+          },
         }
 
         config.font_rules = {
@@ -141,6 +175,8 @@
         }
 
         config.hide_tab_bar_if_only_one_tab = true
+
+
 
         return config
     '';

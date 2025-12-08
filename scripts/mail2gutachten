@@ -5,10 +5,11 @@ import os
 import re
 import base64
 import shutil
+from unidecode import unidecode
 
 v = "0.3"
 NAMEMARK = "sende ich Ihnen die Abschlussarbeit von "
-MATRIKELRE = [r"\D(\d{6})\D", r"s0(\d{6})", r"\D0(\d{6})\D"]
+MATRIKELRE = [r"\D(\d{6})\D", r"s0(\d{6})", r"\D0(\d{6})\D", r"_(\d{6})_", r"_(\d{5})_"]
 degree = sys.argv[1]
 name = "N/A"
 sex = "N/A"
@@ -26,7 +27,7 @@ for line in sys.stdin.readlines():
                 sex = "f"
             elif prefix == "Herr" or prefix == "Herrn":
                 sex = "m"
-            name = "".join(namedat.split(" ")[1:]).replace(".", "")
+            name = unidecode("".join(namedat.split(" ")[1:]).replace(".", ""))
             print(namedat)
             print(name)
             part = 1

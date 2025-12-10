@@ -17,6 +17,7 @@
     setuptools
     tqdm
     unidecode
+    jedi-language-server # for vim-jedi-lsp
     debugpy # for vimspector
 #    (callPackage ./piecash.nix { inherit mypythonPackages; })
   ]))

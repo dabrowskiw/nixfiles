@@ -263,6 +263,24 @@ in
         type = "lua";
       }
       {
+        plugin = jedi-vim;
+        config = ''
+          local lspconfig = require('lspconfig')
+
+          local on_attach = function(client, bufnr)
+            vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { buffer = bufnr, noremap = true, silent = true, desc = 'Rename' })
+            vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, { buffer = bufnr, noremap = true, silent = true, desc = 'Go to definition' })
+            vim.keymap.set('n', '<leader>lD', vim.lsp.buf.hover, { buffer = bufnr, noremap = true, silent = true, desc = 'Documentation' })
+            vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { buffer = bufnr, noremap = true, silent = true, desc = 'Code action' })
+          end
+
+          lspconfig.jedi_language_server.setup({
+            on_attach = on_attach,
+          })
+        '';
+        type = "lua";
+      }
+      {
         plugin = telescope-nvim;
         config = ''
           local builtin = require('telescope.builtin')

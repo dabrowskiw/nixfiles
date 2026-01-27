@@ -49,6 +49,7 @@
     ../tools/unstablepkgs.nix
     ../tools/pimsync.nix
     ../tools/wezterm.nix
+    ../tools/singularity.nix
     ../tools/yad-askpass.nix
   ];
 

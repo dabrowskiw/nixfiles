@@ -66,17 +66,39 @@ in
   documentation.man.generateCaches = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableHardening = false;
-  virtualisation.docker.enable = true;
-  users.extraGroups.vboxusers.members = [ "wojtek" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
   boot.kernelParams = ["kvm.enable_virt_at_load=0"];
 
-  virtualisation.waydroid.enable = true;
+
+
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      package = pkgs.libvirt;
+      qemu = {
+        package = pkgs.qemu;
+        swtpm = {
+          enable = false;
+          package = pkgs.swtpm;
+        };
+      };
+    };
+    spiceUSBRedirection.enable = true;
+    virtualbox = {
+      host = {
+        enable = true;
+        enableHardening = false;
+        enableExtensionPack = true;
+      };
+    };
+    waydroid.enable = true;
+    docker.enable = true;
+  };
+  users.extraGroups.vboxusers.members = [ "wojtek" ];
+  services.spice-vdagentd.enable = true;
+  programs.virt-manager.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal ];
   xdg.portal.config.common.default = "*";
   networking = {
     hostName = hostname; # Define your hostname.
@@ -131,7 +153,7 @@ in
 
   users.users.wojtek = {
     description = "wojtek";
-    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" "libvirtd"];
     packages = with pkgs; [];
   } // userdefaults;
 
@@ -185,7 +207,6 @@ in
     avahi.nssmdns4 = false;
     udev.packages = [ 
       pkgs.libwacom 
-      pkgs.android-udev-rules
     ];
   };
 
@@ -256,7 +277,6 @@ in
 
   programs.adb.enable = true;
   programs.i3lock.enable = true;
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

@@ -101,7 +101,6 @@ in
     pkgs.SDL2_image
     pkgs.SDL2_gfx
     pkgs.signal-desktop
-    pkgs.singularity
     pkgs.sops
     pkgs.steamcmd
     pkgs.steam-tui
@@ -116,12 +115,14 @@ in
     pkgs.vscodium
     pkgs.w3m
     pkgs.wget
+    pkgs.winboat
     pkgs.wine-staging
     pkgs.wirelesstools
     pkgs.wireshark
     pkgs.xorg.xkill
     pkgs.xsel
     pkgs.xss-lock
+    pkgs.libx11
     pkgs.zathura
     (pkgs.callPackage ./vcard.nix { inherit mypythonPackages; })
   ];

@@ -28,7 +28,7 @@ openvpn --config /var/lib/openvpn/htw-vpn.conf --dev tun0
 in
 {
   home.packages = [
-    waydroidnur.packages.${pkgs.system}.waydroid-script
+    waydroidnur.packages.${pkgs.stdenv.hostPlatform.system}.waydroid-script
     connectHTW
     connectO2
     pkgs.abiword

@@ -66,7 +66,7 @@ in
     pkgs.jq
     pkgs.imagemagick
     pkgs.inkscape
-    pkgs.jetbrains.pycharm-community
+    pkgs.jetbrains.pycharm-oss
     pkgs.keepassxc
     pkgs.kdePackages.kdenlive
     pkgs.khal

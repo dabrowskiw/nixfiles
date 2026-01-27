@@ -3,7 +3,7 @@
 {
   home.packages = [
     pkgs.lutris
-    pkgs.jetbrains.idea-ultimate
+    pkgs.jetbrains.idea
     pkgs.zoom-us
   ];
 }

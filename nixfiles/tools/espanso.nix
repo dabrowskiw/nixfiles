@@ -93,6 +93,10 @@
             replace = "Liebe Kolleginnen/Kollegen\n\nim Anhang übersende ich Ihnen die Anerkennung des Praktikums von\n\n\naus dem Studiengang Informatik in Kultur und Gesundheit. Ich wäre Ihnen für eine entsprechende Eintragung im LSF dankbar.\n\nVielen Dank im Voraus,\nViele Grüße\nWojtek Dabrowski";
           } 
           {
+            trigger = "::prab";
+            replace = "Hallo,\n\nvielen Dank, ich habe die Anerkennung soeben an den Studierendenservice mit\nBitte um Eintragung im LSF geschickt. Die Eintragung erfolgt dann in der Regel\ninnerhalb einer Woche.\n\nViele Grüße\n-Wojtek Dabrowski";
+          }
+          {
             trigger = "::dda"; 
             replace = "dominika.e.d@gmail.com, dominika.dabrowska@bgbau.de";
           } 

@@ -3,13 +3,18 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "piotr.dabrowski@htw-berlin.de";
-    userName = "Piotr Wojciech Dabrowski";
-    delta = {
-      enable = true;
-      options = {
-        "side-by-side" = true;
+    settings = {
+      user = {
+        email = "piotr.dabrowski@htw-berlin.de";
+        name = "Piotr Wojciech Dabrowski";
       };
     };
+  };
+  programs.delta = {
+    enable = true;
+    options = {
+      "side-by-side" = true;
+    };
+    enableGitIntegration = true;
   };
 }

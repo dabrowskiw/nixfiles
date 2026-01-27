@@ -16,7 +16,7 @@ let
       owner = "LukeGoodsell";
       repo = "nextflow-vim";
       rev = "3b77c4c329dcfb81c9cc5e10daeb3f9752c51d73";
-      hash = "sha256-bLe2men48CfVYonl5KN+qpbGW8RJI4vQSQy6CSZ4ZmE=";
+      hash = "sha256-U1s0wz9QYgcu+ud77+hc18pivySUOnVD8xzlBZ6Qzo8=";
     };
   };
 in
@@ -250,23 +250,20 @@ in
       {
         plugin = nvim-lspconfig;
         config = ''
-          local lspconfig = require("lspconfig")
-          lspconfig.tinymist.setup{
+          vim.lsp.config('tinymist', {
             single_file_support = true,
             offset_encoding = "utf-8",
             settings = {
               exportPdf = "onSave",
             },
-          }
-          lspconfig.slint_lsp.setup{}
+          })
+          vim.lsp.enable('slint_lsp')
         '';
         type = "lua";
       }
       {
         plugin = jedi-vim;
         config = ''
-          local lspconfig = require('lspconfig')
-
           local on_attach = function(client, bufnr)
             vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { buffer = bufnr, noremap = true, silent = true, desc = 'Rename' })
             vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, { buffer = bufnr, noremap = true, silent = true, desc = 'Go to definition' })
@@ -274,7 +271,7 @@ in
             vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { buffer = bufnr, noremap = true, silent = true, desc = 'Code action' })
           end
 
-          lspconfig.jedi_language_server.setup({
+          vim.lsp.config('jedi_language_server', {
             on_attach = on_attach,
           })
         '';

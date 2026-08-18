@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 
 {
   programs.broot = {
     enable = true;
+    package = pkgs-unstable.broot;
     settings = {
       verbs = [
         {

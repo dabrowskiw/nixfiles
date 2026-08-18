@@ -104,12 +104,16 @@ let
     text = ''
 -- 
 Prof. Dr.-Ing. Piotr Wojciech Dabrowski
+
+Meine Pronomen sind er/ihm. Gerne können Sie mir mitteilen, wie ich Sie ansprechen soll.
+
 Hochschule für Technik und Wirtschaft (HTW) Berlin
 Wilhelminenhofstr. 75A
 Gebäude C, Raum 614
 D-12459 Berlin
 +49 30 5019-3397
-Piotr.Dabrowski@HTW-Berlin.de | www.htw-berlin.de'';
+Piotr.Dabrowski@HTW-Berlin.de | www.htw-berlin.de
+'';
   };
   aercfiles = pkgs.writeTextFile {
     name = "aerc_files";
@@ -418,7 +422,7 @@ Forwarded message from {{(index .OriginalFrom 0).Name}} on {{dateFormat .Origina
       };
 
       search = {
-        source    = "notmuch://~/Maildir/";
+        source    = "notmuch://";
         from = "Nobody <none@none.com>";
         default = "Inbox";
         query-map = "${aercfiles}/share/map.conf";

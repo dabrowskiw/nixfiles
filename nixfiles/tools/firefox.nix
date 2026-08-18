@@ -183,6 +183,7 @@ let
 in
 {
   programs.firefox = {
+    configPath = ".mozilla/firefox";
     enable = true;
     profiles = {
       default = {

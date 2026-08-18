@@ -66,11 +66,12 @@ in
     pkgs.jq
     pkgs.imagemagick
     pkgs.inkscape
-    pkgs.jetbrains.pycharm-oss
+    pkgs.jetbrains.pycharm
     pkgs.keepassxc
     pkgs.kdePackages.kdenlive
     pkgs.khal
     pkgs.krita
+    pkgs.libation # Audible
     pkgs.libreoffice
     pkgs.libsixel
     pkgs.libwacom
@@ -88,6 +89,7 @@ in
     pkgs.openvpn
     pkgs.openconnect
     pkgs.pandoc
+    pkgs.parallel-disk-usage # pdu
     pkgs.pavucontrol
     pkgs.pdfpc
     pkgs.pigz
@@ -101,6 +103,7 @@ in
     pkgs.SDL2_image
     pkgs.SDL2_gfx
     pkgs.signal-desktop
+    pkgs.simple-mtpfs
     pkgs.sops
     pkgs.steamcmd
     pkgs.steam-tui
@@ -111,7 +114,6 @@ in
     pkgs.unixtools.xxd
     pkgs.unzip
     pkgs.vlc
-    pkgs.virtualbox
     pkgs.vscodium
     pkgs.w3m
     pkgs.wget
@@ -119,7 +121,7 @@ in
     pkgs.wine-staging
     pkgs.wirelesstools
     pkgs.wireshark
-    pkgs.xorg.xkill
+    pkgs.xkill
     pkgs.xsel
     pkgs.xss-lock
     pkgs.libx11

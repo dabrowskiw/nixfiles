@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, pass-store, ...}:
 
 {
   programs.password-store = {
@@ -8,6 +8,8 @@
       PASSWORD_STORE_CLIP_TIME = "60";
     };
   };
+
+  home.file.".password-store".source = pass-store;
 
   home.activation = {
     pass = lib.hm.dag.entryAfter ["writeBoundary"] ''

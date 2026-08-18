@@ -2,11 +2,12 @@
   description = "Base system configuration";
 
   inputs = {
+    xremap-flake.url = "github:xremap/nix-flake";
     # NixOS official package source, using the nixos-24.05 branch here
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -19,6 +20,10 @@
     };
     mysecrets-git = {
       url = "git+ssh://git@github.com/dabrowskiw/nixsecrets.git?shallow=1";
+      flake = false;
+    };
+    pass-store = {
+      url = "git+ssh://git@github.com/dabrowskiw/password-store.git";  
       flake = false;
     };
     nix-yazi-plugins = {
@@ -40,26 +45,29 @@
     home-manager,
     sops-nix,
     mysecrets-git,
+    pass-store,
     nur,
     ... 
-    }: {
+    }: 
+    let 
+          pkgs-unstable = import nixpkgs-unstable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+      firefox-add = inputs.firefox-addons.packages.${pkgs-unstable.system};
+    in {
       nixosConfigurations = {
         work-laptop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = rec {
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          firefox-add = import firefox-addons {
-            inherit (pkgs-unstable) fetchurl lib stdenv;
-          };
+          inherit firefox-add pkgs-unstable;
           mypythonPackages = pkgs-unstable.python312Packages;
           mysecrets = mysecrets-git;
           hostname = "nixos-worklaptop";
           waydroidnur = nur;
         };
         modules = [
+          inputs.xremap-flake.nixosModules.default
           {
             nixpkgs.overlays = [
               nix-yazi-plugins.overlays.default
@@ -72,7 +80,7 @@
           ./nixfiles/general/secrets.nix
 #          ./barriers.nix
           inputs.home-manager.nixosModules.default {
-            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.extraSpecialArgs = specialArgs // { inherit pass-store; };
           }
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;

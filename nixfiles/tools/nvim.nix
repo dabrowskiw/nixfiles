@@ -31,6 +31,7 @@ in
   ];
 
   programs.yazi = {
+    shellWrapperName = "yy";
     enable = true;
     plugins = {
       fg = pkgs.yaziPlugins.fg;
@@ -137,6 +138,7 @@ in
   };
 
   programs.neovim = {
+    withRuby = true;
     enable = true;
     defaultEditor = true;
     viAlias = true;
@@ -148,7 +150,7 @@ in
       debugpy
       ipython
     ]);
-    extraLuaConfig = ''
+    initLua = ''
       vim.g.mapleader = ' '
       vim.opt.clipboard="unnamedplus"
       vim.opt.tabstop = 2
@@ -245,6 +247,7 @@ in
             autocmd FileType eml          call pencil#init()
           augroup END
         '';
+        type = "viml";
       }
 
       {
@@ -340,24 +343,7 @@ in
           let g:vimspectorpy_home = "/home/wojtek/.config/vimspectorpy"
           let g:vimspectorpy_venv = "/home/wojtek/.config/vimspectorpy/venv"
         '';
-      }
-      {
-        plugin = yazi-nvim;
-        config = ''
-          require('yazi').setup({
-            open_for_directories = true,
-            keymaps = {
-              show_help = '<f1>',
-            },
-          }) 
-          vim.keymap.set('n', '<leader>e', '<cmd>Yazi cwd<cr>', { desc = 'Open file explorer'})
-        '';
-        type = "lua";
-      }
-      {
-        plugin = yanky-nvim;
-        config = ''
-        '';
+        type = "viml";
       }
       {
         plugin = which-key-nvim;

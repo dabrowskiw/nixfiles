@@ -31,6 +31,7 @@ storage HTW_calendar_remote {
     shell pass show Email/piotr.dabrowski@htw-berlin.de | head -1
   }
 }
+
     '';
   };
 in

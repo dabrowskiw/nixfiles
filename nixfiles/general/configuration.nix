@@ -56,6 +56,11 @@ in
     ./boot.nix
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "python3.13-pypdf2-3.0.1"
+    "electron-40.10.5"
+  ];
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -63,7 +68,9 @@ in
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  documentation.man.generateCaches = false;
+  programs.fuse.userAllowOther = true;
+
+  documentation.man.cache.enable = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.kernelParams = ["kvm.enable_virt_at_load=0"];
@@ -97,13 +104,29 @@ in
   services.spice-vdagentd.enable = true;
   programs.virt-manager.enable = true;
 
+  services.xremap = {
+    enable = true;
+    withX11 = true;
+    serviceMode = "user";
+    userName = "wojtek";
+    package = pkgs.xremap;
+    config.keymap = [
+      {
+        name = "Roblox jump";
+        remap = { "KEY_BACKSPACE" = "KEY_SPACE"; };
+        application.only = [ "/.*Sober/" ];
+      }
+    ];
+  };
+
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal ];
+  services.gnome.gnome-keyring.enable = lib.mkForce false;
   xdg.portal.config.common.default = "*";
   networking = {
     hostName = hostname; # Define your hostname.
   #  wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    wireless.enable = false;
+ #   wireless.enable = false;
     networkmanager.enable = true;
     enableIPv6 = true;
   };
@@ -118,7 +141,14 @@ in
 
   environment.variables = {
     SSH_ASKPASS=lib.mkForce "";
+    GIT_ASKPASS="";
   };
+
+  environment.interactiveShellInit = ''
+    unset SSH_ASKPASS GIT_ASKPASS
+    export SSH_ASKPASS=
+    export GIT_ASKPASS=
+  '';
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -148,12 +178,14 @@ in
   console.keyMap = "de";
 
   programs.fish.enable = true;
+  programs.ssh.askPassword = "";
+  programs.ssh.enableAskPassword = false;
   programs.dconf.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   users.users.wojtek = {
     description = "wojtek";
-    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" "libvirtd" "docker" "fuse"];
     packages = with pkgs; [];
   } // userdefaults;
 
@@ -255,27 +287,31 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    android-tools
-    bash
-    cifs-utils
-    dmenu
-    fish
-    lemurs
-    libmbim
-    libqmi
-    networkmanager
-    nfs-utils
-    pulseaudioFull
-    python3Packages.pyclip
-    jmtpfs
-    hack-font
-    nixos-icons
-    weston
-    wl-clipboard
-  ];
+  environment.systemPackages = with pkgs; lib.remove
+    [ 
+      pkgs.x11-ssh-askpass 
+      pkgs.gnome.gnome-keyring 
+    ] (with pkgs; [
+      android-tools
+      bash
+      cifs-utils
+      dmenu
+      fish
+      lemurs
+      libmbim
+      libqmi
+      networkmanager
+      nfs-utils
+      pulseaudioFull
+      python3Packages.pyclip
+      jmtpfs
+      hack-font
+      nixos-icons
+      weston
+      wl-clipboard
+      xremap
+  ]);
 
-  programs.adb.enable = true;
   programs.i3lock.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -303,5 +339,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
 
 }

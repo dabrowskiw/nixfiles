@@ -5,6 +5,7 @@
     pkgs.lutris
     pkgs.jetbrains.idea
     pkgs.zoom-us
+    pkgs.webex
   ];
 }
 

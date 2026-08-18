@@ -57,7 +57,7 @@
       firefox-add = inputs.firefox-addons.packages.${pkgs-unstable.system};
     in {
       nixosConfigurations = {
-        work-laptop = nixpkgs.lib.nixosSystem rec {
+        nixos-worklaptop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = rec {
           inherit firefox-add pkgs-unstable;

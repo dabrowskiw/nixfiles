@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-echo "$@" > /tmp/mailcontent
+cat | grep -E '^.* \(Matrikelnummer: [0-9]+\)' | sed 's/[[:blank:]]*$//'
+

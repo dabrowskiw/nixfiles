@@ -13,6 +13,12 @@ let
     executable = true;
     text = (builtins.readFile ../../scripts/mail2gutachten);
   };
+  extractMatrikel = pkgs.writeTextFile {
+    name = "extractMatrikel";
+    destination = "/bin/extractMatrikel";
+    executable = true;
+    text = (builtins.readFile ../../scripts/extractMatrikel);
+  };
   addContact = pkgs.writeTextFile {
     name = "addContact";
     destination = "/bin/addContact";
@@ -171,6 +177,7 @@ in
     formatmail
     mail2gutachten
     addContact
+    extractMatrikel
     inbox-sync
     aercfiles
     htwsignature
@@ -250,6 +257,8 @@ in
         "Rq" = ":reply -q<Enter>";
         "Gm" = ":pipe -m mail2gutachten master";
         "Gb" = ":pipe -m mail2gutachten bachelor";
+        "Pa" = ":forward -T praktikum_anerkennung";
+        "Pb" = ":reply -T praktikum_bestaetigung";
 
         "H" = ":toggle-headers<Enter>";
         "<C-k>" = ":prev-part<Enter>";
@@ -389,6 +398,39 @@ in
 Forwarded message from {{(index .OriginalFrom 0).Name}} on {{dateFormat .OriginalDate "Mon Jan 2, 2006 at 3:04 PM"}}:
 
 {{.OriginalText | quote}}
+      '';
+      praktikum_anerkennung = ''
+to: Studierendenservice - HTW Berlin <studierendenservice@HTW-Berlin.de>
+Subject: Praktikumsanerkennung für {{exec `extractMatrikel` .OriginalText}}
+
+Liebe Kolleginnen/Kollegen
+
+im Anhang übersende ich Ihnen die Anerkennung des Praktikums von
+
+{{exec `extractMatrikel` .OriginalText}}
+aus dem Studiengang Informatik in Kultur und Gesundheit. Ich wäre Ihnen für eine entsprechende Eintragung im LSF dankbar.
+
+Vielen Dank im Voraus,
+Viele Grüße
+Wojtek Dabrowski
+
+{{.Signature}}
+'';
+      praktikum_bestaetigung = ''
+Hallo,
+
+vielen Dank, ich habe die Anerkennung soeben an den Studierendenservice mit
+Bitte um Eintragung im LSF geschickt. Die Eintragung erfolgt dann in der Regel
+innerhalb einer Woche.
+
+Viele Grüße
+-Wojtek Dabrowski
+
+Original message from {{(index .OriginalFrom 0).Name}} on {{dateFormat .OriginalDate "Mon Jan 2, 2006 at 3:04 PM"}}:
+
+{{.OriginalText | quote}}
+
+{{.Signature}}
       '';
       gutachten = ''
 

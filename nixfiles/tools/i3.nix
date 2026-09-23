@@ -121,13 +121,14 @@ exec_always --no-startup-id fish ${disableTouchpad}/bin/disableTouchpad
 
 exec_always --no-startup-id pcloud 
 
+exec_always --no-startup-id teamsAnna
+exec_always --no-startup-id teamsSophia
+
 exec_always --no-startup-id xsetwacom --set "23" MapToOutput DP-3-3
 exec_always --no-startup-id xsetwacom --set "11" MapToOutput DP-3-3
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3-status
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pactl play-sample bleep 0 && $refresh_i3status
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pactl play-sample bleep && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id /home/wojtek/Documents/Private/IT/i3scipts/increase_volume.sh && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id /home/wojtek/Documents/Private/IT/i3scipts/decrease_volume.sh && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status

@@ -28,6 +28,9 @@ openvpn --config /var/lib/openvpn/htw-vpn.conf --dev tun0
 in
 {
   home.packages = [
+    pkgs.nodejs
+    pkgs.pnpm
+
     waydroidnur.packages.${pkgs.stdenv.hostPlatform.system}.waydroid-script
     connectHTW
     connectO2
@@ -70,6 +73,7 @@ in
     pkgs.keepassxc
     pkgs.kdePackages.kdenlive
     pkgs.khal
+    pkgs.kitty
     pkgs.krita
     pkgs.libation # Audible
     pkgs.libreoffice
@@ -84,6 +88,8 @@ in
     pkgs.ncdu
     pkgs.ninja
     pkgs.nvimpager
+    pkgs.ollama
+    pkgs.opencode
     pkgs.openjdk
     pkgs.openssl
     pkgs.openvpn
@@ -98,6 +104,7 @@ in
     pkgs.powerline-fonts
     pkgs.pulseaudio-ctl
     pkgs.qimgv
+    pkgs.prismlauncher
     pkgs.ranger
     pkgs.sdl2-compat
     pkgs.SDL2_image

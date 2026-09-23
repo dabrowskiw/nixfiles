@@ -49,10 +49,9 @@
     ../tools/python.nix
     ../tools/unstablepkgs.nix
     ../tools/pimsync.nix
+    ../tools/teams.nix
     ../tools/wezterm.nix
     ../tools/singularity.nix
-#    ../tools/xremap.nix
-#    ../tools/yad-askpass.nix
   ];
 
   #home.packages = [

@@ -49,7 +49,6 @@
     ../tools/terminal-filechooser.nix
     ../tools/wezterm.nix
     ../tools/singularity.nix
-    ../tools/qwencode.nix
   ];
 
 

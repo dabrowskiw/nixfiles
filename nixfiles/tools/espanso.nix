@@ -16,6 +16,11 @@
         backend = "Clipboard";
         paste_shortcut = "CTRL+SHIFT+V";
       };
+      yazi-filechooser = {
+        filter_class = "yazi-filechooser";
+        backend = "Clipboard";
+        paste_shortcut = "CTRL+SHIFT+V";
+      };
     };
     matches = {
       mail = {

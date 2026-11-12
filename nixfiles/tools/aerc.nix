@@ -206,7 +206,7 @@ in
         address-book-cmd = "khard email --parsable --search-in-source-files --remove-first-line %s";
         reply-to-self = "false";
         editor = "vim -S ${mail_vimrc}/share/mail.vimrc -c \"au VimEnter * :%!formatmail\"";
-        file-picker-cmd = "broot /home/wojtek/";
+        file-picker-cmd = "yazi --chooser-file=/dev/stdout /home/wojtek/";
       };
       filters = {
         "text/plain" = "formatmail";

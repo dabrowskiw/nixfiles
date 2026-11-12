@@ -97,12 +97,16 @@ in
         enableExtensionPack = true;
       };
     };
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
     waydroid.enable = true;
-    docker.enable = true;
   };
   users.extraGroups.vboxusers.members = [ "wojtek" ];
   services.spice-vdagentd.enable = true;
   programs.virt-manager.enable = true;
+
 
   services.xremap = {
     enable = true;
@@ -119,10 +123,7 @@ in
     ];
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal ];
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
-  xdg.portal.config.common.default = "*";
+  services.gnome.gnome-keyring.enable = true;
   networking = {
     hostName = hostname; # Define your hostname.
   #  wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -181,11 +182,23 @@ in
   programs.ssh.askPassword = "";
   programs.ssh.enableAskPassword = false;
   programs.dconf.enable = true;
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [
+        pkgs.avahi
+        pkgs.gnutls
+        pkgs.libXau
+      ];
+    };
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   users.users.wojtek = {
     description = "wojtek";
-    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" "libvirtd" "docker" "fuse"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" "libvirtd" "docker" "fuse" "lpadmin" ];
     packages = with pkgs; [];
   } // userdefaults;
 
@@ -247,7 +260,7 @@ in
       {
         name = "MC3326adwe";
         location = "Home";
-        deviceUri = "socket://192.168.178.99:9100";
+        deviceUri = "socket://ET788C77703A99.fritz.box:9100";
         # Grab toe model name from "lpinfo -m""
         model = "foomatic-db-ppds/Lexmark-MC3426adw-Postscript-Lexmark.ppd.gz";
         ppdOptions = {
@@ -295,11 +308,14 @@ in
       android-tools
       bash
       cifs-utils
+      distrobox
       dmenu
       fish
       lemurs
       libmbim
       libqmi
+      libsecret
+      seahorse
       networkmanager
       nfs-utils
       pulseaudioFull
@@ -307,12 +323,14 @@ in
       jmtpfs
       hack-font
       nixos-icons
+      uv
       weston
       wl-clipboard
       xremap
   ]);
 
   programs.i3lock.enable = true;
+  programs.seahorse.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

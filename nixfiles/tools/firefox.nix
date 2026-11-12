@@ -27,6 +27,9 @@ let
 
   # ~/.mozilla/firefox/PROFILE_NAME/prefs.js | user.js
   settings = {
+    # Use the XDG portal for file-open/save dialogs.
+    "widget.use-xdg-desktop-portal.file-picker" = 1;
+
     # Disable translation
     "browser.translations.automaticallyPopup" = false;
     "browser.translations.panelShown" = false;

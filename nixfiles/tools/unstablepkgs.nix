@@ -2,9 +2,10 @@
 
 {
   home.packages = with pkgs-unstable; [
-    typst
+    chroncal
     pcloud
-#    (pkgs-unstable.callPackage ./pcloud.nix { inherit pkgs-unstable; })
+    typst
+    opencode
   ];
 }
 

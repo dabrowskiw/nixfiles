@@ -4,14 +4,13 @@ let
   portal = pkgs.xdg-desktop-portal-termfilechooser;
   yazi = config.programs.yazi.package;
 
-  terminalCommand =
-    "${lib.getExe pkgs.kitty} --class yazi-filechooser";
+  terminalCommand = "${lib.getExe pkgs.wezterm} start --always-new-process --class yazi-filechooser";
 
   runtimePath = lib.makeBinPath [
     yazi
     pkgs.fd
     pkgs.fzf
-    pkgs.kitty
+    pkgs.wezterm
     pkgs.coreutils
     pkgs.gnused
     pkgs.gnugrep

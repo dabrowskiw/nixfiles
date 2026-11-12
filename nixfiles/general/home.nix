@@ -28,7 +28,6 @@
 
   imports = [
     ../tools/aerc.nix
-    ../tools/broot.nix
     ../tools/espanso.nix
     ../tools/firefox.nix
     ../tools/fish.nix

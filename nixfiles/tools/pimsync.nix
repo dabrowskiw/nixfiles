@@ -22,6 +22,19 @@ storage HTW_calendar_local {
   fileext ics
 }
 
+pair private_calendar {
+  storage_a private_calendar_local
+  storage_b private_calendar_remote
+  collection kinder
+  conflict_resolution cmd nvim -d
+}
+
+storage private_calendar_local {
+  type vdir/icalendar
+  path ~/data/calendar/private-calendar
+  fileext ics
+}
+
 storage HTW_calendar_remote {
   type caldav
   url https://ox.htw-berlin.de/caldav/
@@ -32,12 +45,22 @@ storage HTW_calendar_remote {
   }
 }
 
+storage private_calendar_remote {
+  type caldav
+  url https://cloud.disroot.org/
+  username piotr_dabrowski
+  user_agent Thunderbird
+  password {
+      shell kdialog --password "Unlock KeePassXC database" | keepassxc-cli show -q -a Password /home/wojtek/Documents/Private/passwords_xc.kdbx "Home/disroot"
+  }
+}
     '';
   };
 in
 {
   home.packages = [
     pkgs.pimsync
+    pkgs.kdePackages.kdialog
     pimsyncconfig
   ];
 

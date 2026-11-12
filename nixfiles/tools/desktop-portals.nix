@@ -7,14 +7,15 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.kdePackages.xdg-desktop-portal-kde
+      pkgs.xdg-desktop-portal-termfilechooser
     ];
 
     config.common = {
-      # Use GTK for other portal interfaces.
       default = [ "gtk" ];
 
-      # Use KDE specifically for file-open/save dialogs.
-      "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
+      "org.freedesktop.impl.portal.FileChooser" = [
+        "termfilechooser"
+      ];
     };
   };
 }

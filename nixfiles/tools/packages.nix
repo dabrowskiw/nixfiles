@@ -35,7 +35,6 @@ in
     connectHTW
     connectO2
     pkgs.abiword
-    pkgs.anki
     pkgs.arandr
     pkgs.bash
     pkgs.bc
@@ -48,12 +47,14 @@ in
     pkgs.cmake
     pkgs.dante
     pkgs.dig 
+    pkgs.digikam
     pkgs.expect
     pkgs.file
     pkgs.fluidsynth
     pkgs.freecad
     pkgs.fzf
     pkgs.gcc
+    pkgs.gdu
     pkgs.ghostscript
     pkgs.gh
     pkgs.gimp
@@ -86,10 +87,8 @@ in
     pkgs.modemmanager
     pkgs.nextflow
     pkgs.ncdu
-    pkgs.ninja
     pkgs.nvimpager
     pkgs.ollama
-    pkgs.opencode
     pkgs.openjdk
     pkgs.openssl
     pkgs.openvpn
@@ -111,6 +110,7 @@ in
     pkgs.SDL2_gfx
     pkgs.signal-desktop
     pkgs.simple-mtpfs
+    pkgs.slack
     pkgs.sops
     pkgs.steamcmd
     pkgs.steam-tui

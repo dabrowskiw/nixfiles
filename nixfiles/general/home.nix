@@ -46,6 +46,7 @@
     ../tools/unstablepkgs.nix
     ../tools/pimsync.nix
     ../tools/teams.nix
+    ../tools/terminal-filechooser.nix
     ../tools/wezterm.nix
     ../tools/singularity.nix
     ../tools/qwencode.nix

@@ -78,6 +78,7 @@
           ./nixfiles/general/configuration.nix
           ./nixfiles/general/diskstation.nix
           ./nixfiles/general/secrets.nix
+          ./nixfiles/tools/desktop-portals.nix
 #          ./barriers.nix
           inputs.home-manager.nixosModules.default {
             home-manager.extraSpecialArgs = specialArgs // { inherit pass-store; };

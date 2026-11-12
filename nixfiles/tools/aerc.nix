@@ -30,12 +30,6 @@ let
     destination = "/share/khal.config";
     text = ''
       [calendars]
-      [[Posteo]]
-      path = ~/data/calendars/Posteo/default/
-
-      [[Müllabfuhr]]
-      path = ~/data/calendars/Posteo/aarvay/
-
       [[Geburtstage]]
       path = ~/data/calendars/Posteo/oqzfeh/
 
@@ -47,6 +41,9 @@ let
 
       [[Personal]]
       path = ~/data/calendars/HTW-calendar/Y2FsOi8vMC8zMTg3MA/
+
+      [[Kinder]]
+      path = ~/data/calendars/private-calendar/kinder/
 
       [sqlite]
       path = ~/.khal/khal.db
@@ -144,7 +141,7 @@ Piotr.Dabrowski@HTW-Berlin.de | www.htw-berlin.de
     name = "runikhal";
     text = ''
       export EDITOR="fish ${exportics}/bin/exportics"
-      ikhal -c ${khal_config}/share/khal.config -a HTW -a Vorlesungen -a Personal -a Müllabfuhr -a Geburtstage -a Posteo
+      ikhal -c ${khal_config}/share/khal.config -a HTW -a Vorlesungen -a Personal -a Geburtstage -a Kinder
       aerc :next-tab 
     '';
   };

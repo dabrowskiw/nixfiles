@@ -360,6 +360,9 @@ bar {
 }
 
 assign [title="zoom"] 9
+
+for_window [class="^yazi-filechooser$"] floating enable, resize set 1100 750, move position center
+
     '';
   };
 in

@@ -15,11 +15,21 @@
     reportlab
     requests
     setuptools
+    transformers
+    ollama
+    jsonschema
+    jinja2
+    trafilatura
+    nltk
+    torch
     tqdm
     unidecode
     jedi-language-server # for vim-jedi-lsp
     debugpy # for vimspector
+    pkgs.nltk-data.punkt
+    pkgs.nltk-data.punkt-tab
 #    (callPackage ./piecash.nix { inherit mypythonPackages; })
   ]))
  ];
+  home.file."nltk_data".source = pkgs.nltk-data.punkt-tab;
 }
